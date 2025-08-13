@@ -1,0 +1,654 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:54:27.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assessment_information_section",
+  "naming_series",
+  "case",
+  "beneficiary",
+  "assessment_type",
+  "assessment_date",
+  "column_break_assessment",
+  "assessed_by",
+  "assessment_reason",
+  "previous_assessment",
+  "time_since_last_assessment",
+  "changes_since_last_assessment_section",
+  "overall_condition_change",
+  "functional_status_change",
+  "medical_status_change",
+  "column_break_changes",
+  "social_status_change",
+  "environmental_changes",
+  "service_needs_change",
+  "current_functional_abilities_section",
+  "mobility_current",
+  "washing_bathing_current",
+  "dressing_current",
+  "feeding_current",
+  "column_break_functional",
+  "toileting_current",
+  "transferring_current",
+  "housekeeping_current",
+  "cognitive_ability_current",
+  "current_health_status_section",
+  "medical_conditions_current",
+  "medications_current",
+  "recent_hospitalizations",
+  "column_break_health",
+  "health_concerns_new",
+  "pain_level",
+  "mental_health_status",
+  "current_support_services_section",
+  "services_currently_receiving",
+  "service_satisfaction",
+  "services_working_well",
+  "column_break_services",
+  "services_not_working",
+  "additional_services_needed",
+  "service_gaps_identified",
+  "caregiver_assessment_section",
+  "primary_caregiver_current",
+  "caregiver_stress_level",
+  "caregiver_support_needs",
+  "column_break_caregiver",
+  "caregiver_training_needs",
+  "respite_care_needed",
+  "family_dynamics_changes",
+  "environmental_assessment_section",
+  "home_safety_current",
+  "accessibility_issues",
+  "equipment_functioning",
+  "column_break_environment",
+  "environmental_hazards",
+  "home_modifications_needed",
+  "transportation_issues",
+  "goals_progress_section",
+  "previous_goals_status",
+  "goals_achieved",
+  "goals_partially_achieved",
+  "column_break_goals",
+  "goals_not_achieved",
+  "barriers_to_goals",
+  "new_goals_identified",
+  "risk_assessment_section",
+  "current_risk_level",
+  "risk_factors_current",
+  "safety_concerns_current",
+  "column_break_risk",
+  "risk_changes",
+  "protective_factors",
+  "recommendations_section",
+  "service_recommendations",
+  "care_plan_changes",
+  "referrals_recommended",
+  "column_break_recommendations",
+  "priority_actions",
+  "follow_up_timeline",
+  "next_assessment_date",
+  "outcome_section",
+  "assessment_outcome",
+  "overall_progress",
+  "quality_of_life_rating",
+  "column_break_outcome",
+  "client_satisfaction_current",
+  "family_satisfaction",
+  "notes_section",
+  "assessment_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "assessment_information_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FA-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assessment_type",
+   "fieldtype": "Select",
+   "label": "Assessment Type",
+   "options": "\nScheduled Review\nUnscheduled Review\nCrisis Assessment\nDischarge Assessment\nAnnual Review\nService Change Assessment\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_assessment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessment_reason",
+   "fieldtype": "Select",
+   "label": "Assessment Reason",
+   "options": "\nRoutine Follow-up\nCondition Change\nService Review\nFamily Request\nProvider Concern\nEmergency\nOther"
+  },
+  {
+   "fieldname": "previous_assessment",
+   "fieldtype": "Link",
+   "label": "Previous Assessment",
+   "options": "Initial Assessment"
+  },
+  {
+   "fieldname": "time_since_last_assessment",
+   "fieldtype": "Data",
+   "label": "Time Since Last Assessment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changes_since_last_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Changes Since Last Assessment"
+  },
+  {
+   "fieldname": "overall_condition_change",
+   "fieldtype": "Select",
+   "label": "Overall Condition Change",
+   "options": "\nSignificant Improvement\nSlight Improvement\nNo Change\nSlight Decline\nSignificant Decline"
+  },
+  {
+   "fieldname": "functional_status_change",
+   "fieldtype": "Select",
+   "label": "Functional Status Change",
+   "options": "\nSignificant Improvement\nSlight Improvement\nNo Change\nSlight Decline\nSignificant Decline"
+  },
+  {
+   "fieldname": "medical_status_change",
+   "fieldtype": "Select",
+   "label": "Medical Status Change",
+   "options": "\nSignificant Improvement\nSlight Improvement\nNo Change\nSlight Decline\nSignificant Decline"
+  },
+  {
+   "fieldname": "column_break_changes",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "social_status_change",
+   "fieldtype": "Select",
+   "label": "Social Status Change",
+   "options": "\nSignificant Improvement\nSlight Improvement\nNo Change\nSlight Decline\nSignificant Decline"
+  },
+  {
+   "fieldname": "environmental_changes",
+   "fieldtype": "Small Text",
+   "label": "Environmental Changes"
+  },
+  {
+   "fieldname": "service_needs_change",
+   "fieldtype": "Select",
+   "label": "Service Needs Change",
+   "options": "\nDecreased Significantly\nDecreased Slightly\nNo Change\nIncreased Slightly\nIncreased Significantly"
+  },
+  {
+   "fieldname": "current_functional_abilities_section",
+   "fieldtype": "Section Break",
+   "label": "Current Functional Abilities"
+  },
+  {
+   "fieldname": "mobility_current",
+   "fieldtype": "Select",
+   "label": "Mobility",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "washing_bathing_current",
+   "fieldtype": "Select",
+   "label": "Washing/Bathing",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "dressing_current",
+   "fieldtype": "Select",
+   "label": "Dressing",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "feeding_current",
+   "fieldtype": "Select",
+   "label": "Feeding",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "column_break_functional",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "toileting_current",
+   "fieldtype": "Select",
+   "label": "Toileting",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "transferring_current",
+   "fieldtype": "Select",
+   "label": "Transferring",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "housekeeping_current",
+   "fieldtype": "Select",
+   "label": "Housekeeping",
+   "options": "\nIndependent\nRequires Assistance\nRequires Supervision\nDependent"
+  },
+  {
+   "fieldname": "cognitive_ability_current",
+   "fieldtype": "Select",
+   "label": "Cognitive Ability",
+   "options": "\nNormal\nMild Impairment\nModerate Impairment\nSevere Impairment"
+  },
+  {
+   "fieldname": "current_health_status_section",
+   "fieldtype": "Section Break",
+   "label": "Current Health Status"
+  },
+  {
+   "fieldname": "medical_conditions_current",
+   "fieldtype": "Small Text",
+   "label": "Current Medical Conditions"
+  },
+  {
+   "fieldname": "medications_current",
+   "fieldtype": "Small Text",
+   "label": "Current Medications"
+  },
+  {
+   "fieldname": "recent_hospitalizations",
+   "fieldtype": "Small Text",
+   "label": "Recent Hospitalizations"
+  },
+  {
+   "fieldname": "column_break_health",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "health_concerns_new",
+   "fieldtype": "Small Text",
+   "label": "New Health Concerns"
+  },
+  {
+   "fieldname": "pain_level",
+   "fieldtype": "Select",
+   "label": "Pain Level",
+   "options": "\nNo Pain\nMild Pain\nModerate Pain\nSevere Pain\nNot Assessed"
+  },
+  {
+   "fieldname": "mental_health_status",
+   "fieldtype": "Select",
+   "label": "Mental Health Status",
+   "options": "\nGood\nFair\nPoor\nConcerning\nNot Assessed"
+  },
+  {
+   "fieldname": "current_support_services_section",
+   "fieldtype": "Section Break",
+   "label": "Current Support Services"
+  },
+  {
+   "fieldname": "services_currently_receiving",
+   "fieldtype": "Small Text",
+   "label": "Services Currently Receiving"
+  },
+  {
+   "fieldname": "service_satisfaction",
+   "fieldtype": "Select",
+   "label": "Service Satisfaction",
+   "options": "\nVery Satisfied\nSatisfied\nNeutral\nDissatisfied\nVery Dissatisfied"
+  },
+  {
+   "fieldname": "services_working_well",
+   "fieldtype": "Small Text",
+   "label": "Services Working Well"
+  },
+  {
+   "fieldname": "column_break_services",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "services_not_working",
+   "fieldtype": "Small Text",
+   "label": "Services Not Working Well"
+  },
+  {
+   "fieldname": "additional_services_needed",
+   "fieldtype": "Small Text",
+   "label": "Additional Services Needed"
+  },
+  {
+   "fieldname": "service_gaps_identified",
+   "fieldtype": "Small Text",
+   "label": "Service Gaps Identified"
+  },
+  {
+   "fieldname": "caregiver_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Caregiver Assessment"
+  },
+  {
+   "fieldname": "primary_caregiver_current",
+   "fieldtype": "Data",
+   "label": "Primary Caregiver"
+  },
+  {
+   "fieldname": "caregiver_stress_level",
+   "fieldtype": "Select",
+   "label": "Caregiver Stress Level",
+   "options": "\nLow\nModerate\nHigh\nCritical\nNot Applicable"
+  },
+  {
+   "fieldname": "caregiver_support_needs",
+   "fieldtype": "Small Text",
+   "label": "Caregiver Support Needs"
+  },
+  {
+   "fieldname": "column_break_caregiver",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "caregiver_training_needs",
+   "fieldtype": "Small Text",
+   "label": "Caregiver Training Needs"
+  },
+  {
+   "fieldname": "respite_care_needed",
+   "fieldtype": "Check",
+   "label": "Respite Care Needed"
+  },
+  {
+   "fieldname": "family_dynamics_changes",
+   "fieldtype": "Small Text",
+   "label": "Family Dynamics Changes"
+  },
+  {
+   "fieldname": "environmental_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Environmental Assessment"
+  },
+  {
+   "fieldname": "home_safety_current",
+   "fieldtype": "Select",
+   "label": "Home Safety",
+   "options": "\nSafe\nMinor Concerns\nModerate Concerns\nMajor Concerns\nUnsafe"
+  },
+  {
+   "fieldname": "accessibility_issues",
+   "fieldtype": "Small Text",
+   "label": "Accessibility Issues"
+  },
+  {
+   "fieldname": "equipment_functioning",
+   "fieldtype": "Select",
+   "label": "Equipment Functioning",
+   "options": "\nAll Working Well\nMinor Issues\nMajor Issues\nNot Applicable"
+  },
+  {
+   "fieldname": "column_break_environment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "environmental_hazards",
+   "fieldtype": "Small Text",
+   "label": "Environmental Hazards"
+  },
+  {
+   "fieldname": "home_modifications_needed",
+   "fieldtype": "Small Text",
+   "label": "Home Modifications Needed"
+  },
+  {
+   "fieldname": "transportation_issues",
+   "fieldtype": "Small Text",
+   "label": "Transportation Issues"
+  },
+  {
+   "fieldname": "goals_progress_section",
+   "fieldtype": "Section Break",
+   "label": "Goals Progress"
+  },
+  {
+   "fieldname": "previous_goals_status",
+   "fieldtype": "Text Editor",
+   "label": "Previous Goals Status"
+  },
+  {
+   "fieldname": "goals_achieved",
+   "fieldtype": "Small Text",
+   "label": "Goals Achieved"
+  },
+  {
+   "fieldname": "goals_partially_achieved",
+   "fieldtype": "Small Text",
+   "label": "Goals Partially Achieved"
+  },
+  {
+   "fieldname": "column_break_goals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "goals_not_achieved",
+   "fieldtype": "Small Text",
+   "label": "Goals Not Achieved"
+  },
+  {
+   "fieldname": "barriers_to_goals",
+   "fieldtype": "Small Text",
+   "label": "Barriers to Goals"
+  },
+  {
+   "fieldname": "new_goals_identified",
+   "fieldtype": "Small Text",
+   "label": "New Goals Identified"
+  },
+  {
+   "fieldname": "risk_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Risk Assessment"
+  },
+  {
+   "fieldname": "current_risk_level",
+   "fieldtype": "Select",
+   "label": "Current Risk Level",
+   "options": "\nLow Risk\nModerate Risk\nHigh Risk\nCritical Risk"
+  },
+  {
+   "fieldname": "risk_factors_current",
+   "fieldtype": "Small Text",
+   "label": "Current Risk Factors"
+  },
+  {
+   "fieldname": "safety_concerns_current",
+   "fieldtype": "Small Text",
+   "label": "Current Safety Concerns"
+  },
+  {
+   "fieldname": "column_break_risk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "risk_changes",
+   "fieldtype": "Select",
+   "label": "Risk Changes",
+   "options": "\nRisk Decreased\nRisk Unchanged\nRisk Increased\nNew Risks Identified"
+  },
+  {
+   "fieldname": "protective_factors",
+   "fieldtype": "Small Text",
+   "label": "Protective Factors"
+  },
+  {
+   "fieldname": "recommendations_section",
+   "fieldtype": "Section Break",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "service_recommendations",
+   "fieldtype": "Text Editor",
+   "label": "Service Recommendations",
+   "reqd": 1
+  },
+  {
+   "fieldname": "care_plan_changes",
+   "fieldtype": "Text Editor",
+   "label": "Care Plan Changes"
+  },
+  {
+   "fieldname": "referrals_recommended",
+   "fieldtype": "Small Text",
+   "label": "Referrals Recommended"
+  },
+  {
+   "fieldname": "column_break_recommendations",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "priority_actions",
+   "fieldtype": "Small Text",
+   "label": "Priority Actions"
+  },
+  {
+   "fieldname": "follow_up_timeline",
+   "fieldtype": "Select",
+   "label": "Follow-up Timeline",
+   "options": "\n1 week\n2 weeks\n1 month\n3 months\n6 months\n1 year\nAs needed"
+  },
+  {
+   "fieldname": "next_assessment_date",
+   "fieldtype": "Date",
+   "label": "Next Assessment Date"
+  },
+  {
+   "fieldname": "outcome_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Outcome"
+  },
+  {
+   "fieldname": "assessment_outcome",
+   "fieldtype": "Select",
+   "label": "Assessment Outcome",
+   "options": "\nContinue Current Services\nIncrease Services\nDecrease Services\nChange Services\nDischarge\nRefer to Other Agency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "overall_progress",
+   "fieldtype": "Select",
+   "label": "Overall Progress",
+   "options": "\nExcellent Progress\nGood Progress\nSome Progress\nNo Progress\nRegression"
+  },
+  {
+   "fieldname": "quality_of_life_rating",
+   "fieldtype": "Select",
+   "label": "Quality of Life Rating",
+   "options": "\nExcellent\nGood\nFair\nPoor\nVery Poor"
+  },
+  {
+   "fieldname": "column_break_outcome",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_satisfaction_current",
+   "fieldtype": "Select",
+   "label": "Client Satisfaction",
+   "options": "\nVery Satisfied\nSatisfied\nNeutral\nDissatisfied\nVery Dissatisfied"
+  },
+  {
+   "fieldname": "family_satisfaction",
+   "fieldtype": "Select",
+   "label": "Family Satisfaction",
+   "options": "\nVery Satisfied\nSatisfied\nNeutral\nDissatisfied\nVery Dissatisfied"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "assessment_notes",
+   "fieldtype": "Text Editor",
+   "label": "Assessment Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 08:54:27.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Follow-up Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "case",
+ "track_changes": 1
+}

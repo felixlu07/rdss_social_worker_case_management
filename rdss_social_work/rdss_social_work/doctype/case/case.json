@@ -1,0 +1,436 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:43:28.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "case_identification_section",
+  "naming_series",
+  "case_title",
+  "beneficiary",
+  "case_type",
+  "priority_level",
+  "column_break_identification",
+  "case_opened_date",
+  "case_status",
+  "expected_closure_date",
+  "actual_closure_date",
+  "assignment_section",
+  "primary_social_worker",
+  "secondary_social_worker",
+  "supervisor",
+  "column_break_assignment",
+  "assigned_date",
+  "last_contact_date",
+  "next_review_date",
+  "case_summary_section",
+  "presenting_issues",
+  "case_goals",
+  "current_situation",
+  "column_break_summary",
+  "intervention_approach",
+  "progress_notes",
+  "risk_assessment_section",
+  "risk_level",
+  "risk_factors",
+  "safety_concerns",
+  "column_break_risk",
+  "risk_mitigation_plan",
+  "last_risk_assessment_date",
+  "service_authorization_section",
+  "approved_services",
+  "service_budget",
+  "funding_source",
+  "column_break_service",
+  "authorization_date",
+  "authorization_expiry",
+  "authorized_by",
+  "case_metrics_section",
+  "total_visits",
+  "total_assessments",
+  "total_referrals",
+  "column_break_metrics",
+  "case_duration_days",
+  "last_activity_date",
+  "closure_information_section",
+  "closure_reason",
+  "closure_summary",
+  "outcomes_achieved",
+  "column_break_closure",
+  "follow_up_required",
+  "follow_up_date",
+  "closed_by",
+  "notes_section",
+  "case_notes",
+  "internal_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "case_identification_section",
+   "fieldtype": "Section Break",
+   "label": "Case Identification"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CASE-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Case Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Case Type",
+   "options": "\nInitial Assessment\nOngoing Support\nCrisis Intervention\nReferral Follow-up\nFamily Support\nAdvocacy\nResource Coordination\nTransition Planning\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "priority_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority Level",
+   "options": "Low\nMedium\nHigh\nUrgent\nCritical",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_identification",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "case_opened_date",
+   "fieldtype": "Date",
+   "label": "Case Opened Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Case Status",
+   "options": "Open\nActive\nIn Progress\nOn Hold\nPending Review\nClosed\nTransferred",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_closure_date",
+   "fieldtype": "Date",
+   "label": "Expected Closure Date"
+  },
+  {
+   "fieldname": "actual_closure_date",
+   "fieldtype": "Date",
+   "label": "Actual Closure Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assignment_section",
+   "fieldtype": "Section Break",
+   "label": "Case Assignment"
+  },
+  {
+   "fieldname": "primary_social_worker",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Primary Social Worker",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "secondary_social_worker",
+   "fieldtype": "Link",
+   "label": "Secondary Social Worker",
+   "options": "User"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_assignment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assigned_date",
+   "fieldtype": "Date",
+   "label": "Assigned Date"
+  },
+  {
+   "fieldname": "last_contact_date",
+   "fieldtype": "Date",
+   "label": "Last Contact Date"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date"
+  },
+  {
+   "fieldname": "case_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Case Summary"
+  },
+  {
+   "fieldname": "presenting_issues",
+   "fieldtype": "Text Editor",
+   "label": "Presenting Issues",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_goals",
+   "fieldtype": "Text Editor",
+   "label": "Case Goals"
+  },
+  {
+   "fieldname": "current_situation",
+   "fieldtype": "Text Editor",
+   "label": "Current Situation"
+  },
+  {
+   "fieldname": "column_break_summary",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "intervention_approach",
+   "fieldtype": "Text Editor",
+   "label": "Intervention Approach"
+  },
+  {
+   "fieldname": "progress_notes",
+   "fieldtype": "Text Editor",
+   "label": "Progress Notes"
+  },
+  {
+   "fieldname": "risk_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Risk Assessment"
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Select",
+   "label": "Risk Level",
+   "options": "\nLow Risk\nModerate Risk\nHigh Risk\nCritical Risk"
+  },
+  {
+   "fieldname": "risk_factors",
+   "fieldtype": "Small Text",
+   "label": "Risk Factors"
+  },
+  {
+   "fieldname": "safety_concerns",
+   "fieldtype": "Small Text",
+   "label": "Safety Concerns"
+  },
+  {
+   "fieldname": "column_break_risk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "risk_mitigation_plan",
+   "fieldtype": "Text Editor",
+   "label": "Risk Mitigation Plan"
+  },
+  {
+   "fieldname": "last_risk_assessment_date",
+   "fieldtype": "Date",
+   "label": "Last Risk Assessment Date"
+  },
+  {
+   "fieldname": "service_authorization_section",
+   "fieldtype": "Section Break",
+   "label": "Service Authorization"
+  },
+  {
+   "fieldname": "approved_services",
+   "fieldtype": "Small Text",
+   "label": "Approved Services"
+  },
+  {
+   "fieldname": "service_budget",
+   "fieldtype": "Currency",
+   "label": "Service Budget"
+  },
+  {
+   "fieldname": "funding_source",
+   "fieldtype": "Select",
+   "label": "Funding Source",
+   "options": "\nRDSS Internal\nGovernment Grant\nPrivate Donation\nInsurance\nSelf-Pay\nOther"
+  },
+  {
+   "fieldname": "column_break_service",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "authorization_date",
+   "fieldtype": "Date",
+   "label": "Authorization Date"
+  },
+  {
+   "fieldname": "authorization_expiry",
+   "fieldtype": "Date",
+   "label": "Authorization Expiry"
+  },
+  {
+   "fieldname": "authorized_by",
+   "fieldtype": "Link",
+   "label": "Authorized By",
+   "options": "User"
+  },
+  {
+   "fieldname": "case_metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Case Metrics"
+  },
+  {
+   "fieldname": "total_visits",
+   "fieldtype": "Int",
+   "label": "Total Visits",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_assessments",
+   "fieldtype": "Int",
+   "label": "Total Assessments",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_referrals",
+   "fieldtype": "Int",
+   "label": "Total Referrals",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_metrics",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "case_duration_days",
+   "fieldtype": "Int",
+   "label": "Case Duration (Days)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_activity_date",
+   "fieldtype": "Date",
+   "label": "Last Activity Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "closure_information_section",
+   "fieldtype": "Section Break",
+   "label": "Closure Information"
+  },
+  {
+   "fieldname": "closure_reason",
+   "fieldtype": "Select",
+   "label": "Closure Reason",
+   "options": "\nGoals Achieved\nServices No Longer Needed\nClient Moved\nClient Deceased\nClient Refused Services\nTransferred to Another Agency\nLack of Resources\nOther"
+  },
+  {
+   "fieldname": "closure_summary",
+   "fieldtype": "Text Editor",
+   "label": "Closure Summary"
+  },
+  {
+   "fieldname": "outcomes_achieved",
+   "fieldtype": "Text Editor",
+   "label": "Outcomes Achieved"
+  },
+  {
+   "fieldname": "column_break_closure",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "fieldname": "follow_up_date",
+   "fieldtype": "Date",
+   "label": "Follow-up Date"
+  },
+  {
+   "fieldname": "closed_by",
+   "fieldtype": "Link",
+   "label": "Closed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "case_notes",
+   "fieldtype": "Text Editor",
+   "label": "Case Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 08:43:28.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Case",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "case_title",
+ "track_changes": 1
+}

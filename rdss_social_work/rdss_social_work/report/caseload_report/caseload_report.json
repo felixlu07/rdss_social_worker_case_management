@@ -1,0 +1,30 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2025-01-13 10:23:00.000000",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "",
+ "modified": "2025-01-13 10:23:00.000000",
+ "module": "RDSS Social Work",
+ "name": "Caseload Report",
+ "prepared_report": 0,
+ "ref_doctype": "Case",
+ "report_name": "Caseload Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Social Worker"
+  },
+  {
+   "role": "Social Work Supervisor"
+  },
+  {
+   "role": "System Manager"
+  }
+ ]
+}

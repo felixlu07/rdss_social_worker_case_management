@@ -1,0 +1,453 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:54:27.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "visit_information_section",
+  "naming_series",
+  "case",
+  "beneficiary",
+  "visit_date",
+  "visit_time",
+  "column_break_visit",
+  "visit_type",
+  "visit_duration",
+  "location",
+  "social_worker",
+  "attendees_section",
+  "beneficiary_present",
+  "family_members_present",
+  "other_attendees",
+  "column_break_attendees",
+  "interpreter_used",
+  "interpreter_language",
+  "visit_details_section",
+  "visit_purpose",
+  "observations",
+  "discussion_topics",
+  "column_break_details",
+  "client_mood_behavior",
+  "environmental_observations",
+  "assessment_section",
+  "progress_since_last_visit",
+  "goals_addressed",
+  "new_concerns_identified",
+  "column_break_assessment",
+  "risk_factors_observed",
+  "safety_concerns",
+  "actions_interventions_section",
+  "actions_taken",
+  "referrals_made",
+  "resources_provided",
+  "column_break_actions",
+  "follow_up_required",
+  "next_steps",
+  "next_visit_date",
+  "documentation_section",
+  "documents_reviewed",
+  "documents_provided",
+  "photos_taken",
+  "column_break_documentation",
+  "consent_obtained",
+  "confidentiality_discussed",
+  "outcome_section",
+  "visit_outcome",
+  "client_satisfaction",
+  "goals_met",
+  "column_break_outcome",
+  "barriers_encountered",
+  "recommendations",
+  "administrative_section",
+  "travel_time",
+  "mileage",
+  "expenses",
+  "column_break_admin",
+  "supervisor_review_required",
+  "priority_follow_up",
+  "notes_section",
+  "additional_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "visit_information_section",
+   "fieldtype": "Section Break",
+   "label": "Visit Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CN-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "visit_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Visit Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_time",
+   "fieldtype": "Time",
+   "label": "Visit Time"
+  },
+  {
+   "fieldname": "column_break_visit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "visit_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Visit Type",
+   "options": "\nHome Visit\nOffice Visit\nPhone Call\nVideo Call\nCommunity Visit\nHospital Visit\nSchool Visit\nEmergency Visit\nFollow-up Call\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_duration",
+   "fieldtype": "Duration",
+   "label": "Visit Duration"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "social_worker",
+   "fieldtype": "Link",
+   "label": "Social Worker",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attendees_section",
+   "fieldtype": "Section Break",
+   "label": "Attendees"
+  },
+  {
+   "fieldname": "beneficiary_present",
+   "fieldtype": "Check",
+   "label": "Beneficiary Present"
+  },
+  {
+   "fieldname": "family_members_present",
+   "fieldtype": "Small Text",
+   "label": "Family Members Present"
+  },
+  {
+   "fieldname": "other_attendees",
+   "fieldtype": "Small Text",
+   "label": "Other Attendees"
+  },
+  {
+   "fieldname": "column_break_attendees",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interpreter_used",
+   "fieldtype": "Check",
+   "label": "Interpreter Used"
+  },
+  {
+   "fieldname": "interpreter_language",
+   "fieldtype": "Select",
+   "label": "Interpreter Language",
+   "options": "\nMandarin\nMalay\nTamil\nHokkien\nTeochew\nCantonese\nOther"
+  },
+  {
+   "fieldname": "visit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Visit Details"
+  },
+  {
+   "fieldname": "visit_purpose",
+   "fieldtype": "Select",
+   "label": "Visit Purpose",
+   "options": "\nRoutine Check-in\nAssessment\nCrisis Intervention\nService Coordination\nAdvocacy\nEducation/Training\nResource Provision\nFollow-up\nCase Review\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "observations",
+   "fieldtype": "Text Editor",
+   "label": "Observations",
+   "reqd": 1
+  },
+  {
+   "fieldname": "discussion_topics",
+   "fieldtype": "Small Text",
+   "label": "Discussion Topics"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_mood_behavior",
+   "fieldtype": "Select",
+   "label": "Client Mood/Behavior",
+   "options": "\nCooperative\nEngaged\nWithdrawn\nAnxious\nAgitated\nDepressed\nConfused\nHostile\nOther"
+  },
+  {
+   "fieldname": "environmental_observations",
+   "fieldtype": "Small Text",
+   "label": "Environmental Observations"
+  },
+  {
+   "fieldname": "assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment"
+  },
+  {
+   "fieldname": "progress_since_last_visit",
+   "fieldtype": "Text Editor",
+   "label": "Progress Since Last Visit"
+  },
+  {
+   "fieldname": "goals_addressed",
+   "fieldtype": "Small Text",
+   "label": "Goals Addressed"
+  },
+  {
+   "fieldname": "new_concerns_identified",
+   "fieldtype": "Small Text",
+   "label": "New Concerns Identified"
+  },
+  {
+   "fieldname": "column_break_assessment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "risk_factors_observed",
+   "fieldtype": "Small Text",
+   "label": "Risk Factors Observed"
+  },
+  {
+   "fieldname": "safety_concerns",
+   "fieldtype": "Small Text",
+   "label": "Safety Concerns"
+  },
+  {
+   "fieldname": "actions_interventions_section",
+   "fieldtype": "Section Break",
+   "label": "Actions & Interventions"
+  },
+  {
+   "fieldname": "actions_taken",
+   "fieldtype": "Text Editor",
+   "label": "Actions Taken",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referrals_made",
+   "fieldtype": "Small Text",
+   "label": "Referrals Made"
+  },
+  {
+   "fieldname": "resources_provided",
+   "fieldtype": "Small Text",
+   "label": "Resources Provided"
+  },
+  {
+   "fieldname": "column_break_actions",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "fieldname": "next_steps",
+   "fieldtype": "Small Text",
+   "label": "Next Steps"
+  },
+  {
+   "fieldname": "next_visit_date",
+   "fieldtype": "Date",
+   "label": "Next Visit Date"
+  },
+  {
+   "fieldname": "documentation_section",
+   "fieldtype": "Section Break",
+   "label": "Documentation"
+  },
+  {
+   "fieldname": "documents_reviewed",
+   "fieldtype": "Small Text",
+   "label": "Documents Reviewed"
+  },
+  {
+   "fieldname": "documents_provided",
+   "fieldtype": "Small Text",
+   "label": "Documents Provided"
+  },
+  {
+   "fieldname": "photos_taken",
+   "fieldtype": "Check",
+   "label": "Photos Taken"
+  },
+  {
+   "fieldname": "column_break_documentation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consent_obtained",
+   "fieldtype": "Check",
+   "label": "Consent Obtained"
+  },
+  {
+   "fieldname": "confidentiality_discussed",
+   "fieldtype": "Check",
+   "label": "Confidentiality Discussed"
+  },
+  {
+   "fieldname": "outcome_section",
+   "fieldtype": "Section Break",
+   "label": "Visit Outcome"
+  },
+  {
+   "fieldname": "visit_outcome",
+   "fieldtype": "Select",
+   "label": "Visit Outcome",
+   "options": "\nSuccessful\nPartially Successful\nUnsuccessful\nRescheduled\nCancelled\nEmergency Response",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_satisfaction",
+   "fieldtype": "Select",
+   "label": "Client Satisfaction",
+   "options": "\nVery Satisfied\nSatisfied\nNeutral\nDissatisfied\nVery Dissatisfied\nNot Assessed"
+  },
+  {
+   "fieldname": "goals_met",
+   "fieldtype": "Select",
+   "label": "Goals Met",
+   "options": "\nFully Met\nPartially Met\nNot Met\nNot Applicable"
+  },
+  {
+   "fieldname": "column_break_outcome",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "barriers_encountered",
+   "fieldtype": "Small Text",
+   "label": "Barriers Encountered"
+  },
+  {
+   "fieldname": "recommendations",
+   "fieldtype": "Text Editor",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "administrative_section",
+   "fieldtype": "Section Break",
+   "label": "Administrative"
+  },
+  {
+   "fieldname": "travel_time",
+   "fieldtype": "Duration",
+   "label": "Travel Time"
+  },
+  {
+   "fieldname": "mileage",
+   "fieldtype": "Float",
+   "label": "Mileage"
+  },
+  {
+   "fieldname": "expenses",
+   "fieldtype": "Currency",
+   "label": "Expenses"
+  },
+  {
+   "fieldname": "column_break_admin",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supervisor_review_required",
+   "fieldtype": "Check",
+   "label": "Supervisor Review Required"
+  },
+  {
+   "fieldname": "priority_follow_up",
+   "fieldtype": "Check",
+   "label": "Priority Follow-up"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 08:54:27.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Case Notes",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "case",
+ "track_changes": 1
+}

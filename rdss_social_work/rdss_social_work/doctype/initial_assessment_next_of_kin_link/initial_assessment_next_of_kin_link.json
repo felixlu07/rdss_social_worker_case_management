@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "creation": "2025-01-13 10:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "next_of_kin",
+  "relationship_context",
+  "is_primary_contact",
+  "column_break_1",
+  "is_emergency_contact",
+  "contact_priority",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "next_of_kin",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Next of Kin",
+   "options": "Next of Kin",
+   "reqd": 1
+  },
+  {
+   "fieldname": "relationship_context",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Relationship Context",
+   "description": "Additional context about the relationship (e.g., 'Lives with beneficiary', 'Primary caregiver')"
+  },
+  {
+   "fieldname": "is_primary_contact",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Primary Contact"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_emergency_contact",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "contact_priority",
+   "fieldtype": "Select",
+   "label": "Contact Priority",
+   "options": "\n1 - First Contact\n2 - Second Contact\n3 - Third Contact\n4 - Other"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "modified": "2025-01-13 10:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Initial Assessment Next of Kin Link",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

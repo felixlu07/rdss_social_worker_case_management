@@ -1,0 +1,673 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assessment_information_section",
+  "naming_series",
+  "beneficiary",
+  "case",
+  "assessment_date",
+  "column_break_assessment",
+  "assessed_by",
+  "assessment_type",
+  "assessment_period",
+  "household_information_section",
+  "household_size",
+  "household_composition",
+  "primary_income_earner",
+  "column_break_household",
+  "dependents_count",
+  "household_head",
+  "marital_status",
+  "income_section",
+  "monthly_gross_income",
+  "monthly_net_income",
+  "primary_income_source",
+  "column_break_income",
+  "secondary_income_sources",
+  "government_benefits",
+  "other_income",
+  "employment_section",
+  "employment_status",
+  "employer_name",
+  "job_title",
+  "column_break_employment",
+  "work_hours_per_week",
+  "employment_stability",
+  "employment_benefits",
+  "expenses_section",
+  "monthly_housing_cost",
+  "monthly_utilities",
+  "monthly_food_expenses",
+  "column_break_expenses",
+  "monthly_transportation",
+  "monthly_medical_expenses",
+  "monthly_other_expenses",
+  "assets_section",
+  "savings_amount",
+  "checking_account_balance",
+  "investments",
+  "column_break_assets",
+  "property_owned",
+  "vehicle_owned",
+  "other_assets",
+  "debts_section",
+  "total_debt_amount",
+  "monthly_debt_payments",
+  "credit_card_debt",
+  "column_break_debts",
+  "mortgage_balance",
+  "loan_details",
+  "debt_to_income_ratio",
+  "insurance_section",
+  "health_insurance",
+  "health_insurance_provider",
+  "life_insurance",
+  "column_break_insurance",
+  "disability_insurance",
+  "other_insurance",
+  "insurance_gaps",
+  "financial_assistance_section",
+  "current_assistance_programs",
+  "assistance_amount_monthly",
+  "assistance_eligibility",
+  "column_break_assistance",
+  "pending_applications",
+  "assistance_needs",
+  "barriers_to_assistance",
+  "financial_management_section",
+  "budgeting_skills",
+  "financial_literacy_level",
+  "banking_access",
+  "column_break_management",
+  "financial_decision_maker",
+  "financial_support_needed",
+  "money_management_tools",
+  "assessment_results_section",
+  "financial_stability_rating",
+  "poverty_level_status",
+  "financial_stress_level",
+  "column_break_results",
+  "immediate_financial_needs",
+  "long_term_financial_goals",
+  "financial_risk_factors",
+  "recommendations_section",
+  "financial_recommendations",
+  "assistance_recommendations",
+  "referrals_needed",
+  "column_break_recommendations",
+  "priority_actions",
+  "follow_up_timeline",
+  "next_assessment_date",
+  "notes_section",
+  "assessment_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "assessment_information_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FIN-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case"
+  },
+  {
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_assessment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessment_type",
+   "fieldtype": "Select",
+   "label": "Assessment Type",
+   "options": "\nInitial Financial Assessment\nAnnual Review\nChange in Circumstances\nBenefit Application\nCrisis Assessment\nOther"
+  },
+  {
+   "fieldname": "assessment_period",
+   "fieldtype": "Select",
+   "label": "Assessment Period",
+   "options": "\nCurrent Month\nLast 3 Months\nLast 6 Months\nLast 12 Months\nOther"
+  },
+  {
+   "fieldname": "household_information_section",
+   "fieldtype": "Section Break",
+   "label": "Household Information"
+  },
+  {
+   "fieldname": "household_size",
+   "fieldtype": "Int",
+   "label": "Household Size",
+   "reqd": 1
+  },
+  {
+   "fieldname": "household_composition",
+   "fieldtype": "Small Text",
+   "label": "Household Composition"
+  },
+  {
+   "fieldname": "primary_income_earner",
+   "fieldtype": "Data",
+   "label": "Primary Income Earner"
+  },
+  {
+   "fieldname": "column_break_household",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dependents_count",
+   "fieldtype": "Int",
+   "label": "Number of Dependents"
+  },
+  {
+   "fieldname": "household_head",
+   "fieldtype": "Data",
+   "label": "Household Head"
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "\nSingle\nMarried\nDivorced\nWidowed\nSeparated\nDe facto"
+  },
+  {
+   "fieldname": "income_section",
+   "fieldtype": "Section Break",
+   "label": "Income Information"
+  },
+  {
+   "fieldname": "monthly_gross_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Gross Income",
+   "reqd": 1
+  },
+  {
+   "fieldname": "monthly_net_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Net Income"
+  },
+  {
+   "fieldname": "primary_income_source",
+   "fieldtype": "Select",
+   "label": "Primary Income Source",
+   "options": "\nEmployment\nSelf-Employment\nGovernment Benefits\nPension\nInvestments\nFamily Support\nOther"
+  },
+  {
+   "fieldname": "column_break_income",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "secondary_income_sources",
+   "fieldtype": "Small Text",
+   "label": "Secondary Income Sources"
+  },
+  {
+   "fieldname": "government_benefits",
+   "fieldtype": "Small Text",
+   "label": "Government Benefits"
+  },
+  {
+   "fieldname": "other_income",
+   "fieldtype": "Currency",
+   "label": "Other Income"
+  },
+  {
+   "fieldname": "employment_section",
+   "fieldtype": "Section Break",
+   "label": "Employment Information"
+  },
+  {
+   "fieldname": "employment_status",
+   "fieldtype": "Select",
+   "label": "Employment Status",
+   "options": "\nFull-time Employed\nPart-time Employed\nSelf-Employed\nUnemployed\nRetired\nDisabled\nStudent\nHomemaker"
+  },
+  {
+   "fieldname": "employer_name",
+   "fieldtype": "Data",
+   "label": "Employer Name"
+  },
+  {
+   "fieldname": "job_title",
+   "fieldtype": "Data",
+   "label": "Job Title"
+  },
+  {
+   "fieldname": "column_break_employment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work_hours_per_week",
+   "fieldtype": "Int",
+   "label": "Work Hours per Week"
+  },
+  {
+   "fieldname": "employment_stability",
+   "fieldtype": "Select",
+   "label": "Employment Stability",
+   "options": "\nVery Stable\nStable\nSomewhat Unstable\nUnstable\nNot Applicable"
+  },
+  {
+   "fieldname": "employment_benefits",
+   "fieldtype": "Small Text",
+   "label": "Employment Benefits"
+  },
+  {
+   "fieldname": "expenses_section",
+   "fieldtype": "Section Break",
+   "label": "Monthly Expenses"
+  },
+  {
+   "fieldname": "monthly_housing_cost",
+   "fieldtype": "Currency",
+   "label": "Housing Cost (Rent/Mortgage)"
+  },
+  {
+   "fieldname": "monthly_utilities",
+   "fieldtype": "Currency",
+   "label": "Utilities"
+  },
+  {
+   "fieldname": "monthly_food_expenses",
+   "fieldtype": "Currency",
+   "label": "Food Expenses"
+  },
+  {
+   "fieldname": "column_break_expenses",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monthly_transportation",
+   "fieldtype": "Currency",
+   "label": "Transportation"
+  },
+  {
+   "fieldname": "monthly_medical_expenses",
+   "fieldtype": "Currency",
+   "label": "Medical Expenses"
+  },
+  {
+   "fieldname": "monthly_other_expenses",
+   "fieldtype": "Currency",
+   "label": "Other Expenses"
+  },
+  {
+   "fieldname": "assets_section",
+   "fieldtype": "Section Break",
+   "label": "Assets"
+  },
+  {
+   "fieldname": "savings_amount",
+   "fieldtype": "Currency",
+   "label": "Savings Amount"
+  },
+  {
+   "fieldname": "checking_account_balance",
+   "fieldtype": "Currency",
+   "label": "Checking Account Balance"
+  },
+  {
+   "fieldname": "investments",
+   "fieldtype": "Currency",
+   "label": "Investments"
+  },
+  {
+   "fieldname": "column_break_assets",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "property_owned",
+   "fieldtype": "Small Text",
+   "label": "Property Owned"
+  },
+  {
+   "fieldname": "vehicle_owned",
+   "fieldtype": "Small Text",
+   "label": "Vehicle Owned"
+  },
+  {
+   "fieldname": "other_assets",
+   "fieldtype": "Small Text",
+   "label": "Other Assets"
+  },
+  {
+   "fieldname": "debts_section",
+   "fieldtype": "Section Break",
+   "label": "Debts & Liabilities"
+  },
+  {
+   "fieldname": "total_debt_amount",
+   "fieldtype": "Currency",
+   "label": "Total Debt Amount"
+  },
+  {
+   "fieldname": "monthly_debt_payments",
+   "fieldtype": "Currency",
+   "label": "Monthly Debt Payments"
+  },
+  {
+   "fieldname": "credit_card_debt",
+   "fieldtype": "Currency",
+   "label": "Credit Card Debt"
+  },
+  {
+   "fieldname": "column_break_debts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mortgage_balance",
+   "fieldtype": "Currency",
+   "label": "Mortgage Balance"
+  },
+  {
+   "fieldname": "loan_details",
+   "fieldtype": "Small Text",
+   "label": "Loan Details"
+  },
+  {
+   "fieldname": "debt_to_income_ratio",
+   "fieldtype": "Percent",
+   "label": "Debt-to-Income Ratio",
+   "read_only": 1
+  },
+  {
+   "fieldname": "insurance_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance Coverage"
+  },
+  {
+   "fieldname": "health_insurance",
+   "fieldtype": "Check",
+   "label": "Has Health Insurance"
+  },
+  {
+   "fieldname": "health_insurance_provider",
+   "fieldtype": "Data",
+   "depends_on": "health_insurance",
+   "label": "Health Insurance Provider"
+  },
+  {
+   "fieldname": "life_insurance",
+   "fieldtype": "Check",
+   "label": "Has Life Insurance"
+  },
+  {
+   "fieldname": "column_break_insurance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "disability_insurance",
+   "fieldtype": "Check",
+   "label": "Has Disability Insurance"
+  },
+  {
+   "fieldname": "other_insurance",
+   "fieldtype": "Small Text",
+   "label": "Other Insurance"
+  },
+  {
+   "fieldname": "insurance_gaps",
+   "fieldtype": "Small Text",
+   "label": "Insurance Gaps"
+  },
+  {
+   "fieldname": "financial_assistance_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Assistance"
+  },
+  {
+   "fieldname": "current_assistance_programs",
+   "fieldtype": "Small Text",
+   "label": "Current Assistance Programs"
+  },
+  {
+   "fieldname": "assistance_amount_monthly",
+   "fieldtype": "Currency",
+   "label": "Monthly Assistance Amount"
+  },
+  {
+   "fieldname": "assistance_eligibility",
+   "fieldtype": "Small Text",
+   "label": "Eligible for Additional Assistance"
+  },
+  {
+   "fieldname": "column_break_assistance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pending_applications",
+   "fieldtype": "Small Text",
+   "label": "Pending Applications"
+  },
+  {
+   "fieldname": "assistance_needs",
+   "fieldtype": "Small Text",
+   "label": "Assistance Needs"
+  },
+  {
+   "fieldname": "barriers_to_assistance",
+   "fieldtype": "Small Text",
+   "label": "Barriers to Assistance"
+  },
+  {
+   "fieldname": "financial_management_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Management"
+  },
+  {
+   "fieldname": "budgeting_skills",
+   "fieldtype": "Select",
+   "label": "Budgeting Skills",
+   "options": "\nExcellent\nGood\nFair\nPoor\nNone"
+  },
+  {
+   "fieldname": "financial_literacy_level",
+   "fieldtype": "Select",
+   "label": "Financial Literacy Level",
+   "options": "\nHigh\nModerate\nLow\nVery Low"
+  },
+  {
+   "fieldname": "banking_access",
+   "fieldtype": "Select",
+   "label": "Banking Access",
+   "options": "\nFull Access\nLimited Access\nNo Access\nUnbanked"
+  },
+  {
+   "fieldname": "column_break_management",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "financial_decision_maker",
+   "fieldtype": "Data",
+   "label": "Financial Decision Maker"
+  },
+  {
+   "fieldname": "financial_support_needed",
+   "fieldtype": "Small Text",
+   "label": "Financial Support Needed"
+  },
+  {
+   "fieldname": "money_management_tools",
+   "fieldtype": "Small Text",
+   "label": "Money Management Tools Used"
+  },
+  {
+   "fieldname": "assessment_results_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Results"
+  },
+  {
+   "fieldname": "financial_stability_rating",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Financial Stability Rating",
+   "options": "\nVery Stable\nStable\nAt Risk\nUnstable\nCrisis",
+   "reqd": 1
+  },
+  {
+   "fieldname": "poverty_level_status",
+   "fieldtype": "Select",
+   "label": "Poverty Level Status",
+   "options": "\nAbove Poverty Line\nNear Poverty Line\nBelow Poverty Line\nDeep Poverty"
+  },
+  {
+   "fieldname": "financial_stress_level",
+   "fieldtype": "Select",
+   "label": "Financial Stress Level",
+   "options": "\nLow\nModerate\nHigh\nSevere"
+  },
+  {
+   "fieldname": "column_break_results",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "immediate_financial_needs",
+   "fieldtype": "Small Text",
+   "label": "Immediate Financial Needs"
+  },
+  {
+   "fieldname": "long_term_financial_goals",
+   "fieldtype": "Small Text",
+   "label": "Long-term Financial Goals"
+  },
+  {
+   "fieldname": "financial_risk_factors",
+   "fieldtype": "Small Text",
+   "label": "Financial Risk Factors"
+  },
+  {
+   "fieldname": "recommendations_section",
+   "fieldtype": "Section Break",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "financial_recommendations",
+   "fieldtype": "Text Editor",
+   "label": "Financial Recommendations",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assistance_recommendations",
+   "fieldtype": "Small Text",
+   "label": "Assistance Program Recommendations"
+  },
+  {
+   "fieldname": "referrals_needed",
+   "fieldtype": "Small Text",
+   "label": "Referrals Needed"
+  },
+  {
+   "fieldname": "column_break_recommendations",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "priority_actions",
+   "fieldtype": "Small Text",
+   "label": "Priority Actions"
+  },
+  {
+   "fieldname": "follow_up_timeline",
+   "fieldtype": "Select",
+   "label": "Follow-up Timeline",
+   "options": "\n1 month\n3 months\n6 months\n1 year\nAs needed"
+  },
+  {
+   "fieldname": "next_assessment_date",
+   "fieldtype": "Date",
+   "label": "Next Assessment Date"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "assessment_notes",
+   "fieldtype": "Text Editor",
+   "label": "Assessment Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Financial Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "financial_stability_rating",
+ "track_changes": 1
+}

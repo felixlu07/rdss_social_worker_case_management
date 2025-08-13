@@ -1,0 +1,500 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 10:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_information_section",
+  "naming_series",
+  "beneficiary",
+  "case",
+  "document_title",
+  "column_break_document",
+  "document_type",
+  "document_category",
+  "upload_date",
+  "uploaded_by",
+  "file_details_section",
+  "attached_file",
+  "file_name",
+  "file_size",
+  "column_break_file",
+  "file_type",
+  "file_url",
+  "storage_location",
+  "document_metadata_section",
+  "document_date",
+  "document_source",
+  "document_author",
+  "column_break_metadata",
+  "document_version",
+  "language",
+  "page_count",
+  "access_control_section",
+  "access_level",
+  "confidentiality_level",
+  "sharing_permissions",
+  "column_break_access",
+  "expiry_date",
+  "retention_period",
+  "disposal_method",
+  "content_section",
+  "document_description",
+  "keywords",
+  "summary",
+  "column_break_content",
+  "related_documents",
+  "cross_references",
+  "notes",
+  "workflow_section",
+  "document_status",
+  "review_required",
+  "review_date",
+  "column_break_workflow",
+  "approved_by",
+  "approval_date",
+  "next_review_date",
+  "compliance_section",
+  "compliance_requirements",
+  "audit_trail",
+  "legal_hold",
+  "column_break_compliance",
+  "gdpr_classification",
+  "data_subject_rights",
+  "retention_justification",
+  "technical_section",
+  "file_hash",
+  "encryption_status",
+  "backup_status",
+  "column_break_technical",
+  "virus_scan_status",
+  "last_accessed",
+  "access_count",
+  "notes_section",
+  "document_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_information_section",
+   "fieldtype": "Section Break",
+   "label": "Document Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "DOC-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary"
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case"
+  },
+  {
+   "fieldname": "document_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Document Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_document",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "\nMedical Record\nAssessment Report\nService Plan\nConsent Form\nIdentification Document\nInsurance Document\nFinancial Document\nLegal Document\nCorrespondence\nPhoto\nVideo\nAudio Recording\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_category",
+   "fieldtype": "Select",
+   "label": "Document Category",
+   "options": "\nPersonal Information\nMedical Information\nFinancial Information\nLegal Information\nService Documentation\nCommunication\nMultimedia\nAdministrative\nOther"
+  },
+  {
+   "fieldname": "upload_date",
+   "fieldtype": "Date",
+   "label": "Upload Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uploaded_by",
+   "fieldtype": "Link",
+   "label": "Uploaded By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "file_details_section",
+   "fieldtype": "Section Break",
+   "label": "File Details"
+  },
+  {
+   "fieldname": "attached_file",
+   "fieldtype": "Attach",
+   "label": "Attached File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "label": "File Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "file_size",
+   "fieldtype": "Data",
+   "label": "File Size",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_file",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "file_type",
+   "fieldtype": "Data",
+   "label": "File Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "file_url",
+   "fieldtype": "Data",
+   "label": "File URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "storage_location",
+   "fieldtype": "Data",
+   "label": "Storage Location",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_metadata_section",
+   "fieldtype": "Section Break",
+   "label": "Document Metadata"
+  },
+  {
+   "fieldname": "document_date",
+   "fieldtype": "Date",
+   "label": "Document Date"
+  },
+  {
+   "fieldname": "document_source",
+   "fieldtype": "Select",
+   "label": "Document Source",
+   "options": "\nInternal\nExternal Provider\nBeneficiary\nFamily Member\nGovernment Agency\nInsurance Company\nLegal Entity\nOther"
+  },
+  {
+   "fieldname": "document_author",
+   "fieldtype": "Data",
+   "label": "Document Author"
+  },
+  {
+   "fieldname": "column_break_metadata",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_version",
+   "fieldtype": "Data",
+   "label": "Document Version"
+  },
+  {
+   "fieldname": "language",
+   "fieldtype": "Data",
+   "label": "Language"
+  },
+  {
+   "fieldname": "page_count",
+   "fieldtype": "Int",
+   "label": "Page Count"
+  },
+  {
+   "fieldname": "access_control_section",
+   "fieldtype": "Section Break",
+   "label": "Access Control"
+  },
+  {
+   "fieldname": "access_level",
+   "fieldtype": "Select",
+   "label": "Access Level",
+   "options": "\nPublic\nInternal\nRestricted\nConfidential\nHighly Confidential",
+   "reqd": 1
+  },
+  {
+   "fieldname": "confidentiality_level",
+   "fieldtype": "Select",
+   "label": "Confidentiality Level",
+   "options": "\nLow\nMedium\nHigh\nCritical"
+  },
+  {
+   "fieldname": "sharing_permissions",
+   "fieldtype": "Small Text",
+   "label": "Sharing Permissions"
+  },
+  {
+   "fieldname": "column_break_access",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "retention_period",
+   "fieldtype": "Select",
+   "label": "Retention Period",
+   "options": "\n1 Year\n3 Years\n5 Years\n7 Years\n10 Years\nPermanent\nUntil Case Closure\nAs Per Policy"
+  },
+  {
+   "fieldname": "disposal_method",
+   "fieldtype": "Select",
+   "label": "Disposal Method",
+   "options": "\nSecure Deletion\nPhysical Destruction\nArchival\nTransfer to Archive\nReturn to Source"
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content Information"
+  },
+  {
+   "fieldname": "document_description",
+   "fieldtype": "Text Editor",
+   "label": "Document Description"
+  },
+  {
+   "fieldname": "keywords",
+   "fieldtype": "Small Text",
+   "label": "Keywords"
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "column_break_content",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "related_documents",
+   "fieldtype": "Small Text",
+   "label": "Related Documents"
+  },
+  {
+   "fieldname": "cross_references",
+   "fieldtype": "Small Text",
+   "label": "Cross References"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Content Notes"
+  },
+  {
+   "fieldname": "workflow_section",
+   "fieldtype": "Section Break",
+   "label": "Workflow"
+  },
+  {
+   "fieldname": "document_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Document Status",
+   "options": "\nDraft\nUnder Review\nApproved\nArchived\nExpired\nSuperseded",
+   "reqd": 1
+  },
+  {
+   "fieldname": "review_required",
+   "fieldtype": "Check",
+   "label": "Review Required"
+  },
+  {
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "depends_on": "review_required",
+   "label": "Review Date"
+  },
+  {
+   "fieldname": "column_break_workflow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date"
+  },
+  {
+   "fieldname": "compliance_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance & Legal"
+  },
+  {
+   "fieldname": "compliance_requirements",
+   "fieldtype": "Small Text",
+   "label": "Compliance Requirements"
+  },
+  {
+   "fieldname": "audit_trail",
+   "fieldtype": "Text Editor",
+   "label": "Audit Trail",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legal_hold",
+   "fieldtype": "Check",
+   "label": "Legal Hold"
+  },
+  {
+   "fieldname": "column_break_compliance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gdpr_classification",
+   "fieldtype": "Select",
+   "label": "GDPR Classification",
+   "options": "\nPersonal Data\nSensitive Personal Data\nNon-Personal Data\nPseudonymized Data"
+  },
+  {
+   "fieldname": "data_subject_rights",
+   "fieldtype": "Small Text",
+   "label": "Data Subject Rights"
+  },
+  {
+   "fieldname": "retention_justification",
+   "fieldtype": "Small Text",
+   "label": "Retention Justification"
+  },
+  {
+   "fieldname": "technical_section",
+   "fieldtype": "Section Break",
+   "label": "Technical Information"
+  },
+  {
+   "fieldname": "file_hash",
+   "fieldtype": "Data",
+   "label": "File Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "encryption_status",
+   "fieldtype": "Select",
+   "label": "Encryption Status",
+   "options": "\nNot Encrypted\nEncrypted at Rest\nEncrypted in Transit\nEnd-to-End Encrypted"
+  },
+  {
+   "fieldname": "backup_status",
+   "fieldtype": "Select",
+   "label": "Backup Status",
+   "options": "\nNot Backed Up\nBacked Up\nMultiple Backups\nCloud Backup"
+  },
+  {
+   "fieldname": "column_break_technical",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "virus_scan_status",
+   "fieldtype": "Select",
+   "label": "Virus Scan Status",
+   "options": "\nNot Scanned\nClean\nThreat Detected\nQuarantined"
+  },
+  {
+   "fieldname": "last_accessed",
+   "fieldtype": "Datetime",
+   "label": "Last Accessed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "access_count",
+   "fieldtype": "Int",
+   "label": "Access Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "document_notes",
+   "fieldtype": "Text Editor",
+   "label": "Document Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 10:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Document Attachment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "document_title",
+ "track_changes": 1
+}

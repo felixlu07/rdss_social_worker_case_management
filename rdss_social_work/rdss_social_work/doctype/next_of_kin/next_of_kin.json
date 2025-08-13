@@ -1,0 +1,413 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:43:28.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_information_section",
+  "naming_series",
+  "contact_name",
+  "relationship_to_beneficiary",
+  "age",
+  "gender",
+  "column_break_personal",
+  "date_of_birth",
+  "bc_nric_no",
+  "occupation",
+  "contact_information_section",
+  "mobile_number",
+  "home_number",
+  "work_number",
+  "email_address",
+  "column_break_contact",
+  "preferred_contact_method",
+  "best_time_to_contact",
+  "language_preference",
+  "address_information_section",
+  "address_line_1",
+  "address_line_2",
+  "postal_code",
+  "column_break_address",
+  "same_as_beneficiary_address",
+  "distance_from_beneficiary",
+  "caregiver_information_section",
+  "is_primary_caregiver",
+  "caregiver_availability",
+  "care_responsibilities",
+  "column_break_caregiver",
+  "caregiver_training_received",
+  "support_needed",
+  "consent_preferences_section",
+  "consent_to_contact",
+  "consent_to_share_information",
+  "consent_to_emergency_contact",
+  "column_break_consent",
+  "consent_date",
+  "consent_given_by",
+  "emergency_contact_section",
+  "emergency_contact_priority",
+  "available_24_7",
+  "alternative_emergency_contact",
+  "column_break_emergency",
+  "medical_decision_authority",
+  "financial_decision_authority",
+  "relationship_details_section",
+  "relationship_quality",
+  "frequency_of_contact",
+  "living_arrangement_with_beneficiary",
+  "column_break_relationship",
+  "years_known_beneficiary",
+  "relationship_notes",
+  "notes_section",
+  "additional_notes",
+  "internal_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "personal_information_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "NOK-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contact Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "relationship_to_beneficiary",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Relationship to Beneficiary",
+   "options": "\nSpouse\nParent\nChild\nSibling\nGrandparent\nGrandchild\nAunt/Uncle\nCousin\nFriend\nNeighbor\nCaregiver\nGuardian\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOther\nPrefer not to say"
+  },
+  {
+   "fieldname": "column_break_personal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "bc_nric_no",
+   "fieldtype": "Data",
+   "label": "BC / NRIC No"
+  },
+  {
+   "fieldname": "occupation",
+   "fieldtype": "Data",
+   "label": "Occupation"
+  },
+  {
+   "fieldname": "contact_information_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "home_number",
+   "fieldtype": "Data",
+   "label": "Home Number"
+  },
+  {
+   "fieldname": "work_number",
+   "fieldtype": "Data",
+   "label": "Work Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_contact_method",
+   "fieldtype": "Select",
+   "label": "Preferred Contact Method",
+   "options": "\nMobile\nHome Phone\nWork Phone\nEmail\nIn Person\nText Message"
+  },
+  {
+   "fieldname": "best_time_to_contact",
+   "fieldtype": "Select",
+   "label": "Best Time to Contact",
+   "options": "\nMorning (9am-12pm)\nAfternoon (12pm-6pm)\nEvening (6pm-9pm)\nWeekends Only\nAnytime\nEmergency Only"
+  },
+  {
+   "fieldname": "language_preference",
+   "fieldtype": "Select",
+   "label": "Language Preference",
+   "options": "\nEnglish\nMandarin\nMalay\nTamil\nOther"
+  },
+  {
+   "fieldname": "address_information_section",
+   "fieldtype": "Section Break",
+   "label": "Address Information"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "fieldname": "column_break_address",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "same_as_beneficiary_address",
+   "fieldtype": "Check",
+   "label": "Same as Beneficiary Address"
+  },
+  {
+   "fieldname": "distance_from_beneficiary",
+   "fieldtype": "Select",
+   "label": "Distance from Beneficiary",
+   "options": "\nSame Household\nSame Building\nSame Neighborhood\nWithin 5km\nWithin 10km\nMore than 10km\nOverseas"
+  },
+  {
+   "fieldname": "caregiver_information_section",
+   "fieldtype": "Section Break",
+   "label": "Caregiver Information"
+  },
+  {
+   "fieldname": "is_primary_caregiver",
+   "fieldtype": "Check",
+   "label": "Is Primary Caregiver"
+  },
+  {
+   "fieldname": "caregiver_availability",
+   "fieldtype": "Select",
+   "label": "Caregiver Availability",
+   "options": "\nFull-time (24/7)\nDaily (8+ hours)\nPart-time (4-8 hours)\nWeekends Only\nEmergency Only\nNot Available"
+  },
+  {
+   "fieldname": "care_responsibilities",
+   "fieldtype": "Small Text",
+   "label": "Care Responsibilities"
+  },
+  {
+   "fieldname": "column_break_caregiver",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "caregiver_training_received",
+   "fieldtype": "Check",
+   "label": "Caregiver Training Received"
+  },
+  {
+   "fieldname": "support_needed",
+   "fieldtype": "Small Text",
+   "label": "Support Needed"
+  },
+  {
+   "fieldname": "consent_preferences_section",
+   "fieldtype": "Section Break",
+   "label": "Consent & Preferences"
+  },
+  {
+   "fieldname": "consent_to_contact",
+   "fieldtype": "Select",
+   "label": "Consent to Contact",
+   "options": "Yes\nNo\nEmergency Only",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consent_to_share_information",
+   "fieldtype": "Select",
+   "label": "Consent to Share Information",
+   "options": "Yes\nNo\nLimited",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consent_to_emergency_contact",
+   "fieldtype": "Select",
+   "label": "Consent to Emergency Contact",
+   "options": "Yes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_consent",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consent_date",
+   "fieldtype": "Date",
+   "label": "Consent Date"
+  },
+  {
+   "fieldname": "consent_given_by",
+   "fieldtype": "Link",
+   "label": "Consent Given By",
+   "options": "User"
+  },
+  {
+   "fieldname": "emergency_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contact Details"
+  },
+  {
+   "fieldname": "emergency_contact_priority",
+   "fieldtype": "Select",
+   "label": "Emergency Contact Priority",
+   "options": "\nPrimary\nSecondary\nTertiary\nNot Emergency Contact"
+  },
+  {
+   "fieldname": "available_24_7",
+   "fieldtype": "Check",
+   "label": "Available 24/7"
+  },
+  {
+   "fieldname": "alternative_emergency_contact",
+   "fieldtype": "Data",
+   "label": "Alternative Emergency Contact"
+  },
+  {
+   "fieldname": "column_break_emergency",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_decision_authority",
+   "fieldtype": "Check",
+   "label": "Medical Decision Authority"
+  },
+  {
+   "fieldname": "financial_decision_authority",
+   "fieldtype": "Check",
+   "label": "Financial Decision Authority"
+  },
+  {
+   "fieldname": "relationship_details_section",
+   "fieldtype": "Section Break",
+   "label": "Relationship Details"
+  },
+  {
+   "fieldname": "relationship_quality",
+   "fieldtype": "Select",
+   "label": "Relationship Quality",
+   "options": "\nExcellent\nGood\nFair\nPoor\nStrained\nNo Contact"
+  },
+  {
+   "fieldname": "frequency_of_contact",
+   "fieldtype": "Select",
+   "label": "Frequency of Contact",
+   "options": "\nDaily\nWeekly\nBi-weekly\nMonthly\nOccasionally\nRarely\nNo Contact"
+  },
+  {
+   "fieldname": "living_arrangement_with_beneficiary",
+   "fieldtype": "Select",
+   "label": "Living Arrangement",
+   "options": "\nLives Together\nSame Building\nNearby\nSame City\nDifferent City\nOverseas"
+  },
+  {
+   "fieldname": "column_break_relationship",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "years_known_beneficiary",
+   "fieldtype": "Int",
+   "label": "Years Known Beneficiary"
+  },
+  {
+   "fieldname": "relationship_notes",
+   "fieldtype": "Small Text",
+   "label": "Relationship Notes"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 08:43:28.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Next of Kin",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "contact_name",
+ "track_changes": 1
+}

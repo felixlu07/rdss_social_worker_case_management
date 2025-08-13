@@ -1,0 +1,725 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:19:23.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "case_no",
+  "client_name",
+  "bc_nric_no",
+  "age_category",
+  "photo",
+  "column_break_basic",
+  "assessment_date",
+  "assessed_by",
+  "institution_ssa",
+  "community_services_section",
+  "befriending",
+  "counselling",
+  "day_care_centre",
+  "medical_escort_school_escort",
+  "transport",
+  "financial_aid",
+  "home_medical_nursing",
+  "housekeeping_service",
+  "laundry",
+  "meals_delivery",
+  "personal_hygiene",
+  "other_services_required",
+  "environment_information_section",
+  "home_condition",
+  "home_condition_other",
+  "furnishing",
+  "safety_features",
+  "safety_features_other",
+  "existing_assistive_devices",
+  "existing_assistive_devices_other",
+  "functional_cognitive_abilities_section",
+  "mobility",
+  "washing_bathing",
+  "dressing",
+  "feeding",
+  "toileting",
+  "transferring",
+  "housekeeping_adl",
+  "use_of_telephone",
+  "money_management",
+  "cognitive_ability",
+  "medicine_compliance",
+  "medicine_compliance_reason",
+  "assistance_timeline_section",
+  "assistance_first_required",
+  "assistance_duration_6_months",
+  "health_status_section",
+  "medical_conditions",
+  "medical_conditions_other",
+  "hearing_status",
+  "hearing_aid",
+  "vision_status",
+  "vision_corrective_device",
+  "allergy_records_section",
+  "food_allergy",
+  "medicine_allergy",
+  "health_therapies",
+  "health_therapies_institution",
+  "psycho_emotional_section",
+  "anxiety",
+  "feelings",
+  "insomnia",
+  "mood_swing",
+  "recent_bereavement",
+  "self_esteem",
+  "suicidal_ideation",
+  "psycho_emotional_others",
+  "financial_information_section",
+  "financial_source",
+  "financial_source_other",
+  "monthly_amount",
+  "monthly_household_income",
+  "monthly_household_expenditure",
+  "family_information_section",
+  "no_of_siblings",
+  "no_of_children",
+  "next_of_kin_section",
+  "next_of_kin_contacts",
+  "contact_frequency",
+  "contact_frequency_relationship",
+  "language_dialect",
+  "language_dialect_other",
+  "emergency_contact_section",
+  "emergency_contact_name",
+  "emergency_contact_relationship",
+  "emergency_contact_home_no",
+  "emergency_contact_mobile_no",
+  "remarks_section",
+  "remarks",
+  "genogram_section",
+  "genogram",
+  "any_other_information_section",
+  "any_other_information",
+  "assessment_decision_section",
+  "decision_date_of_assessment",
+  "decision_assessed_by",
+  "assigned_staff",
+  "column_break_decision",
+  "assessment_decision",
+  "reject_reason",
+  "refer_to"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "IA-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_no",
+   "fieldtype": "Data",
+   "label": "Case No."
+  },
+  {
+   "fieldname": "client_name",
+   "fieldtype": "Data",
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bc_nric_no",
+   "fieldtype": "Data",
+   "label": "BC / NRIC No:"
+  },
+  {
+   "fieldname": "age_category",
+   "fieldtype": "Select",
+   "label": "Age Category",
+   "options": "\nAdult\nBelow Age 21",
+   "reqd": 1
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "column_break_basic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "institution_ssa",
+   "fieldtype": "Data",
+   "label": "Institution / SSA"
+  },
+  {
+   "fieldname": "community_services_section",
+   "fieldtype": "Section Break",
+   "label": "Community Services Currently Receiving"
+  },
+  {
+   "fieldname": "befriending",
+   "fieldtype": "Check",
+   "label": "Befriending"
+  },
+  {
+   "fieldname": "counselling",
+   "fieldtype": "Check",
+   "label": "Counselling"
+  },
+  {
+   "fieldname": "day_care_centre",
+   "fieldtype": "Check",
+   "label": "Day Care Centre"
+  },
+  {
+   "fieldname": "medical_escort_school_escort",
+   "fieldtype": "Check",
+   "label": "Medical Escort / School Escort"
+  },
+  {
+   "fieldname": "transport",
+   "fieldtype": "Check",
+   "label": "Transport"
+  },
+  {
+   "fieldname": "financial_aid",
+   "fieldtype": "Check",
+   "label": "Financial Aid"
+  },
+  {
+   "fieldname": "home_medical_nursing",
+   "fieldtype": "Check",
+   "label": "Home Medical / Nursing"
+  },
+  {
+   "fieldname": "housekeeping_service",
+   "fieldtype": "Check",
+   "label": "Housekeeping"
+  },
+  {
+   "fieldname": "laundry",
+   "fieldtype": "Check",
+   "label": "Laundry"
+  },
+  {
+   "fieldname": "meals_delivery",
+   "fieldtype": "Check",
+   "label": "Meals Delivery"
+  },
+  {
+   "fieldname": "personal_hygiene",
+   "fieldtype": "Check",
+   "label": "Personal Hygiene"
+  },
+  {
+   "fieldname": "other_services_required",
+   "fieldtype": "Small Text",
+   "label": "Other Services Required"
+  },
+  {
+   "fieldname": "environment_information_section",
+   "fieldtype": "Section Break",
+   "label": "Environment Information"
+  },
+  {
+   "fieldname": "home_condition",
+   "fieldtype": "Select",
+   "label": "Home Condition",
+   "options": "\nAcceptable\nDirty\nCluttered\nBug Infested\nPoor Ventilation\nOther"
+  },
+  {
+   "depends_on": "eval:doc.home_condition=='Other'",
+   "fieldname": "home_condition_other",
+   "fieldtype": "Data",
+   "label": "Home Condition (Other)"
+  },
+  {
+   "fieldname": "furnishing",
+   "fieldtype": "Select",
+   "label": "Furnishing",
+   "options": "\nWell-Equipped\nBasic\nBare"
+  },
+  {
+   "fieldname": "safety_features",
+   "fieldtype": "Select",
+   "label": "Safety Features",
+   "options": "\nAAS\nAnti-Slip\nGrab Bar\nOther"
+  },
+  {
+   "depends_on": "eval:doc.safety_features=='Other'",
+   "fieldname": "safety_features_other",
+   "fieldtype": "Data",
+   "label": "Safety Features (Other)"
+  },
+  {
+   "fieldname": "existing_assistive_devices",
+   "fieldtype": "Select",
+   "label": "Existing Assistive Devices",
+   "options": "\nStick M/G\nW/Frame\nWheelchair\nHospital Bed\nHoyer Lift\nCatheter\nCommode\nFeeding Tube\nOxygen Concentrator / Suction Tank\nBP Machine\nFeeding Machine\nVentilator (BiPAP / CPAP)\nCough Assist\nOximeter\nOther"
+  },
+  {
+   "depends_on": "eval:doc.existing_assistive_devices=='Other'",
+   "fieldname": "existing_assistive_devices_other",
+   "fieldtype": "Data",
+   "label": "Existing Assistive Devices (Other)"
+  },
+  {
+   "fieldname": "functional_cognitive_abilities_section",
+   "fieldtype": "Section Break",
+   "label": "Functional & Cognitive Abilities - Activities of Daily Living (ADLs)"
+  },
+  {
+   "fieldname": "mobility",
+   "fieldtype": "Select",
+   "label": "Mobility",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "washing_bathing",
+   "fieldtype": "Select",
+   "label": "Washing or Bathing",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "dressing",
+   "fieldtype": "Select",
+   "label": "Dressing",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "feeding",
+   "fieldtype": "Select",
+   "label": "Feeding",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "toileting",
+   "fieldtype": "Select",
+   "label": "Toileting",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "transferring",
+   "fieldtype": "Select",
+   "label": "Transferring",
+   "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "housekeeping_adl",
+   "fieldtype": "Select",
+   "label": "Housekeeping",
+   "options": "\nIndependent\nNeeds Help\nTotally Dependent"
+  },
+  {
+   "fieldname": "use_of_telephone",
+   "fieldtype": "Select",
+   "label": "Use of Telephone",
+   "options": "\nIndependent\nNeeds Help\nTotally Dependent"
+  },
+  {
+   "fieldname": "money_management",
+   "fieldtype": "Select",
+   "label": "Money Management",
+   "options": "\nIndependent\nNeeds Help\nTotally Dependent"
+  },
+  {
+   "fieldname": "cognitive_ability",
+   "fieldtype": "Select",
+   "label": "Cognitive Ability",
+   "options": "\nNormal\nAppears Confused\nAppears Forgetful"
+  },
+  {
+   "fieldname": "medicine_compliance",
+   "fieldtype": "Select",
+   "label": "Medicine Compliance",
+   "options": "\nYes\nNo\nIrregular"
+  },
+  {
+   "depends_on": "eval:doc.medicine_compliance=='Irregular'",
+   "fieldname": "medicine_compliance_reason",
+   "fieldtype": "Data",
+   "label": "Medicine Compliance Reason"
+  },
+  {
+   "fieldname": "assistance_timeline_section",
+   "fieldtype": "Section Break",
+   "label": "Assistance Timeline"
+  },
+  {
+   "fieldname": "assistance_first_required",
+   "fieldtype": "Date",
+   "label": "When did the Person Needing Assessment first require assistance with the ADLs"
+  },
+  {
+   "fieldname": "assistance_duration_6_months",
+   "fieldtype": "Select",
+   "label": "Need for assistance duration",
+   "options": "\nYes, required for 6 months or more from the date of assessment\nNo, required for less than 6 months"
+  },
+  {
+   "fieldname": "health_status_section",
+   "fieldtype": "Section Break",
+   "label": "Health Status"
+  },
+  {
+   "fieldname": "medical_conditions",
+   "fieldtype": "Select",
+   "label": "Medical Conditions",
+   "options": "\nSeizures\nRespiratory\nENT\nGastroenterology\nHeart & Cardiovascular conditions\nMalnutrition\nHead Surgery\nNeck Surgery\nOther Surgery\nOrthopaedic\nScoliosis\nHepatology – Liver condition\nPsychological conditions\nADHD\nIncontinence\nRenal condition\nXLA\nOther"
+  },
+  {
+   "depends_on": "eval:doc.medical_conditions=='Other'",
+   "fieldname": "medical_conditions_other",
+   "fieldtype": "Small Text",
+   "label": "Medical Conditions (Other)"
+  },
+  {
+   "fieldname": "hearing_status",
+   "fieldtype": "Select",
+   "label": "Hearing",
+   "options": "\nGood\nFair\nPoor\nDeaf"
+  },
+  {
+   "fieldname": "hearing_aid",
+   "fieldtype": "Check",
+   "label": "Hearing Aid"
+  },
+  {
+   "fieldname": "vision_status",
+   "fieldtype": "Select",
+   "label": "Vision",
+   "options": "\nGood\nFair\nPoor\nBlind\nStrabismus"
+  },
+  {
+   "fieldname": "vision_corrective_device",
+   "fieldtype": "Check",
+   "label": "Corrective Device"
+  },
+  {
+   "fieldname": "allergy_records_section",
+   "fieldtype": "Section Break",
+   "label": "Allergy Records"
+  },
+  {
+   "fieldname": "food_allergy",
+   "fieldtype": "Data",
+   "label": "Food Allergy"
+  },
+  {
+   "fieldname": "medicine_allergy",
+   "fieldtype": "Data",
+   "label": "Medicine Allergy"
+  },
+  {
+   "fieldname": "health_therapies",
+   "fieldtype": "Select",
+   "label": "Health Therapies Records",
+   "options": "\nPhysiotherapy\nSpeech Therapy\nOccupational Therapy"
+  },
+  {
+   "fieldname": "health_therapies_institution",
+   "fieldtype": "Data",
+   "label": "Health Therapies Institution / SSA"
+  },
+  {
+   "fieldname": "psycho_emotional_section",
+   "fieldtype": "Section Break",
+   "label": "Psycho-Emotional Status"
+  },
+  {
+   "fieldname": "anxiety",
+   "fieldtype": "Select",
+   "label": "Anxiety",
+   "options": "\nYes\nNo\nPositive\nNegative"
+  },
+  {
+   "fieldname": "feelings",
+   "fieldtype": "Select",
+   "label": "Feelings",
+   "options": "\nYes\nNo\nPositive\nNegative"
+  },
+  {
+   "fieldname": "insomnia",
+   "fieldtype": "Select",
+   "label": "Insomnia",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "mood_swing",
+   "fieldtype": "Select",
+   "label": "Mood Swing",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "recent_bereavement",
+   "fieldtype": "Select",
+   "label": "Recent Bereavement",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "self_esteem",
+   "fieldtype": "Select",
+   "label": "Self-esteem",
+   "options": "\nHigh\nLow"
+  },
+  {
+   "fieldname": "suicidal_ideation",
+   "fieldtype": "Select",
+   "label": "Suicidal Ideation",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "psycho_emotional_others",
+   "fieldtype": "Small Text",
+   "label": "Others, pls specify"
+  },
+  {
+   "fieldname": "financial_information_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Information"
+  },
+  {
+   "fieldname": "financial_source",
+   "fieldtype": "Select",
+   "label": "Financial Source",
+   "options": "\nSelf\nParents\nChildren\nGrand-Children\nCPF\nFriends\nSavings\nRDSS\nRDF\nOthers"
+  },
+  {
+   "depends_on": "eval:doc.financial_source=='Others'",
+   "fieldname": "financial_source_other",
+   "fieldtype": "Data",
+   "label": "Financial Source (Others)"
+  },
+  {
+   "fieldname": "monthly_amount",
+   "fieldtype": "Currency",
+   "label": "Amount / Month"
+  },
+  {
+   "fieldname": "monthly_household_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Household Income"
+  },
+  {
+   "fieldname": "monthly_household_expenditure",
+   "fieldtype": "Currency",
+   "label": "Monthly Household Expenditure"
+  },
+  {
+   "fieldname": "family_information_section",
+   "fieldtype": "Section Break",
+   "label": "Family Information"
+  },
+  {
+   "fieldname": "no_of_siblings",
+   "fieldtype": "Int",
+   "label": "No. of Siblings"
+  },
+  {
+   "fieldname": "no_of_children",
+   "fieldtype": "Int",
+   "label": "No. of Children (If applicable)"
+  },
+  {
+   "fieldname": "next_of_kin_section",
+   "fieldtype": "Section Break",
+   "label": "Next-of-Kin"
+  },
+  {
+   "fieldname": "next_of_kin_contacts",
+   "fieldtype": "Table",
+   "label": "Next-of-Kin Contacts",
+   "options": "Initial Assessment Next of Kin Link",
+   "description": "Link existing Next of Kin records or create new ones as needed"
+  },
+  {
+   "fieldname": "contact_frequency",
+   "fieldtype": "Select",
+   "label": "Contact Frequency",
+   "options": "\nNil\nDaily\nWeekly\nAd hoc\nOthers"
+  },
+  {
+   "depends_on": "eval:doc.contact_frequency=='Others'",
+   "fieldname": "contact_frequency_relationship",
+   "fieldtype": "Data",
+   "label": "Contact Frequency Relationship"
+  },
+  {
+   "fieldname": "language_dialect",
+   "fieldtype": "Select",
+   "label": "Language / Dialect",
+   "options": "\nEnglish\nMandarin\nMalay\nTamil\nOthers"
+  },
+  {
+   "depends_on": "eval:doc.language_dialect=='Others'",
+   "fieldname": "language_dialect_other",
+   "fieldtype": "Data",
+   "label": "Language / Dialect (Others)"
+  },
+  {
+   "fieldname": "emergency_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contact Person (if different from primary caregiver/ Next-of-Kins)"
+  },
+  {
+   "fieldname": "emergency_contact_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Name"
+  },
+  {
+   "fieldname": "emergency_contact_relationship",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Relationship"
+  },
+  {
+   "fieldname": "emergency_contact_home_no",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Home No."
+  },
+  {
+   "fieldname": "emergency_contact_mobile_no",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Mobile No."
+  },
+  {
+   "fieldname": "remarks_section",
+   "fieldtype": "Section Break",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "genogram_section",
+   "fieldtype": "Section Break",
+   "label": "Genogram"
+  },
+  {
+   "fieldname": "genogram",
+   "fieldtype": "Text Editor",
+   "label": "Genogram",
+   "description": "Draw or describe the family genogram here. You can also attach an image if drawn separately."
+  },
+  {
+   "fieldname": "any_other_information_section",
+   "fieldtype": "Section Break",
+   "label": "Any Other Information"
+  },
+  {
+   "fieldname": "any_other_information",
+   "fieldtype": "Text Editor",
+   "label": "Any Other Information"
+  },
+  {
+   "fieldname": "assessment_decision_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Decision"
+  },
+  {
+   "fieldname": "decision_date_of_assessment",
+   "fieldtype": "Date",
+   "label": "Date of Assessment Decision"
+  },
+  {
+   "fieldname": "decision_assessed_by",
+   "fieldtype": "Link",
+   "label": "Decision Assessed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "assigned_staff",
+   "fieldtype": "Link",
+   "label": "Assigned Staff",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_decision",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessment_decision",
+   "fieldtype": "Select",
+   "label": "Decision",
+   "options": "\nAccept\nReject\nOn Hold\nClient Refuse\nRefer to",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.assessment_decision=='Reject'",
+   "fieldname": "reject_reason",
+   "fieldtype": "Small Text",
+   "label": "Reject Reason (provide reason)"
+  },
+  {
+   "depends_on": "eval:doc.assessment_decision=='Refer to'",
+   "fieldname": "refer_to",
+   "fieldtype": "Data",
+   "label": "Refer to"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 08:19:23.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Initial Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "client_name",
+ "track_changes": 1
+}

@@ -1,0 +1,612 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:54:27.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "plan_identification_section",
+  "naming_series",
+  "plan_title",
+  "case",
+  "beneficiary",
+  "plan_type",
+  "column_break_identification",
+  "plan_date",
+  "plan_status",
+  "effective_date",
+  "review_date",
+  "expiry_date",
+  "planning_team_section",
+  "primary_social_worker",
+  "case_manager",
+  "supervisor",
+  "column_break_team",
+  "beneficiary_involvement",
+  "family_involvement",
+  "other_professionals",
+  "assessment_summary_section",
+  "presenting_needs",
+  "strengths_identified",
+  "risk_factors",
+  "column_break_assessment",
+  "priority_concerns",
+  "cultural_considerations",
+  "goals_objectives_section",
+  "primary_goal",
+  "secondary_goals",
+  "measurable_objectives",
+  "column_break_goals",
+  "target_outcomes",
+  "success_indicators",
+  "services_section",
+  "services_to_be_provided",
+  "service_frequency",
+  "service_duration",
+  "column_break_services",
+  "service_providers",
+  "service_location",
+  "transportation_needs",
+  "resources_section",
+  "internal_resources",
+  "external_resources",
+  "equipment_needed",
+  "column_break_resources",
+  "funding_source",
+  "estimated_cost",
+  "budget_approved",
+  "timeline_section",
+  "implementation_start_date",
+  "milestone_dates",
+  "review_schedule",
+  "column_break_timeline",
+  "expected_completion_date",
+  "progress_monitoring",
+  "responsibilities_section",
+  "social_worker_responsibilities",
+  "beneficiary_responsibilities",
+  "family_responsibilities",
+  "column_break_responsibilities",
+  "agency_responsibilities",
+  "other_responsibilities",
+  "monitoring_evaluation_section",
+  "progress_indicators",
+  "evaluation_methods",
+  "reporting_schedule",
+  "column_break_monitoring",
+  "quality_measures",
+  "outcome_measurement",
+  "contingency_section",
+  "barriers_anticipated",
+  "contingency_plans",
+  "crisis_procedures",
+  "column_break_contingency",
+  "emergency_contacts",
+  "escalation_procedures",
+  "approval_section",
+  "plan_developed_by",
+  "plan_approved_by",
+  "approval_date",
+  "column_break_approval",
+  "beneficiary_consent",
+  "consent_date",
+  "next_review_by",
+  "notes_section",
+  "additional_notes",
+  "revision_history"
+ ],
+ "fields": [
+  {
+   "fieldname": "plan_identification_section",
+   "fieldtype": "Section Break",
+   "label": "Plan Identification"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SP-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plan Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "plan_type",
+   "fieldtype": "Select",
+   "label": "Plan Type",
+   "options": "\nInitial Service Plan\nRevised Service Plan\nCrisis Intervention Plan\nTransition Plan\nDischarge Plan\nFamily Support Plan\nIndividual Support Plan\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_identification",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "plan_date",
+   "fieldtype": "Date",
+   "label": "Plan Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Plan Status",
+   "options": "Draft\nActive\nUnder Review\nRevised\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "Effective Date"
+  },
+  {
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "label": "Review Date"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "planning_team_section",
+   "fieldtype": "Section Break",
+   "label": "Planning Team"
+  },
+  {
+   "fieldname": "primary_social_worker",
+   "fieldtype": "Link",
+   "label": "Primary Social Worker",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_manager",
+   "fieldtype": "Link",
+   "label": "Case Manager",
+   "options": "User"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_team",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiary_involvement",
+   "fieldtype": "Select",
+   "label": "Beneficiary Involvement",
+   "options": "\nFully Involved\nPartially Involved\nMinimal Involvement\nUnable to Participate\nRefused Participation"
+  },
+  {
+   "fieldname": "family_involvement",
+   "fieldtype": "Select",
+   "label": "Family Involvement",
+   "options": "\nFully Involved\nPartially Involved\nMinimal Involvement\nNot Involved\nRefused Participation"
+  },
+  {
+   "fieldname": "other_professionals",
+   "fieldtype": "Small Text",
+   "label": "Other Professionals Involved"
+  },
+  {
+   "fieldname": "assessment_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Summary"
+  },
+  {
+   "fieldname": "presenting_needs",
+   "fieldtype": "Text Editor",
+   "label": "Presenting Needs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "strengths_identified",
+   "fieldtype": "Text Editor",
+   "label": "Strengths Identified"
+  },
+  {
+   "fieldname": "risk_factors",
+   "fieldtype": "Text Editor",
+   "label": "Risk Factors"
+  },
+  {
+   "fieldname": "column_break_assessment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "priority_concerns",
+   "fieldtype": "Text Editor",
+   "label": "Priority Concerns"
+  },
+  {
+   "fieldname": "cultural_considerations",
+   "fieldtype": "Text Editor",
+   "label": "Cultural Considerations"
+  },
+  {
+   "fieldname": "goals_objectives_section",
+   "fieldtype": "Section Break",
+   "label": "Goals & Objectives"
+  },
+  {
+   "fieldname": "primary_goal",
+   "fieldtype": "Text Editor",
+   "label": "Primary Goal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "secondary_goals",
+   "fieldtype": "Text Editor",
+   "label": "Secondary Goals"
+  },
+  {
+   "fieldname": "measurable_objectives",
+   "fieldtype": "Text Editor",
+   "label": "Measurable Objectives"
+  },
+  {
+   "fieldname": "column_break_goals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_outcomes",
+   "fieldtype": "Text Editor",
+   "label": "Target Outcomes"
+  },
+  {
+   "fieldname": "success_indicators",
+   "fieldtype": "Text Editor",
+   "label": "Success Indicators"
+  },
+  {
+   "fieldname": "services_section",
+   "fieldtype": "Section Break",
+   "label": "Services"
+  },
+  {
+   "fieldname": "services_to_be_provided",
+   "fieldtype": "Text Editor",
+   "label": "Services to be Provided",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_frequency",
+   "fieldtype": "Select",
+   "label": "Service Frequency",
+   "options": "\nDaily\nWeekly\nBi-weekly\nMonthly\nQuarterly\nAs Needed\nOne-time\nOther"
+  },
+  {
+   "fieldname": "service_duration",
+   "fieldtype": "Select",
+   "label": "Service Duration",
+   "options": "\n1-3 months\n3-6 months\n6-12 months\n1-2 years\nLong-term\nIndefinite\nOther"
+  },
+  {
+   "fieldname": "column_break_services",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_providers",
+   "fieldtype": "Small Text",
+   "label": "Service Providers"
+  },
+  {
+   "fieldname": "service_location",
+   "fieldtype": "Select",
+   "label": "Service Location",
+   "options": "\nHome\nOffice\nCommunity\nSchool\nHospital\nMultiple Locations\nOther"
+  },
+  {
+   "fieldname": "transportation_needs",
+   "fieldtype": "Small Text",
+   "label": "Transportation Needs"
+  },
+  {
+   "fieldname": "resources_section",
+   "fieldtype": "Section Break",
+   "label": "Resources"
+  },
+  {
+   "fieldname": "internal_resources",
+   "fieldtype": "Small Text",
+   "label": "Internal Resources"
+  },
+  {
+   "fieldname": "external_resources",
+   "fieldtype": "Small Text",
+   "label": "External Resources"
+  },
+  {
+   "fieldname": "equipment_needed",
+   "fieldtype": "Small Text",
+   "label": "Equipment Needed"
+  },
+  {
+   "fieldname": "column_break_resources",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "funding_source",
+   "fieldtype": "Select",
+   "label": "Funding Source",
+   "options": "\nRDSS Internal\nGovernment Grant\nPrivate Donation\nInsurance\nSelf-Pay\nMultiple Sources\nOther"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost"
+  },
+  {
+   "fieldname": "budget_approved",
+   "fieldtype": "Check",
+   "label": "Budget Approved"
+  },
+  {
+   "fieldname": "timeline_section",
+   "fieldtype": "Section Break",
+   "label": "Timeline"
+  },
+  {
+   "fieldname": "implementation_start_date",
+   "fieldtype": "Date",
+   "label": "Implementation Start Date"
+  },
+  {
+   "fieldname": "milestone_dates",
+   "fieldtype": "Small Text",
+   "label": "Milestone Dates"
+  },
+  {
+   "fieldname": "review_schedule",
+   "fieldtype": "Select",
+   "label": "Review Schedule",
+   "options": "\nWeekly\nBi-weekly\nMonthly\nQuarterly\nBi-annually\nAnnually\nAs Needed"
+  },
+  {
+   "fieldname": "column_break_timeline",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_completion_date",
+   "fieldtype": "Date",
+   "label": "Expected Completion Date"
+  },
+  {
+   "fieldname": "progress_monitoring",
+   "fieldtype": "Small Text",
+   "label": "Progress Monitoring Methods"
+  },
+  {
+   "fieldname": "responsibilities_section",
+   "fieldtype": "Section Break",
+   "label": "Responsibilities"
+  },
+  {
+   "fieldname": "social_worker_responsibilities",
+   "fieldtype": "Text Editor",
+   "label": "Social Worker Responsibilities"
+  },
+  {
+   "fieldname": "beneficiary_responsibilities",
+   "fieldtype": "Text Editor",
+   "label": "Beneficiary Responsibilities"
+  },
+  {
+   "fieldname": "family_responsibilities",
+   "fieldtype": "Text Editor",
+   "label": "Family Responsibilities"
+  },
+  {
+   "fieldname": "column_break_responsibilities",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "agency_responsibilities",
+   "fieldtype": "Text Editor",
+   "label": "Agency Responsibilities"
+  },
+  {
+   "fieldname": "other_responsibilities",
+   "fieldtype": "Text Editor",
+   "label": "Other Responsibilities"
+  },
+  {
+   "fieldname": "monitoring_evaluation_section",
+   "fieldtype": "Section Break",
+   "label": "Monitoring & Evaluation"
+  },
+  {
+   "fieldname": "progress_indicators",
+   "fieldtype": "Text Editor",
+   "label": "Progress Indicators"
+  },
+  {
+   "fieldname": "evaluation_methods",
+   "fieldtype": "Small Text",
+   "label": "Evaluation Methods"
+  },
+  {
+   "fieldname": "reporting_schedule",
+   "fieldtype": "Select",
+   "label": "Reporting Schedule",
+   "options": "\nWeekly\nBi-weekly\nMonthly\nQuarterly\nBi-annually\nAnnually"
+  },
+  {
+   "fieldname": "column_break_monitoring",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quality_measures",
+   "fieldtype": "Small Text",
+   "label": "Quality Measures"
+  },
+  {
+   "fieldname": "outcome_measurement",
+   "fieldtype": "Small Text",
+   "label": "Outcome Measurement Tools"
+  },
+  {
+   "fieldname": "contingency_section",
+   "fieldtype": "Section Break",
+   "label": "Contingency Planning"
+  },
+  {
+   "fieldname": "barriers_anticipated",
+   "fieldtype": "Text Editor",
+   "label": "Barriers Anticipated"
+  },
+  {
+   "fieldname": "contingency_plans",
+   "fieldtype": "Text Editor",
+   "label": "Contingency Plans"
+  },
+  {
+   "fieldname": "crisis_procedures",
+   "fieldtype": "Text Editor",
+   "label": "Crisis Procedures"
+  },
+  {
+   "fieldname": "column_break_contingency",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contacts",
+   "fieldtype": "Small Text",
+   "label": "Emergency Contacts"
+  },
+  {
+   "fieldname": "escalation_procedures",
+   "fieldtype": "Text Editor",
+   "label": "Escalation Procedures"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Approval & Consent"
+  },
+  {
+   "fieldname": "plan_developed_by",
+   "fieldtype": "Link",
+   "label": "Plan Developed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "plan_approved_by",
+   "fieldtype": "Link",
+   "label": "Plan Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "column_break_approval",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiary_consent",
+   "fieldtype": "Check",
+   "label": "Beneficiary Consent Obtained"
+  },
+  {
+   "fieldname": "consent_date",
+   "fieldtype": "Date",
+   "label": "Consent Date"
+  },
+  {
+   "fieldname": "next_review_by",
+   "fieldtype": "Link",
+   "label": "Next Review By",
+   "options": "User"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "revision_history",
+   "fieldtype": "Text Editor",
+   "label": "Revision History"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 08:54:27.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Service Plan",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "plan_title",
+ "track_changes": 1
+}

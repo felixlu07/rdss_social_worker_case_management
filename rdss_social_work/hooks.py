@@ -25,7 +25,7 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/rdss_social_work/css/rdss_social_work.css"
+app_include_css = "/assets/rdss_social_work/css/initial_assessment.css"
 # app_include_js = "/assets/rdss_social_work/js/rdss_social_work.js"
 
 # include js, css files in header of web template
@@ -47,6 +47,15 @@ app_license = "mit"
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
+# Fixtures
+# ------------------
+fixtures = [
+    {
+        "doctype": "Role",
+        "filters": {"name": "Social Worker"}
+    }
+]
 
 # Svg Icons
 # ------------------

@@ -1,0 +1,472 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 10:15:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "team_information_section",
+  "naming_series",
+  "beneficiary",
+  "case",
+  "team_name",
+  "column_break_team",
+  "team_lead",
+  "formation_date",
+  "team_status",
+  "team_composition_section",
+  "primary_social_worker",
+  "case_manager",
+  "supervisor",
+  "column_break_composition",
+  "medical_professionals",
+  "therapy_professionals",
+  "support_staff",
+  "external_providers_section",
+  "healthcare_providers",
+  "community_partners",
+  "family_members",
+  "column_break_external",
+  "volunteers",
+  "other_professionals",
+  "emergency_contacts",
+  "coordination_section",
+  "meeting_frequency",
+  "communication_method",
+  "coordination_platform",
+  "column_break_coordination",
+  "documentation_system",
+  "information_sharing_protocol",
+  "confidentiality_agreements",
+  "roles_responsibilities_section",
+  "team_roles",
+  "decision_making_process",
+  "escalation_procedures",
+  "column_break_roles",
+  "backup_assignments",
+  "coverage_arrangements",
+  "training_requirements",
+  "care_planning_section",
+  "care_goals",
+  "service_coordination",
+  "treatment_protocols",
+  "column_break_planning",
+  "quality_measures",
+  "outcome_indicators",
+  "review_schedule",
+  "communication_section",
+  "team_meetings",
+  "communication_log",
+  "shared_resources",
+  "column_break_communication",
+  "conflict_resolution",
+  "feedback_mechanisms",
+  "performance_section",
+  "team_effectiveness",
+  "collaboration_rating",
+  "goal_achievement",
+  "column_break_performance",
+  "challenges_identified",
+  "improvement_areas",
+  "success_stories",
+  "notes_section",
+  "team_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "team_information_section",
+   "fieldtype": "Section Break",
+   "label": "Team Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CT-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case"
+  },
+  {
+   "fieldname": "team_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Team Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_team",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "team_lead",
+   "fieldtype": "Link",
+   "label": "Team Lead",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "formation_date",
+   "fieldtype": "Date",
+   "label": "Formation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "team_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Team Status",
+   "options": "\nActive\nInactive\nTransitioning\nDisbanded",
+   "reqd": 1
+  },
+  {
+   "fieldname": "team_composition_section",
+   "fieldtype": "Section Break",
+   "label": "Core Team Composition"
+  },
+  {
+   "fieldname": "primary_social_worker",
+   "fieldtype": "Link",
+   "label": "Primary Social Worker",
+   "options": "User"
+  },
+  {
+   "fieldname": "case_manager",
+   "fieldtype": "Link",
+   "label": "Case Manager",
+   "options": "User"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_composition",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_professionals",
+   "fieldtype": "Small Text",
+   "label": "Medical Professionals"
+  },
+  {
+   "fieldname": "therapy_professionals",
+   "fieldtype": "Small Text",
+   "label": "Therapy Professionals"
+  },
+  {
+   "fieldname": "support_staff",
+   "fieldtype": "Small Text",
+   "label": "Support Staff"
+  },
+  {
+   "fieldname": "external_providers_section",
+   "fieldtype": "Section Break",
+   "label": "External Providers & Support"
+  },
+  {
+   "fieldname": "healthcare_providers",
+   "fieldtype": "Small Text",
+   "label": "Healthcare Providers"
+  },
+  {
+   "fieldname": "community_partners",
+   "fieldtype": "Small Text",
+   "label": "Community Partners"
+  },
+  {
+   "fieldname": "family_members",
+   "fieldtype": "Small Text",
+   "label": "Family Members/Caregivers"
+  },
+  {
+   "fieldname": "column_break_external",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "volunteers",
+   "fieldtype": "Small Text",
+   "label": "Volunteers"
+  },
+  {
+   "fieldname": "other_professionals",
+   "fieldtype": "Small Text",
+   "label": "Other Professionals"
+  },
+  {
+   "fieldname": "emergency_contacts",
+   "fieldtype": "Small Text",
+   "label": "Emergency Contacts"
+  },
+  {
+   "fieldname": "coordination_section",
+   "fieldtype": "Section Break",
+   "label": "Team Coordination"
+  },
+  {
+   "fieldname": "meeting_frequency",
+   "fieldtype": "Select",
+   "label": "Meeting Frequency",
+   "options": "\nWeekly\nBi-weekly\nMonthly\nQuarterly\nAs Needed\nOther"
+  },
+  {
+   "fieldname": "communication_method",
+   "fieldtype": "Select",
+   "label": "Primary Communication Method",
+   "options": "\nIn-Person Meetings\nVideo Conferencing\nPhone Calls\nEmail\nMessaging Platform\nMixed Methods"
+  },
+  {
+   "fieldname": "coordination_platform",
+   "fieldtype": "Data",
+   "label": "Coordination Platform"
+  },
+  {
+   "fieldname": "column_break_coordination",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "documentation_system",
+   "fieldtype": "Data",
+   "label": "Documentation System"
+  },
+  {
+   "fieldname": "information_sharing_protocol",
+   "fieldtype": "Small Text",
+   "label": "Information Sharing Protocol"
+  },
+  {
+   "fieldname": "confidentiality_agreements",
+   "fieldtype": "Check",
+   "label": "Confidentiality Agreements in Place"
+  },
+  {
+   "fieldname": "roles_responsibilities_section",
+   "fieldtype": "Section Break",
+   "label": "Roles & Responsibilities"
+  },
+  {
+   "fieldname": "team_roles",
+   "fieldtype": "Text Editor",
+   "label": "Team Roles & Responsibilities"
+  },
+  {
+   "fieldname": "decision_making_process",
+   "fieldtype": "Small Text",
+   "label": "Decision Making Process"
+  },
+  {
+   "fieldname": "escalation_procedures",
+   "fieldtype": "Small Text",
+   "label": "Escalation Procedures"
+  },
+  {
+   "fieldname": "column_break_roles",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "backup_assignments",
+   "fieldtype": "Small Text",
+   "label": "Backup Assignments"
+  },
+  {
+   "fieldname": "coverage_arrangements",
+   "fieldtype": "Small Text",
+   "label": "Coverage Arrangements"
+  },
+  {
+   "fieldname": "training_requirements",
+   "fieldtype": "Small Text",
+   "label": "Training Requirements"
+  },
+  {
+   "fieldname": "care_planning_section",
+   "fieldtype": "Section Break",
+   "label": "Care Planning"
+  },
+  {
+   "fieldname": "care_goals",
+   "fieldtype": "Text Editor",
+   "label": "Care Goals"
+  },
+  {
+   "fieldname": "service_coordination",
+   "fieldtype": "Small Text",
+   "label": "Service Coordination"
+  },
+  {
+   "fieldname": "treatment_protocols",
+   "fieldtype": "Small Text",
+   "label": "Treatment Protocols"
+  },
+  {
+   "fieldname": "column_break_planning",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quality_measures",
+   "fieldtype": "Small Text",
+   "label": "Quality Measures"
+  },
+  {
+   "fieldname": "outcome_indicators",
+   "fieldtype": "Small Text",
+   "label": "Outcome Indicators"
+  },
+  {
+   "fieldname": "review_schedule",
+   "fieldtype": "Select",
+   "label": "Review Schedule",
+   "options": "\nMonthly\nQuarterly\nBi-annually\nAnnually\nAs Needed"
+  },
+  {
+   "fieldname": "communication_section",
+   "fieldtype": "Section Break",
+   "label": "Team Communication"
+  },
+  {
+   "fieldname": "team_meetings",
+   "fieldtype": "Text Editor",
+   "label": "Team Meetings Log"
+  },
+  {
+   "fieldname": "communication_log",
+   "fieldtype": "Text Editor",
+   "label": "Communication Log"
+  },
+  {
+   "fieldname": "shared_resources",
+   "fieldtype": "Small Text",
+   "label": "Shared Resources"
+  },
+  {
+   "fieldname": "column_break_communication",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "conflict_resolution",
+   "fieldtype": "Small Text",
+   "label": "Conflict Resolution"
+  },
+  {
+   "fieldname": "feedback_mechanisms",
+   "fieldtype": "Small Text",
+   "label": "Feedback Mechanisms"
+  },
+  {
+   "fieldname": "performance_section",
+   "fieldtype": "Section Break",
+   "label": "Team Performance"
+  },
+  {
+   "fieldname": "team_effectiveness",
+   "fieldtype": "Select",
+   "label": "Team Effectiveness",
+   "options": "\nExcellent\nGood\nFair\nPoor\nNeeds Improvement"
+  },
+  {
+   "fieldname": "collaboration_rating",
+   "fieldtype": "Select",
+   "label": "Collaboration Rating",
+   "options": "\nExcellent\nGood\nFair\nPoor\nNeeds Improvement"
+  },
+  {
+   "fieldname": "goal_achievement",
+   "fieldtype": "Select",
+   "label": "Goal Achievement",
+   "options": "\nExceeding Goals\nMeeting Goals\nPartially Meeting Goals\nNot Meeting Goals"
+  },
+  {
+   "fieldname": "column_break_performance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "challenges_identified",
+   "fieldtype": "Small Text",
+   "label": "Challenges Identified"
+  },
+  {
+   "fieldname": "improvement_areas",
+   "fieldtype": "Small Text",
+   "label": "Areas for Improvement"
+  },
+  {
+   "fieldname": "success_stories",
+   "fieldtype": "Small Text",
+   "label": "Success Stories"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "team_notes",
+   "fieldtype": "Text Editor",
+   "label": "Team Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 10:15:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Care Team",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "team_name",
+ "track_changes": 1
+}

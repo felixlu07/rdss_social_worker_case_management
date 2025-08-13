@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "creation": "2025-01-13 10:50:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "next_of_kin",
+  "relationship_type",
+  "is_primary_caregiver",
+  "column_break_1",
+  "is_emergency_contact",
+  "is_authorized_contact",
+  "contact_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "next_of_kin",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Next of Kin",
+   "options": "Next of Kin",
+   "reqd": 1
+  },
+  {
+   "fieldname": "relationship_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Relationship Type",
+   "options": "\nParent\nSpouse\nChild\nSibling\nGrandparent\nGrandchild\nOther Family\nFriend\nCaregiver\nGuardian\nOther"
+  },
+  {
+   "fieldname": "is_primary_caregiver",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Primary Caregiver"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_emergency_contact",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "is_authorized_contact",
+   "fieldtype": "Check",
+   "label": "Authorized for Information Sharing"
+  },
+  {
+   "fieldname": "contact_notes",
+   "fieldtype": "Small Text",
+   "label": "Contact Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "modified": "2025-01-13 10:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Beneficiary Next of Kin Link",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,214 @@
+/* Initial Assessment Form Mobile-Friendly Styles */
+
+.initial-assessment-form {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+    .initial-assessment-form .form-section {
+        padding: 15px 10px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+    }
+    
+    .initial-assessment-form .section-header {
+        font-size: 18px;
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #007bff;
+    }
+    
+    .initial-assessment-form .form-control {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+        margin-bottom: 10px;
+    }
+    
+    .initial-assessment-form .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+    
+    .initial-assessment-form .checkbox-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .initial-assessment-form .checkbox-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+    }
+    
+    .initial-assessment-form .checkbox-item input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+    
+    .initial-assessment-form .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .initial-assessment-form .radio-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+    }
+    
+    .initial-assessment-form .radio-item input[type="radio"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+    
+    /* Table responsiveness */
+    .initial-assessment-form .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .initial-assessment-form table {
+        min-width: 100%;
+        font-size: 14px;
+    }
+    
+    .initial-assessment-form th,
+    .initial-assessment-form td {
+        padding: 8px;
+        white-space: nowrap;
+    }
+    
+    /* Progress indicator */
+    .progress-indicator {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 100;
+        padding: 10px;
+        border-bottom: 1px solid #e9ecef;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Form navigation */
+    .form-navigation {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px;
+        border-top: 1px solid #e9ecef;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    
+    .form-navigation .btn-group {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .form-navigation .btn {
+        flex: 1;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .initial-assessment-form {
+        max-width: 1200px;
+    }
+    
+    .initial-assessment-form .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .initial-assessment-form .radio-group {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+/* Print styles */
+@media print {
+    .initial-assessment-form {
+        font-size: 12px;
+    }
+    
+    .initial-assessment-form .form-section {
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+    }
+    
+    .initial-assessment-form .section-header {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    .progress-indicator,
+    .form-navigation,
+    .btn {
+        display: none !important;
+    }
+}
+
+/* Accessibility improvements */
+.initial-assessment-form input:focus,
+.initial-assessment-form select:focus,
+.initial-assessment-form textarea:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.initial-assessment-form .required-field::after {
+    content: " *";
+    color: #dc3545;
+}
+
+/* Loading states */
+.initial-assessment-form .loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.initial-assessment-form .loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

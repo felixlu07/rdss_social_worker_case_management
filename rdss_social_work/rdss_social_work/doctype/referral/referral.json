@@ -1,0 +1,440 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 09:15:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "referral_information_section",
+  "naming_series",
+  "case",
+  "beneficiary",
+  "referral_date",
+  "column_break_referral",
+  "referred_by",
+  "referral_source",
+  "priority",
+  "status",
+  "referral_details_section",
+  "referral_type",
+  "service_category",
+  "referral_reason",
+  "column_break_details",
+  "urgency_level",
+  "expected_outcome",
+  "background_information",
+  "recipient_information_section",
+  "referred_to_organization",
+  "referred_to_person",
+  "contact_person",
+  "column_break_recipient",
+  "organization_phone",
+  "organization_email",
+  "organization_address",
+  "referral_requirements_section",
+  "documentation_required",
+  "consent_obtained",
+  "consent_date",
+  "column_break_requirements",
+  "insurance_information",
+  "special_requirements",
+  "accessibility_needs",
+  "communication_section",
+  "referral_method",
+  "referral_sent_date",
+  "follow_up_required",
+  "column_break_communication",
+  "acknowledgment_received",
+  "acknowledgment_date",
+  "estimated_wait_time",
+  "outcome_section",
+  "referral_outcome",
+  "outcome_date",
+  "outcome_notes",
+  "column_break_outcome",
+  "service_started",
+  "service_start_date",
+  "feedback_received",
+  "follow_up_section",
+  "follow_up_date",
+  "follow_up_method",
+  "follow_up_notes",
+  "column_break_followup",
+  "case_closed",
+  "closure_reason",
+  "notes_section",
+  "referral_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "referral_information_section",
+   "fieldtype": "Section Break",
+   "label": "Referral Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "REF-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "referral_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Referral Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_referral",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "referred_by",
+   "fieldtype": "Link",
+   "label": "Referred By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referral_source",
+   "fieldtype": "Select",
+   "label": "Referral Source",
+   "options": "\nInitial Assessment\nFollow-up Assessment\nCase Notes\nFamily Request\nProvider Recommendation\nEmergency\nOther"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority",
+   "options": "\nLow\nMedium\nHigh\nUrgent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nPending\nSent\nAcknowledged\nAccepted\nRejected\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referral_details_section",
+   "fieldtype": "Section Break",
+   "label": "Referral Details"
+  },
+  {
+   "fieldname": "referral_type",
+   "fieldtype": "Select",
+   "label": "Referral Type",
+   "options": "\nMedical Services\nTherapy Services\nSocial Services\nEducational Services\nVocational Services\nFinancial Assistance\nHousing Services\nTransportation\nRespite Care\nSupport Groups\nOther"
+  },
+  {
+   "fieldname": "service_category",
+   "fieldtype": "Select",
+   "label": "Service Category",
+   "options": "\nPrimary Care\nSpecialty Care\nMental Health\nPhysical Therapy\nOccupational Therapy\nSpeech Therapy\nSocial Work\nCase Management\nHome Care\nDay Care\nResidential Care\nOther"
+  },
+  {
+   "fieldname": "referral_reason",
+   "fieldtype": "Text Editor",
+   "label": "Referral Reason",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "urgency_level",
+   "fieldtype": "Select",
+   "label": "Urgency Level",
+   "options": "\nRoutine\nSoon\nUrgent\nEmergent"
+  },
+  {
+   "fieldname": "expected_outcome",
+   "fieldtype": "Small Text",
+   "label": "Expected Outcome"
+  },
+  {
+   "fieldname": "background_information",
+   "fieldtype": "Text Editor",
+   "label": "Background Information"
+  },
+  {
+   "fieldname": "recipient_information_section",
+   "fieldtype": "Section Break",
+   "label": "Recipient Information"
+  },
+  {
+   "fieldname": "referred_to_organization",
+   "fieldtype": "Data",
+   "label": "Referred to Organization",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referred_to_person",
+   "fieldtype": "Data",
+   "label": "Referred to Person"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "column_break_recipient",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "organization_phone",
+   "fieldtype": "Data",
+   "label": "Organization Phone"
+  },
+  {
+   "fieldname": "organization_email",
+   "fieldtype": "Data",
+   "label": "Organization Email"
+  },
+  {
+   "fieldname": "organization_address",
+   "fieldtype": "Small Text",
+   "label": "Organization Address"
+  },
+  {
+   "fieldname": "referral_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Referral Requirements"
+  },
+  {
+   "fieldname": "documentation_required",
+   "fieldtype": "Small Text",
+   "label": "Documentation Required"
+  },
+  {
+   "fieldname": "consent_obtained",
+   "fieldtype": "Check",
+   "label": "Consent Obtained"
+  },
+  {
+   "fieldname": "consent_date",
+   "fieldtype": "Date",
+   "depends_on": "consent_obtained",
+   "label": "Consent Date"
+  },
+  {
+   "fieldname": "column_break_requirements",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "insurance_information",
+   "fieldtype": "Small Text",
+   "label": "Insurance Information"
+  },
+  {
+   "fieldname": "special_requirements",
+   "fieldtype": "Small Text",
+   "label": "Special Requirements"
+  },
+  {
+   "fieldname": "accessibility_needs",
+   "fieldtype": "Small Text",
+   "label": "Accessibility Needs"
+  },
+  {
+   "fieldname": "communication_section",
+   "fieldtype": "Section Break",
+   "label": "Communication"
+  },
+  {
+   "fieldname": "referral_method",
+   "fieldtype": "Select",
+   "label": "Referral Method",
+   "options": "\nPhone\nEmail\nFax\nOnline Portal\nIn Person\nMail"
+  },
+  {
+   "fieldname": "referral_sent_date",
+   "fieldtype": "Date",
+   "label": "Referral Sent Date"
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "fieldname": "column_break_communication",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acknowledgment_received",
+   "fieldtype": "Check",
+   "label": "Acknowledgment Received"
+  },
+  {
+   "fieldname": "acknowledgment_date",
+   "fieldtype": "Date",
+   "depends_on": "acknowledgment_received",
+   "label": "Acknowledgment Date"
+  },
+  {
+   "fieldname": "estimated_wait_time",
+   "fieldtype": "Data",
+   "label": "Estimated Wait Time"
+  },
+  {
+   "fieldname": "outcome_section",
+   "fieldtype": "Section Break",
+   "label": "Outcome"
+  },
+  {
+   "fieldname": "referral_outcome",
+   "fieldtype": "Select",
+   "label": "Referral Outcome",
+   "options": "\nPending\nAccepted\nRejected\nPartially Accepted\nReferred Elsewhere\nNo Response"
+  },
+  {
+   "fieldname": "outcome_date",
+   "fieldtype": "Date",
+   "label": "Outcome Date"
+  },
+  {
+   "fieldname": "outcome_notes",
+   "fieldtype": "Text Editor",
+   "label": "Outcome Notes"
+  },
+  {
+   "fieldname": "column_break_outcome",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_started",
+   "fieldtype": "Check",
+   "label": "Service Started"
+  },
+  {
+   "fieldname": "service_start_date",
+   "fieldtype": "Date",
+   "depends_on": "service_started",
+   "label": "Service Start Date"
+  },
+  {
+   "fieldname": "feedback_received",
+   "fieldtype": "Text Editor",
+   "label": "Feedback Received"
+  },
+  {
+   "fieldname": "follow_up_section",
+   "fieldtype": "Section Break",
+   "label": "Follow-up"
+  },
+  {
+   "fieldname": "follow_up_date",
+   "fieldtype": "Date",
+   "label": "Follow-up Date"
+  },
+  {
+   "fieldname": "follow_up_method",
+   "fieldtype": "Select",
+   "label": "Follow-up Method",
+   "options": "\nPhone Call\nEmail\nIn Person\nCase Notes Review\nOther"
+  },
+  {
+   "fieldname": "follow_up_notes",
+   "fieldtype": "Text Editor",
+   "label": "Follow-up Notes"
+  },
+  {
+   "fieldname": "column_break_followup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "case_closed",
+   "fieldtype": "Check",
+   "label": "Case Closed"
+  },
+  {
+   "fieldname": "closure_reason",
+   "fieldtype": "Select",
+   "depends_on": "case_closed",
+   "label": "Closure Reason",
+   "options": "\nService Completed\nService No Longer Needed\nClient Declined\nProvider Unavailable\nInsurance Issues\nOther"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "referral_notes",
+   "fieldtype": "Text Editor",
+   "label": "Referral Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 09:15:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Referral",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "referred_to_organization",
+ "track_changes": 1
+}

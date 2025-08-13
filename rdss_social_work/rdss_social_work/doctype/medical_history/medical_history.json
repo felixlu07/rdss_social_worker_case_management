@@ -1,0 +1,580 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 09:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "medical_information_section",
+  "naming_series",
+  "beneficiary",
+  "case",
+  "record_date",
+  "column_break_medical",
+  "recorded_by",
+  "source_of_information",
+  "verification_status",
+  "primary_diagnosis_section",
+  "primary_diagnosis",
+  "diagnosis_date",
+  "diagnosing_physician",
+  "column_break_primary",
+  "icd_code",
+  "diagnosis_status",
+  "severity_level",
+  "secondary_conditions_section",
+  "secondary_diagnoses",
+  "comorbidities",
+  "complications",
+  "column_break_secondary",
+  "genetic_conditions",
+  "rare_disorders",
+  "syndrome_details",
+  "current_medications_section",
+  "current_medications",
+  "medication_allergies",
+  "adverse_reactions",
+  "column_break_medications",
+  "medication_compliance",
+  "pharmacy_information",
+  "medication_management",
+  "medical_procedures_section",
+  "surgeries_performed",
+  "planned_procedures",
+  "medical_devices",
+  "column_break_procedures",
+  "assistive_equipment",
+  "prosthetics_orthotics",
+  "equipment_maintenance",
+  "hospitalizations_section",
+  "recent_hospitalizations",
+  "emergency_visits",
+  "admission_history",
+  "column_break_hospitalizations",
+  "discharge_summaries",
+  "follow_up_care",
+  "readmission_risk",
+  "healthcare_providers_section",
+  "primary_care_physician",
+  "specialists",
+  "healthcare_team",
+  "column_break_providers",
+  "preferred_hospital",
+  "insurance_provider",
+  "medical_record_number",
+  "functional_status_section",
+  "mobility_status",
+  "cognitive_status",
+  "communication_abilities",
+  "column_break_functional",
+  "sensory_impairments",
+  "behavioral_concerns",
+  "developmental_milestones",
+  "care_requirements_section",
+  "daily_care_needs",
+  "nursing_care_required",
+  "therapy_services",
+  "column_break_care",
+  "respite_care_needs",
+  "emergency_protocols",
+  "care_coordination",
+  "prognosis_section",
+  "prognosis",
+  "life_expectancy",
+  "disease_progression",
+  "column_break_prognosis",
+  "quality_of_life",
+  "treatment_goals",
+  "advance_directives",
+  "notes_section",
+  "medical_notes",
+  "family_medical_history",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "medical_information_section",
+   "fieldtype": "Section Break",
+   "label": "Medical Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "MH-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case"
+  },
+  {
+   "fieldname": "record_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Record Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_medical",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "recorded_by",
+   "fieldtype": "Link",
+   "label": "Recorded By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_of_information",
+   "fieldtype": "Select",
+   "label": "Source of Information",
+   "options": "\nBeneficiary\nFamily Member\nCaregiver\nMedical Records\nPhysician Report\nHospital Discharge\nOther"
+  },
+  {
+   "fieldname": "verification_status",
+   "fieldtype": "Select",
+   "label": "Verification Status",
+   "options": "\nVerified\nUnverified\nPartially Verified\nNeeds Verification"
+  },
+  {
+   "fieldname": "primary_diagnosis_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Diagnosis"
+  },
+  {
+   "fieldname": "primary_diagnosis",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Primary Diagnosis",
+   "reqd": 1
+  },
+  {
+   "fieldname": "diagnosis_date",
+   "fieldtype": "Date",
+   "label": "Diagnosis Date"
+  },
+  {
+   "fieldname": "diagnosing_physician",
+   "fieldtype": "Data",
+   "label": "Diagnosing Physician"
+  },
+  {
+   "fieldname": "column_break_primary",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "icd_code",
+   "fieldtype": "Data",
+   "label": "ICD Code"
+  },
+  {
+   "fieldname": "diagnosis_status",
+   "fieldtype": "Select",
+   "label": "Diagnosis Status",
+   "options": "\nConfirmed\nProvisional\nRule Out\nHistory Of\nSuspected"
+  },
+  {
+   "fieldname": "severity_level",
+   "fieldtype": "Select",
+   "label": "Severity Level",
+   "options": "\nMild\nModerate\nSevere\nCritical\nNot Specified"
+  },
+  {
+   "fieldname": "secondary_conditions_section",
+   "fieldtype": "Section Break",
+   "label": "Secondary Conditions"
+  },
+  {
+   "fieldname": "secondary_diagnoses",
+   "fieldtype": "Small Text",
+   "label": "Secondary Diagnoses"
+  },
+  {
+   "fieldname": "comorbidities",
+   "fieldtype": "Small Text",
+   "label": "Comorbidities"
+  },
+  {
+   "fieldname": "complications",
+   "fieldtype": "Small Text",
+   "label": "Complications"
+  },
+  {
+   "fieldname": "column_break_secondary",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "genetic_conditions",
+   "fieldtype": "Small Text",
+   "label": "Genetic Conditions"
+  },
+  {
+   "fieldname": "rare_disorders",
+   "fieldtype": "Small Text",
+   "label": "Rare Disorders"
+  },
+  {
+   "fieldname": "syndrome_details",
+   "fieldtype": "Small Text",
+   "label": "Syndrome Details"
+  },
+  {
+   "fieldname": "current_medications_section",
+   "fieldtype": "Section Break",
+   "label": "Current Medications"
+  },
+  {
+   "fieldname": "current_medications",
+   "fieldtype": "Text Editor",
+   "label": "Current Medications"
+  },
+  {
+   "fieldname": "medication_allergies",
+   "fieldtype": "Small Text",
+   "label": "Medication Allergies"
+  },
+  {
+   "fieldname": "adverse_reactions",
+   "fieldtype": "Small Text",
+   "label": "Adverse Reactions"
+  },
+  {
+   "fieldname": "column_break_medications",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medication_compliance",
+   "fieldtype": "Select",
+   "label": "Medication Compliance",
+   "options": "\nExcellent\nGood\nFair\nPoor\nNon-compliant\nNot Applicable"
+  },
+  {
+   "fieldname": "pharmacy_information",
+   "fieldtype": "Small Text",
+   "label": "Pharmacy Information"
+  },
+  {
+   "fieldname": "medication_management",
+   "fieldtype": "Select",
+   "label": "Medication Management",
+   "options": "\nSelf-managed\nFamily Assisted\nCaregiver Managed\nProfessional Supervision\nNot Applicable"
+  },
+  {
+   "fieldname": "medical_procedures_section",
+   "fieldtype": "Section Break",
+   "label": "Medical Procedures & Equipment"
+  },
+  {
+   "fieldname": "surgeries_performed",
+   "fieldtype": "Small Text",
+   "label": "Surgeries Performed"
+  },
+  {
+   "fieldname": "planned_procedures",
+   "fieldtype": "Small Text",
+   "label": "Planned Procedures"
+  },
+  {
+   "fieldname": "medical_devices",
+   "fieldtype": "Small Text",
+   "label": "Medical Devices"
+  },
+  {
+   "fieldname": "column_break_procedures",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assistive_equipment",
+   "fieldtype": "Small Text",
+   "label": "Assistive Equipment"
+  },
+  {
+   "fieldname": "prosthetics_orthotics",
+   "fieldtype": "Small Text",
+   "label": "Prosthetics/Orthotics"
+  },
+  {
+   "fieldname": "equipment_maintenance",
+   "fieldtype": "Small Text",
+   "label": "Equipment Maintenance"
+  },
+  {
+   "fieldname": "hospitalizations_section",
+   "fieldtype": "Section Break",
+   "label": "Hospitalizations"
+  },
+  {
+   "fieldname": "recent_hospitalizations",
+   "fieldtype": "Text Editor",
+   "label": "Recent Hospitalizations"
+  },
+  {
+   "fieldname": "emergency_visits",
+   "fieldtype": "Small Text",
+   "label": "Emergency Visits"
+  },
+  {
+   "fieldname": "admission_history",
+   "fieldtype": "Small Text",
+   "label": "Admission History"
+  },
+  {
+   "fieldname": "column_break_hospitalizations",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "discharge_summaries",
+   "fieldtype": "Small Text",
+   "label": "Discharge Summaries"
+  },
+  {
+   "fieldname": "follow_up_care",
+   "fieldtype": "Small Text",
+   "label": "Follow-up Care"
+  },
+  {
+   "fieldname": "readmission_risk",
+   "fieldtype": "Select",
+   "label": "Readmission Risk",
+   "options": "\nLow\nModerate\nHigh\nVery High\nNot Assessed"
+  },
+  {
+   "fieldname": "healthcare_providers_section",
+   "fieldtype": "Section Break",
+   "label": "Healthcare Providers"
+  },
+  {
+   "fieldname": "primary_care_physician",
+   "fieldtype": "Data",
+   "label": "Primary Care Physician"
+  },
+  {
+   "fieldname": "specialists",
+   "fieldtype": "Small Text",
+   "label": "Specialists"
+  },
+  {
+   "fieldname": "healthcare_team",
+   "fieldtype": "Small Text",
+   "label": "Healthcare Team"
+  },
+  {
+   "fieldname": "column_break_providers",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_hospital",
+   "fieldtype": "Data",
+   "label": "Preferred Hospital"
+  },
+  {
+   "fieldname": "insurance_provider",
+   "fieldtype": "Data",
+   "label": "Insurance Provider"
+  },
+  {
+   "fieldname": "medical_record_number",
+   "fieldtype": "Data",
+   "label": "Medical Record Number"
+  },
+  {
+   "fieldname": "functional_status_section",
+   "fieldtype": "Section Break",
+   "label": "Functional Status"
+  },
+  {
+   "fieldname": "mobility_status",
+   "fieldtype": "Select",
+   "label": "Mobility Status",
+   "options": "\nFully Mobile\nAmbulatory with Assistance\nWheelchair Dependent\nBedridden\nNot Assessed"
+  },
+  {
+   "fieldname": "cognitive_status",
+   "fieldtype": "Select",
+   "label": "Cognitive Status",
+   "options": "\nNormal\nMild Impairment\nModerate Impairment\nSevere Impairment\nNot Assessed"
+  },
+  {
+   "fieldname": "communication_abilities",
+   "fieldtype": "Select",
+   "label": "Communication Abilities",
+   "options": "\nNormal\nMild Difficulty\nModerate Difficulty\nSevere Difficulty\nNon-verbal\nNot Assessed"
+  },
+  {
+   "fieldname": "column_break_functional",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sensory_impairments",
+   "fieldtype": "Small Text",
+   "label": "Sensory Impairments"
+  },
+  {
+   "fieldname": "behavioral_concerns",
+   "fieldtype": "Small Text",
+   "label": "Behavioral Concerns"
+  },
+  {
+   "fieldname": "developmental_milestones",
+   "fieldtype": "Small Text",
+   "label": "Developmental Milestones"
+  },
+  {
+   "fieldname": "care_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Care Requirements"
+  },
+  {
+   "fieldname": "daily_care_needs",
+   "fieldtype": "Small Text",
+   "label": "Daily Care Needs"
+  },
+  {
+   "fieldname": "nursing_care_required",
+   "fieldtype": "Check",
+   "label": "Nursing Care Required"
+  },
+  {
+   "fieldname": "therapy_services",
+   "fieldtype": "Small Text",
+   "label": "Therapy Services"
+  },
+  {
+   "fieldname": "column_break_care",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "respite_care_needs",
+   "fieldtype": "Check",
+   "label": "Respite Care Needs"
+  },
+  {
+   "fieldname": "emergency_protocols",
+   "fieldtype": "Small Text",
+   "label": "Emergency Protocols"
+  },
+  {
+   "fieldname": "care_coordination",
+   "fieldtype": "Small Text",
+   "label": "Care Coordination"
+  },
+  {
+   "fieldname": "prognosis_section",
+   "fieldtype": "Section Break",
+   "label": "Prognosis"
+  },
+  {
+   "fieldname": "prognosis",
+   "fieldtype": "Select",
+   "label": "Prognosis",
+   "options": "\nExcellent\nGood\nFair\nPoor\nTerminal\nUncertain"
+  },
+  {
+   "fieldname": "life_expectancy",
+   "fieldtype": "Data",
+   "label": "Life Expectancy"
+  },
+  {
+   "fieldname": "disease_progression",
+   "fieldtype": "Select",
+   "label": "Disease Progression",
+   "options": "\nStable\nSlowly Progressive\nRapidly Progressive\nImproving\nUncertain"
+  },
+  {
+   "fieldname": "column_break_prognosis",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quality_of_life",
+   "fieldtype": "Select",
+   "label": "Quality of Life",
+   "options": "\nExcellent\nGood\nFair\nPoor\nVery Poor"
+  },
+  {
+   "fieldname": "treatment_goals",
+   "fieldtype": "Small Text",
+   "label": "Treatment Goals"
+  },
+  {
+   "fieldname": "advance_directives",
+   "fieldtype": "Check",
+   "label": "Advance Directives in Place"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "medical_notes",
+   "fieldtype": "Text Editor",
+   "label": "Medical Notes"
+  },
+  {
+   "fieldname": "family_medical_history",
+   "fieldtype": "Text Editor",
+   "label": "Family Medical History"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 09:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Medical History",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "primary_diagnosis",
+ "track_changes": 1
+}

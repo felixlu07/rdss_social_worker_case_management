@@ -1,0 +1,458 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:43:28.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_information_section",
+  "naming_series",
+  "beneficiary_name",
+  "bc_nric_no",
+  "date_of_birth",
+  "age",
+  "gender",
+  "photo",
+  "column_break_personal",
+  "registration_date",
+  "referred_by",
+  "initial_social_worker",
+  "current_status",
+  "contact_information_section",
+  "address_line_1",
+  "address_line_2",
+  "postal_code",
+  "column_break_contact",
+  "mobile_number",
+  "home_number",
+  "email_address",
+  "preferred_contact_method",
+  "rare_disorder_information_section",
+  "primary_diagnosis",
+  "diagnosis_date",
+  "severity_level",
+  "secondary_conditions",
+  "column_break_disorder",
+  "genetic_counseling_received",
+  "specialist_doctor",
+  "hospital_clinic",
+  "medical_summary_section",
+  "current_medications",
+  "known_allergies",
+  "medical_devices_equipment",
+  "mobility_aids",
+  "column_break_medical",
+  "primary_care_physician",
+  "emergency_medical_contact",
+  "medical_insurance",
+  "care_level_section",
+  "care_level",
+  "next_of_kin_relationships",
+  "care_hours_per_day",
+  "column_break_care",
+  "living_arrangement",
+  "support_services_received",
+  "emergency_contacts_section",
+  "emergency_contact_1_name",
+  "emergency_contact_1_relationship",
+  "emergency_contact_1_phone",
+  "column_break_emergency",
+  "emergency_contact_2_name",
+  "emergency_contact_2_relationship",
+  "emergency_contact_2_phone",
+  "preferences_section",
+  "preferred_language",
+  "communication_preferences",
+  "cultural_considerations",
+  "column_break_preferences",
+  "dietary_restrictions",
+  "religious_considerations",
+  "notes_section",
+  "additional_notes",
+  "internal_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "personal_information_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "BEN-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Beneficiary Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bc_nric_no",
+   "fieldtype": "Data",
+   "label": "BC / NRIC No",
+   "unique": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOther\nPrefer not to say"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "column_break_personal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "registration_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Registration Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referred_by",
+   "fieldtype": "Data",
+   "label": "Referred By"
+  },
+  {
+   "fieldname": "initial_social_worker",
+   "fieldtype": "Link",
+   "label": "Initial Social Worker",
+   "options": "User"
+  },
+  {
+   "fieldname": "current_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Current Status",
+   "options": "Active\nInactive\nDeceased\nTransferred\nOn Hold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_information_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "home_number",
+   "fieldtype": "Data",
+   "label": "Home Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "preferred_contact_method",
+   "fieldtype": "Select",
+   "label": "Preferred Contact Method",
+   "options": "\nMobile\nHome Phone\nEmail\nIn Person\nThrough Caregiver"
+  },
+  {
+   "fieldname": "rare_disorder_information_section",
+   "fieldtype": "Section Break",
+   "label": "Rare Disorder Information"
+  },
+  {
+   "fieldname": "primary_diagnosis",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Primary Diagnosis",
+   "reqd": 1
+  },
+  {
+   "fieldname": "diagnosis_date",
+   "fieldtype": "Date",
+   "label": "Diagnosis Date"
+  },
+  {
+   "fieldname": "severity_level",
+   "fieldtype": "Select",
+   "label": "Severity Level",
+   "options": "\nMild\nModerate\nSevere\nCritical"
+  },
+  {
+   "fieldname": "secondary_conditions",
+   "fieldtype": "Small Text",
+   "label": "Secondary Conditions"
+  },
+  {
+   "fieldname": "column_break_disorder",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "genetic_counseling_received",
+   "fieldtype": "Check",
+   "label": "Genetic Counseling Received"
+  },
+  {
+   "fieldname": "specialist_doctor",
+   "fieldtype": "Data",
+   "label": "Specialist Doctor"
+  },
+  {
+   "fieldname": "hospital_clinic",
+   "fieldtype": "Data",
+   "label": "Hospital / Clinic"
+  },
+  {
+   "fieldname": "medical_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Medical Summary"
+  },
+  {
+   "fieldname": "current_medications",
+   "fieldtype": "Small Text",
+   "label": "Current Medications"
+  },
+  {
+   "fieldname": "known_allergies",
+   "fieldtype": "Small Text",
+   "label": "Known Allergies"
+  },
+  {
+   "fieldname": "medical_devices_equipment",
+   "fieldtype": "Small Text",
+   "label": "Medical Devices / Equipment"
+  },
+  {
+   "fieldname": "mobility_aids",
+   "fieldtype": "Small Text",
+   "label": "Mobility Aids"
+  },
+  {
+   "fieldname": "column_break_medical",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_care_physician",
+   "fieldtype": "Data",
+   "label": "Primary Care Physician"
+  },
+  {
+   "fieldname": "emergency_medical_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Medical Contact"
+  },
+  {
+   "fieldname": "medical_insurance",
+   "fieldtype": "Data",
+   "label": "Medical Insurance"
+  },
+  {
+   "fieldname": "care_level_section",
+   "fieldtype": "Section Break",
+   "label": "Care Level & Support"
+  },
+  {
+   "fieldname": "independence_level",
+   "fieldtype": "Select",
+   "label": "Independence Level",
+   "options": "\nFully Independent\nPartially Independent\nRequires Assistance\nFully Dependent"
+  },
+  {
+   "fieldname": "next_of_kin_relationships",
+   "fieldtype": "Table",
+   "label": "Next of Kin Relationships",
+   "options": "Beneficiary Next of Kin Link",
+   "description": "Link Next of Kin contacts and define their relationships to this beneficiary"
+  },
+  {
+   "fieldname": "care_hours_per_day",
+   "fieldtype": "Int",
+   "label": "Care Hours Per Day"
+  },
+  {
+   "fieldname": "column_break_care",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "living_arrangement",
+   "fieldtype": "Select",
+   "label": "Living Arrangement",
+   "options": "\nLives Alone\nWith Family\nWith Caregiver\nAssisted Living\nNursing Home\nOther"
+  },
+  {
+   "fieldname": "support_services_received",
+   "fieldtype": "Small Text",
+   "label": "Support Services Currently Received"
+  },
+  {
+   "fieldname": "emergency_contacts_section",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contacts"
+  },
+  {
+   "fieldname": "emergency_contact_1_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Name"
+  },
+  {
+   "fieldname": "emergency_contact_1_relationship",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Relationship"
+  },
+  {
+   "fieldname": "emergency_contact_1_phone",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Phone"
+  },
+  {
+   "fieldname": "column_break_emergency",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contact_2_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Name"
+  },
+  {
+   "fieldname": "emergency_contact_2_relationship",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Relationship"
+  },
+  {
+   "fieldname": "emergency_contact_2_phone",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Phone"
+  },
+  {
+   "fieldname": "preferences_section",
+   "fieldtype": "Section Break",
+   "label": "Preferences & Cultural Considerations"
+  },
+  {
+   "fieldname": "preferred_language",
+   "fieldtype": "Select",
+   "label": "Preferred Language",
+   "options": "\nEnglish\nMandarin\nMalay\nTamil\nOther"
+  },
+  {
+   "fieldname": "communication_preferences",
+   "fieldtype": "Select",
+   "label": "Communication Preferences",
+   "options": "\nDirect Communication\nThrough Family\nThrough Caregiver\nWritten Communication\nInterpreter Required"
+  },
+  {
+   "fieldname": "cultural_considerations",
+   "fieldtype": "Small Text",
+   "label": "Cultural Considerations"
+  },
+  {
+   "fieldname": "column_break_preferences",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dietary_restrictions",
+   "fieldtype": "Small Text",
+   "label": "Dietary Restrictions"
+  },
+  {
+   "fieldname": "religious_considerations",
+   "fieldtype": "Small Text",
+   "label": "Religious Considerations"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 08:43:28.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Beneficiary",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "beneficiary_name",
+ "track_changes": 1
+}

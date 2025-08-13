@@ -1,0 +1,412 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 09:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "appointment_information_section",
+  "naming_series",
+  "case",
+  "beneficiary",
+  "appointment_date",
+  "appointment_time",
+  "column_break_appointment",
+  "appointment_type",
+  "appointment_status",
+  "scheduled_by",
+  "duration_minutes",
+  "appointment_details_section",
+  "purpose",
+  "appointment_category",
+  "priority",
+  "column_break_details",
+  "location_type",
+  "appointment_location",
+  "special_instructions",
+  "participant_information_section",
+  "social_worker",
+  "attendees",
+  "interpreter_required",
+  "column_break_participants",
+  "interpreter_language",
+  "accessibility_requirements",
+  "transportation_needed",
+  "preparation_section",
+  "preparation_required",
+  "documents_needed",
+  "pre_appointment_tasks",
+  "column_break_preparation",
+  "reminder_sent",
+  "reminder_date",
+  "confirmation_received",
+  "outcome_section",
+  "appointment_outcome",
+  "attendance_status",
+  "actual_start_time",
+  "actual_end_time",
+  "column_break_outcome",
+  "no_show_reason",
+  "cancellation_reason",
+  "rescheduled_to",
+  "follow_up_section",
+  "follow_up_required",
+  "follow_up_date",
+  "next_appointment_needed",
+  "column_break_followup",
+  "action_items",
+  "referrals_made",
+  "notes_section",
+  "appointment_notes",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "appointment_information_section",
+   "fieldtype": "Section Break",
+   "label": "Appointment Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "APT-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "appointment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Appointment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appointment_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Appointment Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_appointment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "appointment_type",
+   "fieldtype": "Select",
+   "label": "Appointment Type",
+   "options": "\nInitial Assessment\nFollow-up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nVideo Call\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appointment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nScheduled\nConfirmed\nIn Progress\nCompleted\nCancelled\nNo Show\nRescheduled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scheduled_by",
+   "fieldtype": "Link",
+   "label": "Scheduled By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duration_minutes",
+   "fieldtype": "Int",
+   "label": "Duration (Minutes)",
+   "default": "60"
+  },
+  {
+   "fieldname": "appointment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Appointment Details"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Text Editor",
+   "label": "Purpose",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appointment_category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nRoutine\nUrgent\nEmergency\nFollow-up\nAssessment\nPlanning\nCrisis"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "\nLow\nMedium\nHigh\nUrgent"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "location_type",
+   "fieldtype": "Select",
+   "label": "Location Type",
+   "options": "\nOffice\nHome Visit\nCommunity Center\nHospital\nSchool\nPhone\nVideo Call\nOther"
+  },
+  {
+   "fieldname": "appointment_location",
+   "fieldtype": "Small Text",
+   "label": "Appointment Location"
+  },
+  {
+   "fieldname": "special_instructions",
+   "fieldtype": "Small Text",
+   "label": "Special Instructions"
+  },
+  {
+   "fieldname": "participant_information_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Information"
+  },
+  {
+   "fieldname": "social_worker",
+   "fieldtype": "Link",
+   "label": "Social Worker",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Small Text",
+   "label": "Expected Attendees"
+  },
+  {
+   "fieldname": "interpreter_required",
+   "fieldtype": "Check",
+   "label": "Interpreter Required"
+  },
+  {
+   "fieldname": "column_break_participants",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interpreter_language",
+   "fieldtype": "Data",
+   "depends_on": "interpreter_required",
+   "label": "Interpreter Language"
+  },
+  {
+   "fieldname": "accessibility_requirements",
+   "fieldtype": "Small Text",
+   "label": "Accessibility Requirements"
+  },
+  {
+   "fieldname": "transportation_needed",
+   "fieldtype": "Check",
+   "label": "Transportation Assistance Needed"
+  },
+  {
+   "fieldname": "preparation_section",
+   "fieldtype": "Section Break",
+   "label": "Preparation"
+  },
+  {
+   "fieldname": "preparation_required",
+   "fieldtype": "Small Text",
+   "label": "Preparation Required"
+  },
+  {
+   "fieldname": "documents_needed",
+   "fieldtype": "Small Text",
+   "label": "Documents Needed"
+  },
+  {
+   "fieldname": "pre_appointment_tasks",
+   "fieldtype": "Small Text",
+   "label": "Pre-Appointment Tasks"
+  },
+  {
+   "fieldname": "column_break_preparation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reminder_sent",
+   "fieldtype": "Check",
+   "label": "Reminder Sent"
+  },
+  {
+   "fieldname": "reminder_date",
+   "fieldtype": "Date",
+   "depends_on": "reminder_sent",
+   "label": "Reminder Date"
+  },
+  {
+   "fieldname": "confirmation_received",
+   "fieldtype": "Check",
+   "label": "Confirmation Received"
+  },
+  {
+   "fieldname": "outcome_section",
+   "fieldtype": "Section Break",
+   "label": "Outcome"
+  },
+  {
+   "fieldname": "appointment_outcome",
+   "fieldtype": "Select",
+   "label": "Appointment Outcome",
+   "options": "\nCompleted as Planned\nPartially Completed\nCancelled by Client\nCancelled by Worker\nNo Show\nRescheduled\nEmergency Intervention"
+  },
+  {
+   "fieldname": "attendance_status",
+   "fieldtype": "Select",
+   "label": "Attendance Status",
+   "options": "\nAttended\nPartial Attendance\nNo Show\nCancelled\nRescheduled"
+  },
+  {
+   "fieldname": "actual_start_time",
+   "fieldtype": "Time",
+   "label": "Actual Start Time"
+  },
+  {
+   "fieldname": "actual_end_time",
+   "fieldtype": "Time",
+   "label": "Actual End Time"
+  },
+  {
+   "fieldname": "column_break_outcome",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "no_show_reason",
+   "fieldtype": "Select",
+   "depends_on": "eval:doc.attendance_status=='No Show'",
+   "label": "No Show Reason",
+   "options": "\nForgot Appointment\nTransportation Issues\nIllness\nFamily Emergency\nWork Conflict\nOther Commitment\nUnknown"
+  },
+  {
+   "fieldname": "cancellation_reason",
+   "fieldtype": "Select",
+   "depends_on": "eval:doc.attendance_status=='Cancelled'",
+   "label": "Cancellation Reason",
+   "options": "\nClient Request\nWorker Unavailable\nEmergency\nIllness\nWeather\nFacility Issues\nOther"
+  },
+  {
+   "fieldname": "rescheduled_to",
+   "fieldtype": "Link",
+   "depends_on": "eval:doc.attendance_status=='Rescheduled'",
+   "label": "Rescheduled To",
+   "options": "Appointment"
+  },
+  {
+   "fieldname": "follow_up_section",
+   "fieldtype": "Section Break",
+   "label": "Follow-up"
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "fieldname": "follow_up_date",
+   "fieldtype": "Date",
+   "depends_on": "follow_up_required",
+   "label": "Follow-up Date"
+  },
+  {
+   "fieldname": "next_appointment_needed",
+   "fieldtype": "Check",
+   "label": "Next Appointment Needed"
+  },
+  {
+   "fieldname": "column_break_followup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "action_items",
+   "fieldtype": "Small Text",
+   "label": "Action Items"
+  },
+  {
+   "fieldname": "referrals_made",
+   "fieldtype": "Small Text",
+   "label": "Referrals Made"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "appointment_notes",
+   "fieldtype": "Text Editor",
+   "label": "Appointment Notes"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Text Editor",
+   "label": "Private Notes (Staff Only)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 09:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Appointment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "appointment_type",
+ "track_changes": 1,
+ "default_view": "List",
+ "show_calendar": 1
+}
