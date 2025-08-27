@@ -5,3 +5,5 @@
 tags
 node_modules
 __pycache__
+# Google credentials
+rdss_social_work/rdss_social_work/google_calendar/*.json
