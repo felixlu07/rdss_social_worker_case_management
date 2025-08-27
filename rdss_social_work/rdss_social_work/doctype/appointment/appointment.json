@@ -18,6 +18,7 @@
   "appointment_status",
   "scheduled_by",
   "duration_minutes",
+  "case_note",
   "appointment_details_section",
   "purpose",
   "appointment_category",
@@ -60,7 +61,14 @@
   "referrals_made",
   "notes_section",
   "appointment_notes",
-  "private_notes"
+  "private_notes",
+  "attachments_section",
+  "voice_notes",
+  "visit_photos",
+  "supporting_documents",
+  "case_notes_tab",
+  "case_notes_section",
+  "case_notes_html"
  ],
  "fields": [
   {
@@ -113,7 +121,7 @@
    "fieldname": "appointment_type",
    "fieldtype": "Select",
    "label": "Appointment Type",
-   "options": "\nInitial Assessment\nFollow-up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nVideo Call\nOther",
+   "options": "\nInitial Assessment\nFollow Up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nVideo Call\nOther",
    "reqd": 1
   },
   {
@@ -136,6 +144,14 @@
    "fieldtype": "Int",
    "label": "Duration (Minutes)",
    "default": "60"
+  },
+  {
+   "fieldname": "case_note",
+   "fieldtype": "Link",
+   "label": "Case Note",
+   "options": "Case Notes",
+   "read_only": 1,
+   "description": "Case note created from this appointment"
   },
   {
    "fieldname": "appointment_details_section",
@@ -363,10 +379,49 @@
    "fieldname": "private_notes",
    "fieldtype": "Text Editor",
    "label": "Private Notes (Staff Only)"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Visit Attachments"
+  },
+  {
+   "fieldname": "voice_notes",
+   "fieldtype": "Attach",
+   "label": "Voice Notes",
+   "description": "Upload audio recordings from the visit"
+  },
+  {
+   "fieldname": "visit_photos",
+   "fieldtype": "Attach Image",
+   "label": "Visit Photos",
+   "description": "Photos taken during the visit (with consent)"
+  },
+  {
+   "fieldname": "supporting_documents",
+   "fieldtype": "Attach",
+   "label": "Supporting Documents",
+   "description": "Any documents collected or provided during the visit"
+  },
+  {
+   "fieldname": "case_notes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Case Notes"
+  },
+  {
+   "fieldname": "case_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Case Notes for this Appointment"
+  },
+  {
+   "fieldname": "case_notes_html",
+   "fieldtype": "HTML",
+   "label": "Case Notes",
+   "options": "<div id='appointment-case-notes-container'></div>"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
+ "is_submittable": 0,
  "links": [],
  "modified": "2025-01-13 09:30:00.000000",
  "modified_by": "Administrator",
@@ -385,7 +440,6 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
-   "submit": 1,
    "write": 1
   },
   {
@@ -398,7 +452,6 @@
    "report": 1,
    "role": "Social Worker",
    "share": 1,
-   "submit": 1,
    "write": 1
   }
  ],

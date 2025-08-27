@@ -1,0 +1,21 @@
+[
+    {
+        "doctype": "Custom Field",
+        "dt": "Event",
+        "fieldname": "custom_google_calendar_attendees",
+        "fieldtype": "Long Text",
+        "label": "Google Calendar Attendees",
+        "description": "Enter email addresses separated by commas (e.g., john@example.com, jane@example.com)",
+        "insert_after": "description"
+    },
+    {
+        "doctype": "Custom Field",
+        "dt": "Event",
+        "fieldname": "custom_google_calendar_event_id",
+        "fieldtype": "Data",
+        "label": "Google Calendar Event ID",
+        "read_only": 1,
+        "hidden": 1,
+        "insert_after": "custom_google_calendar_attendees"
+    }
+]

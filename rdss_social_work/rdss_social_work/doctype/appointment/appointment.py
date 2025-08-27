@@ -4,6 +4,31 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import today, getdate, get_time, add_days, get_datetime, time_diff_in_hours
+from datetime import timedelta
+
+
+@frappe.whitelist()
+def create_case_note_from_appointment(appointment_name):
+	"""Create a new Case Note from an Appointment"""
+	appointment = frappe.get_doc("Appointment", appointment_name)
+	
+	# Check if case note already exists
+	if appointment.case_note:
+		existing_note = frappe.get_doc("Case Notes", appointment.case_note)
+		return existing_note
+	
+	# Create new case note - let the actual error bubble up
+	case_note = appointment.create_case_notes()
+	
+	if case_note:
+		# Get the created case note and ensure visit_date is set
+		created_note = frappe.get_doc("Case Notes", case_note)
+		if not created_note.visit_date and appointment.appointment_date:
+			created_note.visit_date = appointment.appointment_date
+			created_note.save()
+		return created_note
+	else:
+		frappe.throw("Failed to create case note - no case note returned")
 
 
 class Appointment(Document):
@@ -34,7 +59,7 @@ class Appointment(Document):
 				"Office Visit": 60,
 				"Home Visit": 90,
 				"Initial Assessment": 120,
-				"Follow-up Assessment": 90,
+				"Follow Up Assessment": 90,
 				"Family Meeting": 90,
 				"Crisis Intervention": 60
 			}
@@ -47,10 +72,6 @@ class Appointment(Document):
 		# Auto-calculate follow-up date if required
 		if self.follow_up_required and not self.follow_up_date:
 			self.follow_up_date = add_days(self.appointment_date, 7)  # Default 1 week
-	
-	def on_submit(self):
-		"""Create tasks when appointment is confirmed"""
-		self.create_appointment_tasks()
 	
 	def create_appointment_tasks(self):
 		"""Auto-create tasks for appointment preparation and follow-up"""
@@ -148,8 +169,8 @@ class Appointment(Document):
 		# Check for scheduling conflicts
 		self.check_scheduling_conflicts()
 	
-	def on_submit(self):
-		"""Actions to perform when appointment is submitted"""
+	def after_insert(self):
+		"""Actions to perform after appointment is created"""
 		# Update status to confirmed if scheduled
 		if self.appointment_status == "Scheduled":
 			self.appointment_status = "Confirmed"
@@ -165,13 +186,6 @@ class Appointment(Document):
 		# Create reminder task
 		self.create_reminder_task()
 	
-	def on_cancel(self):
-		"""Actions to perform when appointment is cancelled"""
-		self.appointment_status = "Cancelled"
-		
-		# Send cancellation notification
-		self.send_cancellation_notification()
-	
 	def check_scheduling_conflicts(self):
 		"""Check for scheduling conflicts with other appointments"""
 		if not self.social_worker or not self.appointment_date or not self.appointment_time:
@@ -182,7 +196,7 @@ class Appointment(Document):
 		start_datetime = get_datetime(f"{self.appointment_date} {self.appointment_time}")
 		end_datetime = add_to_date(start_datetime, minutes=self.duration_minutes or 60)
 		
-		# Check for overlapping appointments
+		# Check for overlapping appointments with simpler logic
 		overlapping = frappe.db.sql("""
 			SELECT name, appointment_type, appointment_time, duration_minutes
 			FROM `tabAppointment`
@@ -190,12 +204,7 @@ class Appointment(Document):
 			AND appointment_date = %s
 			AND appointment_status NOT IN ('Cancelled', 'No Show', 'Completed')
 			AND name != %s
-			AND (
-				(appointment_time <= %s AND ADDTIME(appointment_time, SEC_TO_TIME(IFNULL(duration_minutes, 60) * 60)) > %s)
-				OR (appointment_time < %s AND ADDTIME(appointment_time, SEC_TO_TIME(IFNULL(duration_minutes, 60) * 60)) >= %s)
-			)
-		""", (self.social_worker, self.appointment_date, self.name or "", 
-			  self.appointment_time, self.appointment_time, end_datetime.time(), end_datetime.time()))
+		""", (self.social_worker, self.appointment_date, self.name or ""))
 		
 		if overlapping:
 			conflict_details = []
@@ -241,7 +250,7 @@ class Appointment(Document):
 		# Add case manager if different
 		if self.case:
 			case_doc = frappe.get_doc("Case", self.case)
-			if case_doc.case_manager and case_doc.case_manager not in recipients:
+			if hasattr(case_doc, 'case_manager') and case_doc.case_manager and case_doc.case_manager not in recipients:
 				recipients.append(case_doc.case_manager)
 		
 		subject = f"Appointment Confirmed: {self.appointment_type}"
@@ -280,7 +289,7 @@ class Appointment(Document):
 		
 		if self.case:
 			case_doc = frappe.get_doc("Case", self.case)
-			if case_doc.case_manager and case_doc.case_manager not in recipients:
+			if hasattr(case_doc, 'case_manager') and case_doc.case_manager and case_doc.case_manager not in recipients:
 				recipients.append(case_doc.case_manager)
 		
 		subject = f"Appointment Cancelled: {self.appointment_type}"
@@ -327,52 +336,77 @@ class Appointment(Document):
 		
 		self.save()
 		
-		# Create case notes if this was a significant appointment
-		if self.appointment_type in ["Initial Assessment", "Follow-up Assessment", "Home Visit", "Crisis Intervention"]:
-			self.create_case_notes()
+		# Prompt user to create case notes
+		frappe.msgprint(
+			"Appointment marked as completed. <a href='#' onclick=\"frappe.call({method: 'rdss_social_work.rdss_social_work.doctype.appointment.appointment.create_case_note_from_appointment', args: {appointment_name: '" + self.name + "'}, callback: function(r) { if(r.message) { frappe.set_route('Form', 'Case Notes', r.message.name); }}});\">Create Case Note</a>",
+			title="Create Case Note",
+			indicator="green"
+		)
 	
 	def create_case_notes(self):
 		"""Create case notes from completed appointment"""
-		if not self.case or self.appointment_status != "Completed":
-			return
+		if not self.case:
+			frappe.throw("Cannot create case notes: No case linked to this appointment")
 		
-		try:
-			case_notes = frappe.new_doc("Case Notes")
-			case_notes.case = self.case
+		# Check if case note already exists for this appointment
+		if self.case_note:
+			existing_note = frappe.get_doc("Case Notes", self.case_note)
+			frappe.msgprint(f"Case note already exists: {existing_note.name}")
+			return existing_note.name
+		
+		# Create new case note with minimal required fields first
+		case_notes = frappe.new_doc("Case Notes")
+		
+		# Set absolutely required fields
+		case_notes.case = self.case
+		case_notes.visit_date = self.appointment_date or today()
+		case_notes.visit_type = self.appointment_type or "Office Visit"
+		case_notes.visit_purpose = "Routine Check-in"  # Required field
+		case_notes.social_worker = self.social_worker or frappe.session.user
+		
+		# Set required text fields with defaults
+		case_notes.observations = self.get('appointment_notes') or "Appointment completed. No detailed notes provided."
+		case_notes.actions_taken = self.get('action_items') or "No specific actions recorded for this appointment."
+		case_notes.visit_outcome = self.get('appointment_outcome') or "Successful"
+		
+		# Set optional fields
+		if self.beneficiary:
 			case_notes.beneficiary = self.beneficiary
-			case_notes.visit_date = self.appointment_date
-			case_notes.visit_type = self.appointment_type
-			case_notes.social_worker = self.social_worker
-			case_notes.visit_location = self.appointment_location or self.location_type
+		if self.name:
+			case_notes.related_appointment = self.name
+		if self.appointment_time:
+			case_notes.visit_time = self.appointment_time
+		if hasattr(self, 'appointment_location') and self.appointment_location:
+			case_notes.location = self.appointment_location
+		elif hasattr(self, 'location_type') and self.location_type:
+			case_notes.location = self.location_type
+		
+		# Set duration
+		if self.actual_start_time and self.actual_end_time:
 			case_notes.visit_duration = self.get_actual_duration()
-			case_notes.visit_outcome = self.appointment_outcome
-			
-			# Set attendees
-			if self.attendees:
-				case_notes.attendees_present = self.attendees
-			
-			# Set observations from appointment notes
-			if self.appointment_notes:
-				case_notes.observations = self.appointment_notes
-			
-			# Set action items
-			if self.action_items:
-				case_notes.actions_taken = self.action_items
-			
-			# Set referrals
-			if self.referrals_made:
-				case_notes.referrals_made = self.referrals_made
-			
-			case_notes.insert()
-			
-			# Link appointment to case notes
-			self.add_comment('Info', f'Case notes created: {case_notes.name}')
-			
-			return case_notes.name
-			
-		except Exception as e:
-			frappe.log_error(f"Error creating case notes from appointment: {str(e)}")
-			return None
+		elif hasattr(self, 'duration_minutes') and self.duration_minutes:
+			# Convert minutes (int) to timedelta for Duration field validation
+			case_notes.visit_duration = timedelta(minutes=self.duration_minutes)
+		
+		# Set other optional fields
+		if self.get('referrals_made'):
+			case_notes.referrals_made = self.referrals_made
+		
+		if self.get('follow_up_required'):
+			case_notes.follow_up_required = 1
+			if self.get('follow_up_date'):
+				case_notes.next_visit_date = self.follow_up_date
+		
+		# Insert the case note
+		case_notes.insert()
+		
+		# Update appointment with link to case notes
+		self.db_set('case_note', case_notes.name, update_modified=False)
+		
+		# Add comment for tracking
+		self.add_comment('Info', f'Case notes created: {case_notes.name}')
+		
+		return case_notes.name
 	
 	def get_actual_duration(self):
 		"""Calculate actual appointment duration in minutes"""

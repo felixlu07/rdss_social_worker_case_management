@@ -24,6 +24,7 @@
   "address_line_1",
   "address_line_2",
   "postal_code",
+  "geolocation",
   "column_break_contact",
   "mobile_number",
   "home_number",
@@ -71,7 +72,27 @@
   "religious_considerations",
   "notes_section",
   "additional_notes",
-  "internal_notes"
+  "internal_notes",
+  "cases_tab",
+  "cases_section",
+  "active_cases_html",
+  "closed_cases_html",
+  "appointments_tab",
+  "appointments_section",
+  "upcoming_appointments_html",
+  "appointment_history_html",
+  "assessments_tab",
+  "initial_assessments_section",
+  "initial_assessments_html",
+  "follow_up_assessments_section",
+  "follow_up_assessments_html",
+  "services_tab",
+  "service_plans_section",
+  "current_service_plans_html",
+  "service_history_html",
+  "documents_tab",
+  "document_attachments_section",
+  "document_attachments_html"
  ],
  "fields": [
   {
@@ -170,6 +191,12 @@
    "fieldname": "postal_code",
    "fieldtype": "Data",
    "label": "Postal Code"
+  },
+  {
+   "fieldname": "geolocation",
+   "fieldtype": "Geolocation",
+   "label": "Location",
+   "description": "Geographic coordinates for location-based services"
   },
   {
    "fieldname": "column_break_contact",
@@ -414,6 +441,115 @@
    "fieldname": "internal_notes",
    "fieldtype": "Text Editor",
    "label": "Internal Notes (Staff Only)"
+  },
+  {
+   "fieldname": "cases_tab",
+   "fieldtype": "Tab Break",
+   "label": "Cases"
+  },
+  {
+   "fieldname": "cases_section",
+   "fieldtype": "Section Break",
+   "label": "Case Management"
+  },
+  {
+   "fieldname": "active_cases_html",
+   "fieldtype": "HTML",
+   "label": "Active Cases",
+   "options": "<div id='active-cases-container'></div>"
+  },
+  {
+   "fieldname": "closed_cases_html",
+   "fieldtype": "HTML",
+   "label": "Case History",
+   "options": "<div id='closed-cases-container'></div>"
+  },
+  {
+   "fieldname": "appointments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appointments"
+  },
+  {
+   "fieldname": "appointments_section",
+   "fieldtype": "Section Break",
+   "label": "Appointment Management"
+  },
+  {
+   "fieldname": "upcoming_appointments_html",
+   "fieldtype": "HTML",
+   "label": "Upcoming Appointments",
+   "options": "<div id='upcoming-appointments-container'></div>"
+  },
+  {
+   "fieldname": "appointment_history_html",
+   "fieldtype": "HTML",
+   "label": "Appointment History",
+   "options": "<div id='appointment-history-container'></div>"
+  },
+  {
+   "fieldname": "assessments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Assessments"
+  },
+  {
+   "fieldname": "initial_assessments_section",
+   "fieldtype": "Section Break",
+   "label": "Initial Assessments"
+  },
+  {
+   "fieldname": "initial_assessments_html",
+   "fieldtype": "HTML",
+   "label": "Initial Assessments",
+   "options": "<div id='initial-assessments-container'></div>"
+  },
+  {
+   "fieldname": "follow_up_assessments_section",
+   "fieldtype": "Section Break",
+   "label": "Follow-up Assessments"
+  },
+  {
+   "fieldname": "follow_up_assessments_html",
+   "fieldtype": "HTML",
+   "label": "Follow-up Assessments",
+   "options": "<div id='follow-up-assessments-container'></div>"
+  },
+  {
+   "fieldname": "services_tab",
+   "fieldtype": "Tab Break",
+   "label": "Services"
+  },
+  {
+   "fieldname": "service_plans_section",
+   "fieldtype": "Section Break",
+   "label": "Service Plans"
+  },
+  {
+   "fieldname": "current_service_plans_html",
+   "fieldtype": "HTML",
+   "label": "Current Service Plans",
+   "options": "<div id='current-service-plans-container'></div>"
+  },
+  {
+   "fieldname": "service_history_html",
+   "fieldtype": "HTML",
+   "label": "Service History",
+   "options": "<div id='service-history-container'></div>"
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "document_attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Document Attachments"
+  },
+  {
+   "fieldname": "document_attachments_html",
+   "fieldtype": "HTML",
+   "label": "Document Attachments",
+   "options": "<div id='document-attachments-container'></div>"
   }
  ],
  "index_web_pages_for_search": 1,

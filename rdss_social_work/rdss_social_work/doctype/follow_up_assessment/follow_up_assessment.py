@@ -74,7 +74,7 @@ class FollowUpAssessment(Document):
 				case_doc.risk_level = self.current_risk_level
 			
 			# Add comment to case
-			case_doc.add_comment('Info', f'Follow-up Assessment completed: {self.assessment_outcome}')
+			case_doc.add_comment('Info', f'Follow Up Assessment completed: {self.assessment_outcome}')
 			
 			# Update case status based on assessment outcome
 			if self.assessment_outcome == "Discharge":
@@ -108,8 +108,8 @@ class FollowUpAssessment(Document):
 			prev_date = prev_doc.assessment_date
 		except:
 			try:
-				# Try Follow-up Assessment
-				prev_doc = frappe.get_doc("Follow-up Assessment", self.previous_assessment)
+				# Try Follow Up Assessment
+				prev_doc = frappe.get_doc("Follow Up Assessment", self.previous_assessment)
 				prev_date = prev_doc.assessment_date
 			except:
 				return
@@ -175,7 +175,7 @@ class FollowUpAssessment(Document):
 					referral_doc.referral_date = self.assessment_date
 					referral_doc.referred_by = self.assessed_by
 					referral_doc.referral_reason = f"Follow-up assessment recommendation: {line}"
-					referral_doc.referral_source = "Follow-up Assessment"
+					referral_doc.referral_source = "Follow Up Assessment"
 					referral_doc.priority = "Medium"  # Default priority
 					referral_doc.status = "Pending"
 					referral_doc.insert()
@@ -194,7 +194,7 @@ class FollowUpAssessment(Document):
 		# Create a ToDo for the next assessment
 		try:
 			todo_doc = frappe.new_doc("ToDo")
-			todo_doc.description = f"Follow-up Assessment due for {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}"
+			todo_doc.description = f"Follow Up Assessment due for {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}"
 			todo_doc.reference_type = "Case"
 			todo_doc.reference_name = self.case
 			todo_doc.assigned_by = self.assessed_by
@@ -227,10 +227,10 @@ class FollowUpAssessment(Document):
 		if self.current_risk_level == "Critical Risk" or self.assessment_outcome in ["Discharge", "Refer to Other Agency"]:
 			urgency = "High"
 		
-		subject = f"Follow-up Assessment Completed: {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}"
+		subject = f"Follow Up Assessment Completed: {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}"
 		
 		message = f"""
-		<p>Follow-up Assessment <strong>{self.name}</strong> has been completed.</p>
+		<p>Follow Up Assessment <strong>{self.name}</strong> has been completed.</p>
 		<p><strong>Beneficiary:</strong> {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}</p>
 		<p><strong>Assessment Date:</strong> {self.assessment_date}</p>
 		<p><strong>Assessment Outcome:</strong> {self.assessment_outcome}</p>
@@ -267,9 +267,9 @@ class FollowUpAssessment(Document):
 			prev_type = "Initial Assessment"
 		except:
 			try:
-				# Try Follow-up Assessment
-				prev_doc = frappe.get_doc("Follow-up Assessment", self.previous_assessment)
-				prev_type = "Follow-up Assessment"
+				# Try Follow Up Assessment
+				prev_doc = frappe.get_doc("Follow Up Assessment", self.previous_assessment)
+				prev_type = "Follow Up Assessment"
 			except:
 				return None
 		

@@ -42,13 +42,13 @@ def get_columns():
             "width": 200
         },
         {
-            "fieldname": "duration_hours",
-            "label": _("Duration (Hours)"),
-            "fieldtype": "Float",
+            "fieldname": "visit_duration",
+            "label": _("Duration"),
+            "fieldtype": "Duration",
             "width": 120
         },
         {
-            "fieldname": "case",
+            "fieldname": "case_link",
             "label": _("Case"),
             "fieldtype": "Link",
             "options": "Case",
@@ -83,8 +83,8 @@ def get_data(filters):
             cn.beneficiary,
             cn.visit_type,
             cn.visit_purpose,
-            cn.duration_hours,
-            cn.case
+            cn.visit_duration,
+            cn.case as case_link
         FROM `tabCase Notes` cn
         {where_clause}
         ORDER BY cn.visit_date DESC, cn.social_worker

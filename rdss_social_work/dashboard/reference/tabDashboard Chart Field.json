@@ -1,0 +1,30 @@
+[
+  {
+    "name": "dfpmpscu28",
+    "creation": "14/7/2020 18:23:53.195389",
+    "modified": "21/1/2025 12:03:03.206875",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 1,
+    "y_field": "asset_value",
+    "color": null,
+    "parent": "Location-wise Asset Value",
+    "parentfield": "y_axis",
+    "parenttype": "Dashboard Chart"
+  },
+  {
+    "name": "m6lbrf0c2j",
+    "creation": "14/7/2020 18:23:53.146304",
+    "modified": "21/1/2025 12:03:03.229193",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 1,
+    "y_field": "asset_value",
+    "color": null,
+    "parent": "Category-wise Asset Value",
+    "parentfield": "y_axis",
+    "parenttype": "Dashboard Chart"
+  }
+]

@@ -1,0 +1,80 @@
+{% set appointment_date = frappe.utils.get_datetime(doc.appointment_date) %}
+{% set appointment_time = doc.appointment_time %}
+{% set beneficiary = frappe.get_doc("Beneficiary", doc.beneficiary) if doc.beneficiary else None %}
+{% set case_doc = frappe.get_doc("Case", doc.case) if doc.case else None %}
+{% set case_notes = frappe.get_all("Case Notes", filters={"case": doc.case, "related_appointment": doc.name}, fields=["name", "visit_date", "visit_type"]) if doc.case else [] %}
+{% set initial_assessment = frappe.get_all("Initial Assessment", filters={"beneficiary": doc.beneficiary}, fields=["name", "assessment_date", "primary_diagnosis", "severity_level"], limit=1) if doc.beneficiary else [] %}
+
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+    <div style="background-color: #4b7bec; color: white; padding: 15px; border-radius: 5px 5px 0 0;">
+        <h2 style="margin: 0;">Upcoming Appointment Reminder</h2>
+    </div>
+    
+    <div style="padding: 20px;">
+        <p><strong>Dear {{ frappe.db.get_value("User", doc.social_worker, "full_name") if doc.social_worker else "Social Worker" }},</strong></p>
+        
+        <p>This is a reminder that you have an appointment scheduled in 3 days:</p>
+        
+        <div style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #4b7bec; margin: 15px 0;">
+            <p><strong>Date:</strong> {{ appointment_date.strftime('%d %b %Y') }}</p>
+            <p><strong>Time:</strong> {{ appointment_time }}</p>
+            <p><strong>Type:</strong> {{ doc.appointment_type }}</p>
+            <p><strong>Location:</strong> {{ doc.location or "Not specified" }}</p>
+        </div>
+        
+        {% if beneficiary %}
+        <div style="margin-top: 20px;">
+            <h3 style="color: #4b7bec; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Beneficiary Information</h3>
+            <p><strong>Name:</strong> {{ beneficiary.beneficiary_name }}</p>
+            <p><strong>Age:</strong> {{ beneficiary.age }} {% if beneficiary.gender %}| <strong>Gender:</strong> {{ beneficiary.gender }}{% endif %}</p>
+            <p><strong>Primary Diagnosis:</strong> {{ beneficiary.primary_diagnosis }}</p>
+            <p><strong>Contact:</strong> {{ beneficiary.mobile_number or beneficiary.home_number or "No contact information available" }}</p>
+            <p><strong>Preferred Contact Method:</strong> {{ beneficiary.preferred_contact_method or "Not specified" }}</p>
+            
+            {% if beneficiary.address_line_1 %}
+            <p><strong>Address:</strong> {{ beneficiary.address_line_1 }}{% if beneficiary.address_line_2 %}, {{ beneficiary.address_line_2 }}{% endif %}{% if beneficiary.postal_code %}, {{ beneficiary.postal_code }}{% endif %}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {% if initial_assessment and initial_assessment|length > 0 %}
+        <div style="margin-top: 20px;">
+            <h3 style="color: #4b7bec; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Initial Assessment Highlights</h3>
+            <p><strong>Assessment Date:</strong> {{ frappe.utils.get_datetime(initial_assessment[0].assessment_date).strftime('%d %b %Y') }}</p>
+            <p><strong>Severity Level:</strong> {{ initial_assessment[0].severity_level or "Not specified" }}</p>
+            <p><a href="{{ frappe.utils.get_url() }}/app/initial-assessment/{{ initial_assessment[0].name }}" style="color: #4b7bec; text-decoration: none;">View Full Assessment</a></p>
+        </div>
+        {% endif %}
+        
+        {% if case_notes and case_notes|length > 0 %}
+        <div style="margin-top: 20px;">
+            <h3 style="color: #4b7bec; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Related Case Notes</h3>
+            <ul style="padding-left: 20px;">
+                {% for note in case_notes %}
+                <li>
+                    <a href="{{ frappe.utils.get_url() }}/app/case-notes/{{ note.name }}" style="color: #4b7bec; text-decoration: none;">
+                        {{ frappe.utils.get_datetime(note.visit_date).strftime('%d %b %Y') if note.visit_date else "No date" }} - {{ note.visit_type or "Visit" }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <div style="margin-top: 20px;">
+            <p><em>No previous case notes found for this beneficiary.</em></p>
+        </div>
+        {% endif %}
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p>Please review the beneficiary's information before the appointment.</p>
+            <p>You can view the full appointment details <a href="{{ frappe.utils.get_url() }}/app/appointment/{{ doc.name }}" style="color: #4b7bec; text-decoration: none;">here</a>.</p>
+            {% if case_doc %}
+            <p>View the full case <a href="{{ frappe.utils.get_url() }}/app/case/{{ case_doc.name }}" style="color: #4b7bec; text-decoration: none;">here</a>.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 0 0 5px 5px; font-size: 12px; color: #666; text-align: center;">
+        <p>This is an automated notification from the RDSS Social Work System.</p>
+    </div>
+</div>

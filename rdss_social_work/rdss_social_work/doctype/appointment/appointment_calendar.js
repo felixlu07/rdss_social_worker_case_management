@@ -25,7 +25,7 @@ frappe.views.calendar["Appointment"] = {
 			"fieldname": "appointment_type",
 			"fieldtype": "Select", 
 			"label": __("Type"),
-			"options": "\nInitial Assessment\nFollow-up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nVideo Call\nOther"
+			"options": "\nInitial Assessment\nFollow Up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nVideo Call\nOther"
 		}
 	],
 	get_css_class: function(data) {

@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:priority_code",
+ "creation": "2025-08-21 15:19:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "priority_code",
+  "priority_name",
+  "appointment_frequency_section",
+  "appointment_frequency_months",
+  "description",
+  "color_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "priority_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Priority Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "priority_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Priority Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appointment_frequency_section",
+   "fieldtype": "Section Break",
+   "label": "Appointment Frequency"
+  },
+  {
+   "description": "Number of months between required appointments",
+   "fieldname": "appointment_frequency_months",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Appointment Frequency (Months)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "description": "Color for the priority badge (e.g., red, blue, green, orange, purple, yellow, gray)",
+   "fieldname": "color_code",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Color Code",
+   "options": "red\nblue\ngreen\norange\npurple\nyellow\ngray",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-21 15:19:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Case Priority",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "priority_name",
+ "track_changes": 1
+}

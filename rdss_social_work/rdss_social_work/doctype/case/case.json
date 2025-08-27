@@ -8,11 +8,12 @@
  "engine": "InnoDB",
  "field_order": [
   "case_identification_section",
+  "case_priority",
+  "appointment_frequency",
   "naming_series",
   "case_title",
   "beneficiary",
   "case_type",
-  "priority_level",
   "column_break_identification",
   "case_opened_date",
   "case_status",
@@ -65,7 +66,16 @@
   "closed_by",
   "notes_section",
   "case_notes",
-  "internal_notes"
+  "internal_notes",
+  "appointments_tab",
+  "appointments_section",
+  "case_appointments_html",
+  "assessments_tab",
+  "assessments_section",
+  "case_assessments_html",
+  "timeline_tab",
+  "timeline_section",
+  "case_timeline_html"
  ],
  "fields": [
   {
@@ -104,12 +114,19 @@
    "reqd": 1
   },
   {
-   "fieldname": "priority_level",
-   "fieldtype": "Select",
+   "fieldname": "case_priority",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Priority Level",
-   "options": "Low\nMedium\nHigh\nUrgent\nCritical",
+   "label": "Case Priority",
+   "options": "Case Priority",
    "reqd": 1
+  },
+  {
+   "fetch_from": "case_priority.appointment_frequency_months",
+   "fieldname": "appointment_frequency",
+   "fieldtype": "Int",
+   "label": "Appointment Frequency (Months)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_identification",
@@ -389,10 +406,58 @@
    "fieldname": "internal_notes",
    "fieldtype": "Text Editor",
    "label": "Internal Notes (Staff Only)"
+  },
+  {
+   "fieldname": "appointments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appointments"
+  },
+  {
+   "fieldname": "appointments_section",
+   "fieldtype": "Section Break",
+   "label": "Case Appointments"
+  },
+  {
+   "fieldname": "case_appointments_html",
+   "fieldtype": "HTML",
+   "label": "Appointments",
+   "options": "<div id='case-appointments-container'></div>"
+  },
+  {
+   "fieldname": "assessments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Assessments"
+  },
+  {
+   "fieldname": "assessments_section",
+   "fieldtype": "Section Break",
+   "label": "Case Assessments"
+  },
+  {
+   "fieldname": "case_assessments_html",
+   "fieldtype": "HTML",
+   "label": "Assessments",
+   "options": "<div id='case-assessments-container'></div>"
+  },
+  {
+   "fieldname": "timeline_tab",
+   "fieldtype": "Tab Break",
+   "label": "Timeline"
+  },
+  {
+   "fieldname": "timeline_section",
+   "fieldtype": "Section Break",
+   "label": "Case Timeline"
+  },
+  {
+   "fieldname": "case_timeline_html",
+   "fieldtype": "HTML",
+   "label": "Timeline",
+   "options": "<div id='case-timeline-container'></div>"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
+ "is_submittable": 0,
  "links": [],
  "modified": "2025-01-13 08:43:28.000000",
  "modified_by": "Administrator",

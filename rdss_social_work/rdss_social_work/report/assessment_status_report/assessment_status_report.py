@@ -1,6 +1,8 @@
 import frappe
 from frappe import _
 from frappe.utils import today, add_days, getdate
+import json
+from frappe.utils.safe_exec import get_safe_globals
 
 def execute(filters=None):
     columns = get_columns()
@@ -16,7 +18,7 @@ def get_columns():
             "width": 150
         },
         {
-            "fieldname": "case",
+            "fieldname": "case_link",
             "label": _("Case"),
             "fieldtype": "Link",
             "options": "Case",
@@ -68,9 +70,8 @@ def get_data(filters):
     # Get pending Initial Assessments
     initial_assessments = frappe.get_all("Initial Assessment",
         filters={"docstatus": 0},
-        fields=["name", "case", "beneficiary", "social_worker", "assessment_date", "priority"]
+        fields=["name", "case_no as case_link", "beneficiary", "assessed_by as social_worker", "assessment_date"]
     )
-    
     for assessment in initial_assessments:
         days_overdue = 0
         if assessment.assessment_date and getdate(assessment.assessment_date) < getdate(today()):
@@ -78,35 +79,34 @@ def get_data(filters):
             
         data.append({
             "assessment_type": "Initial Assessment",
-            "case": assessment.case,
+            "case_link": assessment.case_link,
             "beneficiary": assessment.beneficiary,
             "social_worker": assessment.social_worker,
             "due_date": assessment.assessment_date,
             "status": "Overdue" if days_overdue > 0 else "Pending",
             "days_overdue": days_overdue if days_overdue > 0 else 0,
-            "priority": assessment.priority or "Medium"
+            "priority": "Medium"
         })
     
-    # Get pending Follow-up Assessments
+    # Get pending Follow Up Assessments
     followup_assessments = frappe.get_all("Follow Up Assessment",
         filters={"docstatus": 0},
-        fields=["name", "case", "beneficiary", "social_worker", "assessment_date", "priority"]
+        fields=["name", "case as case_link", "beneficiary", "assessed_by as social_worker", "assessment_date"]
     )
-    
     for assessment in followup_assessments:
         days_overdue = 0
         if assessment.assessment_date and getdate(assessment.assessment_date) < getdate(today()):
             days_overdue = (getdate(today()) - getdate(assessment.assessment_date)).days
             
         data.append({
-            "assessment_type": "Follow-up Assessment",
-            "case": assessment.case,
+            "assessment_type": "Follow Up Assessment",
+            "case_link": assessment.case_link,
             "beneficiary": assessment.beneficiary,
             "social_worker": assessment.social_worker,
             "due_date": assessment.assessment_date,
             "status": "Overdue" if days_overdue > 0 else "Pending",
             "days_overdue": days_overdue if days_overdue > 0 else 0,
-            "priority": assessment.priority or "Medium"
+            "priority": "Medium"
         })
     
     # Sort by days overdue (descending) and then by due date

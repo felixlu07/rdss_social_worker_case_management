@@ -9,12 +9,13 @@
  "field_order": [
   "basic_information_section",
   "naming_series",
+  "beneficiary",
   "case_no",
   "client_name",
   "bc_nric_no",
   "age_category",
   "photo",
-  "column_break_basic",
+  "column_break_basic_1",
   "assessment_date",
   "assessed_by",
   "institution_ssa",
@@ -22,12 +23,15 @@
   "befriending",
   "counselling",
   "day_care_centre",
+  "column_break_services_1",
   "medical_escort_school_escort",
   "transport",
   "financial_aid",
+  "column_break_services_2",
   "home_medical_nursing",
   "housekeeping_service",
   "laundry",
+  "column_break_services_3",
   "meals_delivery",
   "personal_hygiene",
   "other_services_required",
@@ -35,73 +39,65 @@
   "home_condition",
   "home_condition_other",
   "furnishing",
+  "column_break_environment_1",
   "safety_features",
   "safety_features_other",
+  "column_break_environment_2",
   "existing_assistive_devices",
   "existing_assistive_devices_other",
   "functional_cognitive_abilities_section",
   "mobility",
   "washing_bathing",
   "dressing",
+  "column_break_adl_1",
   "feeding",
   "toileting",
   "transferring",
+  "column_break_adl_2",
   "housekeeping_adl",
   "use_of_telephone",
   "money_management",
-  "cognitive_ability",
-  "medicine_compliance",
-  "medicine_compliance_reason",
   "assistance_timeline_section",
   "assistance_first_required",
   "assistance_duration_6_months",
   "health_status_section",
-  "medical_conditions",
+  "medical_condition_seizures",
+  "medical_condition_respiratory",
+  "medical_condition_ent",
+  "medical_condition_gastroenterology",
+  "tube_feeding",
+  "medical_condition_heart_cardiovascular",
+  "medical_condition_malnutrition",
+  "diet_preference",
+  "column_break_medical_1",
+  "medical_condition_hepatology",
+  "medical_condition_head_surgery",
+  "medical_condition_neck_surgery",
+  "medical_condition_other_surgery",
+  "surgery_date_institution",
+  "medical_condition_orthopaedic",
+  "medical_condition_scoliosis",
+  "muscle_tone",
+  "column_break_medical_2",
+  "treatment_devices",
+  "assistive_devices_medical",
+  "medical_condition_psychological",
+  "symptoms_behaviours",
+  "medical_condition_adhd",
+  "medical_condition_incontinence",
+  "medical_condition_renal",
+  "medical_condition_xla",
+  "section_break_health_additional",
   "medical_conditions_other",
   "hearing_status",
   "hearing_aid",
+  "column_break_health_1",
   "vision_status",
   "vision_corrective_device",
-  "allergy_records_section",
-  "food_allergy",
-  "medicine_allergy",
-  "health_therapies",
-  "health_therapies_institution",
-  "psycho_emotional_section",
-  "anxiety",
-  "feelings",
-  "insomnia",
-  "mood_swing",
-  "recent_bereavement",
-  "self_esteem",
-  "suicidal_ideation",
-  "psycho_emotional_others",
-  "financial_information_section",
-  "financial_source",
-  "financial_source_other",
-  "monthly_amount",
-  "monthly_household_income",
-  "monthly_household_expenditure",
-  "family_information_section",
-  "no_of_siblings",
-  "no_of_children",
-  "next_of_kin_section",
-  "next_of_kin_contacts",
-  "contact_frequency",
-  "contact_frequency_relationship",
-  "language_dialect",
-  "language_dialect_other",
-  "emergency_contact_section",
-  "emergency_contact_name",
-  "emergency_contact_relationship",
-  "emergency_contact_home_no",
-  "emergency_contact_mobile_no",
-  "remarks_section",
-  "remarks",
-  "genogram_section",
-  "genogram",
-  "any_other_information_section",
-  "any_other_information",
+  "column_break_health_2",
+  "cognitive_ability",
+  "medicine_compliance",
+  "medicine_compliance_reason",
   "assessment_decision_section",
   "decision_date_of_assessment",
   "decision_assessed_by",
@@ -109,7 +105,88 @@
   "column_break_decision",
   "assessment_decision",
   "reject_reason",
-  "refer_to"
+  "refer_to",
+  "detailed_sections_tab",
+  "allergy_records_section",
+  "food_allergy",
+  "medicine_allergy",
+  "column_break_allergy",
+  "health_therapies",
+  "health_therapies_institution",
+  "psycho_emotional_section",
+  "caregiver_name",
+  "anxiety",
+  "feelings",
+  "insomnia",
+  "column_break_psycho_1",
+  "mood_swing",
+  "recent_bereavement",
+  "self_esteem",
+  "column_break_psycho_2",
+  "suicidal_ideation",
+  "psycho_emotional_others",
+  "financial_information_section",
+  "financial_source_self",
+  "financial_source_parents",
+  "financial_source_children",
+  "financial_source_grandchildren",
+  "financial_source_cpf",
+  "column_break_financial_sources",
+  "financial_source_friends",
+  "financial_source_savings",
+  "financial_source_rdss",
+  "financial_source_rdf",
+  "financial_source_others",
+  "financial_source_other",
+  "monthly_amount",
+  "column_break_financial_1",
+  "monthly_household_income",
+  "monthly_household_expenditure",
+  "family_information_section",
+  "no_of_siblings",
+  "no_of_children",
+  "family_background_others",
+  "column_break_family",
+  "language_dialect",
+  "language_dialect_other",
+  "next_of_kin_section",
+  "next_of_kin_1_name",
+  "next_of_kin_1_home_no",
+  "next_of_kin_1_mobile_no",
+  "column_break_kin_1",
+  "next_of_kin_1_relationship",
+  "next_of_kin_1_age",
+  "next_of_kin_1_consent",
+  "next_of_kin_2_section",
+  "next_of_kin_2_name",
+  "next_of_kin_2_home_no",
+  "next_of_kin_2_mobile_no",
+  "column_break_kin_2",
+  "next_of_kin_2_relationship",
+  "next_of_kin_2_age",
+  "next_of_kin_2_consent",
+  "address_section",
+  "address_block_house",
+  "address_street_name",
+  "column_break_address",
+  "address_unit_no",
+  "address_postal_code",
+  "contact_frequency",
+  "column_break_kin",
+  "contact_frequency_relationship",
+  "emergency_contact_section",
+  "emergency_contact_name",
+  "emergency_contact_relationship",
+  "column_break_emergency",
+  "emergency_contact_home_no",
+  "emergency_contact_mobile_no",
+  "additional_information_tab",
+  "remarks_section",
+  "remarks",
+  "genogram_section",
+  "genogram",
+  "any_other_information_section",
+  "any_other_information"
  ],
  "fields": [
   {
@@ -125,15 +202,25 @@
    "reqd": 1
   },
   {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
    "fieldname": "case_no",
-   "fieldtype": "Data",
-   "label": "Case No."
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case"
   },
   {
    "fieldname": "client_name",
    "fieldtype": "Data",
    "label": "Name",
-   "reqd": 1
+   "fetch_from": "beneficiary.beneficiary_name",
+   "read_only": 1
   },
   {
    "fieldname": "bc_nric_no",
@@ -153,7 +240,7 @@
    "label": "Photo"
   },
   {
-   "fieldname": "column_break_basic",
+   "fieldname": "column_break_basic_1",
    "fieldtype": "Column Break"
   },
   {
@@ -194,6 +281,10 @@
    "label": "Day Care Centre"
   },
   {
+   "fieldname": "column_break_services_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "medical_escort_school_escort",
    "fieldtype": "Check",
    "label": "Medical Escort / School Escort"
@@ -209,6 +300,10 @@
    "label": "Financial Aid"
   },
   {
+   "fieldname": "column_break_services_2",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "home_medical_nursing",
    "fieldtype": "Check",
    "label": "Home Medical / Nursing"
@@ -222,6 +317,10 @@
    "fieldname": "laundry",
    "fieldtype": "Check",
    "label": "Laundry"
+  },
+  {
+   "fieldname": "column_break_services_3",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "meals_delivery",
@@ -262,6 +361,10 @@
    "options": "\nWell-Equipped\nBasic\nBare"
   },
   {
+   "fieldname": "column_break_environment_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "safety_features",
    "fieldtype": "Select",
    "label": "Safety Features",
@@ -272,6 +375,10 @@
    "fieldname": "safety_features_other",
    "fieldtype": "Data",
    "label": "Safety Features (Other)"
+  },
+  {
+   "fieldname": "column_break_environment_2",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "existing_assistive_devices",
@@ -309,6 +416,10 @@
    "options": "\nRequires help/supervision\nIndependent – No help is required"
   },
   {
+   "fieldname": "column_break_adl_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "feeding",
    "fieldtype": "Select",
    "label": "Feeding",
@@ -325,6 +436,10 @@
    "fieldtype": "Select",
    "label": "Transferring",
    "options": "\nRequires help/supervision\nIndependent – No help is required"
+  },
+  {
+   "fieldname": "column_break_adl_2",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "housekeeping_adl",
@@ -384,16 +499,141 @@
    "label": "Health Status"
   },
   {
-   "fieldname": "medical_conditions",
-   "fieldtype": "Select",
-   "label": "Medical Conditions",
-   "options": "\nSeizures\nRespiratory\nENT\nGastroenterology\nHeart & Cardiovascular conditions\nMalnutrition\nHead Surgery\nNeck Surgery\nOther Surgery\nOrthopaedic\nScoliosis\nHepatology – Liver condition\nPsychological conditions\nADHD\nIncontinence\nRenal condition\nXLA\nOther"
+   "fieldname": "medical_condition_seizures",
+   "fieldtype": "Check",
+   "label": "Seizures"
   },
   {
-   "depends_on": "eval:doc.medical_conditions=='Other'",
+   "fieldname": "medical_condition_respiratory",
+   "fieldtype": "Check",
+   "label": "Respiratory"
+  },
+  {
+   "fieldname": "medical_condition_ent",
+   "fieldtype": "Check",
+   "label": "ENT"
+  },
+  {
+   "fieldname": "medical_condition_gastroenterology",
+   "fieldtype": "Check",
+   "label": "Gastroenterology"
+  },
+  {
+   "fieldname": "tube_feeding",
+   "fieldtype": "Small Text",
+   "label": "Tube Feeding: NGT / NJT / PEG-Gastrostomy"
+  },
+  {
+   "fieldname": "medical_condition_heart_cardiovascular",
+   "fieldtype": "Check",
+   "label": "Heart & Cardiovascular conditions"
+  },
+  {
+   "fieldname": "medical_condition_malnutrition",
+   "fieldtype": "Check",
+   "label": "Malnutrition"
+  },
+  {
+   "fieldname": "diet_preference",
+   "fieldtype": "Small Text",
+   "label": "Diet preference: Special Formula / Special Diet / Milk pump"
+  },
+  {
+   "fieldname": "column_break_medical_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_condition_hepatology",
+   "fieldtype": "Check",
+   "label": "Hepatology – Liver condition"
+  },
+  {
+   "fieldname": "medical_condition_head_surgery",
+   "fieldtype": "Check",
+   "label": "Head Surgery"
+  },
+  {
+   "fieldname": "medical_condition_neck_surgery",
+   "fieldtype": "Check",
+   "label": "Neck Surgery"
+  },
+  {
+   "fieldname": "medical_condition_other_surgery",
+   "fieldtype": "Check",
+   "label": "Other Surgery"
+  },
+  {
+   "fieldname": "surgery_date_institution",
+   "fieldtype": "Small Text",
+   "label": "Date / Institution"
+  },
+  {
+   "fieldname": "medical_condition_orthopaedic",
+   "fieldtype": "Check",
+   "label": "Orthopaedic"
+  },
+  {
+   "fieldname": "medical_condition_scoliosis",
+   "fieldtype": "Check",
+   "label": "Scoliosis"
+  },
+  {
+   "fieldname": "muscle_tone",
+   "fieldtype": "Small Text",
+   "label": "Muscle tone: Hypotonia/Hypertonia/Dystonia"
+  },
+  {
+   "fieldname": "column_break_medical_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "treatment_devices",
+   "fieldtype": "Small Text",
+   "label": "Treatment devices: Scoliosis Brace / Dentures / AFO"
+  },
+  {
+   "fieldname": "assistive_devices_medical",
+   "fieldtype": "Small Text",
+   "label": "Assistive Devices: Ventilator (CPAP/Bi-PAP) / Tracheostomy"
+  },
+  {
+   "fieldname": "medical_condition_psychological",
+   "fieldtype": "Check",
+   "label": "Psychological conditions"
+  },
+  {
+   "fieldname": "symptoms_behaviours",
+   "fieldtype": "Small Text",
+   "label": "Symptoms and behaviours"
+  },
+  {
+   "fieldname": "medical_condition_adhd",
+   "fieldtype": "Check",
+   "label": "ADHD"
+  },
+  {
+   "fieldname": "medical_condition_incontinence",
+   "fieldtype": "Check",
+   "label": "Incontinence"
+  },
+  {
+   "fieldname": "medical_condition_renal",
+   "fieldtype": "Check",
+   "label": "Renal condition"
+  },
+  {
+   "fieldname": "medical_condition_xla",
+   "fieldtype": "Check",
+   "label": "XLA"
+  },
+  {
+   "fieldname": "section_break_health_additional",
+   "fieldtype": "Section Break"
+  },
+  {
    "fieldname": "medical_conditions_other",
    "fieldtype": "Small Text",
-   "label": "Medical Conditions (Other)"
+   "label": "Other Medical Conditions"
   },
   {
    "fieldname": "hearing_status",
@@ -407,6 +647,10 @@
    "label": "Hearing Aid"
   },
   {
+   "fieldname": "column_break_health_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "vision_status",
    "fieldtype": "Select",
    "label": "Vision",
@@ -416,6 +660,32 @@
    "fieldname": "vision_corrective_device",
    "fieldtype": "Check",
    "label": "Corrective Device"
+  },
+  {
+   "fieldname": "cognitive_ability",
+   "fieldtype": "Select",
+   "label": "Cognitive Ability",
+   "options": "\nNormal\nAppears Confused\nAppears Forgetful"
+  },
+  {
+   "fieldname": "column_break_health_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medicine_compliance",
+   "fieldtype": "Select",
+   "label": "Medicine Compliance",
+   "options": "\nYes\nNo\nIrregular (Reasons):"
+  },
+  {
+   "fieldname": "medicine_compliance_reason",
+   "fieldtype": "Small Text",
+   "label": "Medicine Compliance Reason"
+  },
+  {
+   "fieldname": "detailed_sections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Detailed Sections"
   },
   {
    "fieldname": "allergy_records_section",
@@ -433,6 +703,10 @@
    "label": "Medicine Allergy"
   },
   {
+   "fieldname": "column_break_allergy",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "health_therapies",
    "fieldtype": "Select",
    "label": "Health Therapies Records",
@@ -446,7 +720,12 @@
   {
    "fieldname": "psycho_emotional_section",
    "fieldtype": "Section Break",
-   "label": "Psycho-Emotional Status"
+   "label": "Psycho-Emotional Status – Caregiver: Name"
+  },
+  {
+   "fieldname": "caregiver_name",
+   "fieldtype": "Data",
+   "label": "Caregiver Name"
   },
   {
    "fieldname": "anxiety",
@@ -467,6 +746,10 @@
    "options": "\nYes\nNo"
   },
   {
+   "fieldname": "column_break_psycho_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "mood_swing",
    "fieldtype": "Select",
    "label": "Mood Swing",
@@ -485,6 +768,10 @@
    "options": "\nHigh\nLow"
   },
   {
+   "fieldname": "column_break_psycho_2",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "suicidal_ideation",
    "fieldtype": "Select",
    "label": "Suicidal Ideation",
@@ -501,13 +788,60 @@
    "label": "Financial Information"
   },
   {
-   "fieldname": "financial_source",
-   "fieldtype": "Select",
-   "label": "Financial Source",
-   "options": "\nSelf\nParents\nChildren\nGrand-Children\nCPF\nFriends\nSavings\nRDSS\nRDF\nOthers"
+   "fieldname": "financial_source_self",
+   "fieldtype": "Check",
+   "label": "Self"
   },
   {
-   "depends_on": "eval:doc.financial_source=='Others'",
+   "fieldname": "financial_source_parents",
+   "fieldtype": "Check",
+   "label": "Parents"
+  },
+  {
+   "fieldname": "financial_source_children",
+   "fieldtype": "Check",
+   "label": "Children"
+  },
+  {
+   "fieldname": "financial_source_grandchildren",
+   "fieldtype": "Check",
+   "label": "Grand-Children"
+  },
+  {
+   "fieldname": "financial_source_cpf",
+   "fieldtype": "Check",
+   "label": "CPF"
+  },
+  {
+   "fieldname": "column_break_financial_sources",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "financial_source_friends",
+   "fieldtype": "Check",
+   "label": "Friends"
+  },
+  {
+   "fieldname": "financial_source_savings",
+   "fieldtype": "Check",
+   "label": "Savings"
+  },
+  {
+   "fieldname": "financial_source_rdss",
+   "fieldtype": "Check",
+   "label": "RDSS"
+  },
+  {
+   "fieldname": "financial_source_rdf",
+   "fieldtype": "Check",
+   "label": "RDF"
+  },
+  {
+   "fieldname": "financial_source_others",
+   "fieldtype": "Check",
+   "label": "Others:"
+  },
+  {
    "fieldname": "financial_source_other",
    "fieldtype": "Data",
    "label": "Financial Source (Others)"
@@ -516,6 +850,10 @@
    "fieldname": "monthly_amount",
    "fieldtype": "Currency",
    "label": "Amount / Month"
+  },
+  {
+   "fieldname": "column_break_financial_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "monthly_household_income",
@@ -543,22 +881,142 @@
    "label": "No. of Children (If applicable)"
   },
   {
+   "fieldname": "family_background_others",
+   "fieldtype": "Small Text",
+   "label": "Others"
+  },
+  {
+   "fieldname": "column_break_family",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "language_dialect",
+   "fieldtype": "Select",
+   "label": "Language / Dialect",
+   "options": "\nEnglish\nMandarin\nMalay\nTamil\nOthers"
+  },
+  {
+   "depends_on": "eval:doc.language_dialect=='Others'",
+   "fieldname": "language_dialect_other",
+   "fieldtype": "Data",
+   "label": "Language / Dialect (Others)"
+  },
+  {
    "fieldname": "next_of_kin_section",
    "fieldtype": "Section Break",
    "label": "Next-of-Kin"
   },
   {
-   "fieldname": "next_of_kin_contacts",
-   "fieldtype": "Table",
-   "label": "Next-of-Kin Contacts",
-   "options": "Initial Assessment Next of Kin Link",
-   "description": "Link existing Next of Kin records or create new ones as needed"
+   "fieldname": "next_of_kin_1_name",
+   "fieldtype": "Data",
+   "label": "Next-of-Kin 1 - Name"
+  },
+  {
+   "fieldname": "next_of_kin_1_home_no",
+   "fieldtype": "Data",
+   "label": "Home No."
+  },
+  {
+   "fieldname": "next_of_kin_1_mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No."
+  },
+  {
+   "fieldname": "column_break_kin_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "next_of_kin_1_relationship",
+   "fieldtype": "Data",
+   "label": "Relationship"
+  },
+  {
+   "fieldname": "next_of_kin_1_age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "next_of_kin_1_consent",
+   "fieldtype": "Check",
+   "label": "Consent to Contact"
+  },
+  {
+   "fieldname": "next_of_kin_2_section",
+   "fieldtype": "Section Break",
+   "label": "Next-of-Kin 2"
+  },
+  {
+   "fieldname": "next_of_kin_2_name",
+   "fieldtype": "Data",
+   "label": "Next-of-Kin 2 - Name"
+  },
+  {
+   "fieldname": "next_of_kin_2_home_no",
+   "fieldtype": "Data",
+   "label": "Home No."
+  },
+  {
+   "fieldname": "next_of_kin_2_mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No."
+  },
+  {
+   "fieldname": "column_break_kin_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "next_of_kin_2_relationship",
+   "fieldtype": "Data",
+   "label": "Relationship"
+  },
+  {
+   "fieldname": "next_of_kin_2_age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "next_of_kin_2_consent",
+   "fieldtype": "Check",
+   "label": "Consent to Contact"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "address_block_house",
+   "fieldtype": "Data",
+   "label": "Block/House"
+  },
+  {
+   "fieldname": "address_street_name",
+   "fieldtype": "Data",
+   "label": "Street Name"
+  },
+  {
+   "fieldname": "column_break_address",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address_unit_no",
+   "fieldtype": "Data",
+   "label": "Unit No. #"
+  },
+  {
+   "fieldname": "address_postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
   },
   {
    "fieldname": "contact_frequency",
    "fieldtype": "Select",
    "label": "Contact Frequency",
    "options": "\nNil\nDaily\nWeekly\nAd hoc\nOthers"
+  },
+  {
+   "fieldname": "column_break_kin",
+   "fieldtype": "Column Break"
   },
   {
    "depends_on": "eval:doc.contact_frequency=='Others'",
@@ -681,7 +1139,7 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
+ "is_submittable": 0,
  "links": [],
  "modified": "2025-01-13 08:19:23.000000",
  "modified_by": "Administrator",

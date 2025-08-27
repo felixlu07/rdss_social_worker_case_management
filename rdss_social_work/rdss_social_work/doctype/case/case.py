@@ -8,6 +8,13 @@ from datetime import date
 
 
 class Case(Document):
+	def get_indicator(self):
+		"""Return indicator for the list view based on case_priority"""
+		if self.case_priority:
+			priority_data = frappe.db.get_value("Case Priority", self.case_priority, ["priority_code", "color_code"], as_dict=True)
+			if priority_data:
+				return (priority_data.priority_code, priority_data.color_code, f"case_priority,=,{self.case_priority}")
+		return ("", "gray", "")
 	def before_save(self):
 		"""Set default values and calculate fields before saving"""
 		# Set case opened date if not provided
@@ -110,6 +117,11 @@ class Case(Document):
 	
 	def send_status_change_notification(self):
 		"""Send notification when case status changes"""
+		# Check if email is configured
+		if not frappe.db.get_value("Email Account", {"default_outgoing": 1}):
+			frappe.msgprint("Email notifications are disabled. Please setup default Email Account from Settings > Email Account")
+			return
+			
 		if self.case_status == "Closed":
 			# Notify supervisor and team
 			recipients = [self.primary_social_worker]
@@ -132,17 +144,26 @@ class Case(Document):
 	
 	def send_priority_change_notification(self):
 		"""Send notification when case priority changes"""
-		if self.priority_level in ["High", "Urgent", "Critical"]:
-			# Notify supervisor immediately for high priority cases
-			if self.supervisor:
+		# Check if email is configured
+		if not frappe.db.get_value("Email Account", {"default_outgoing": 1}):
+			frappe.msgprint("Email notifications are disabled. Please setup default Email Account from Settings > Email Account")
+			return
+			
+		if self.case_priority:
+			priority_info = frappe.get_doc("Case Priority", self.case_priority)
+			priority_code = priority_info.priority_code
+			
+			# Notify supervisor for high priority cases (P1, P2, P3)
+			if priority_code in ["P1", "P2", "P3"] and self.supervisor:
 				frappe.sendmail(
 					recipients=[self.supervisor],
 					subject=f"High Priority Case: {self.case_title}",
 					message=f"""
-					<p>Case <strong>{self.name}</strong> has been marked as <strong>{self.priority_level}</strong> priority.</p>
+					<p>Case <strong>{self.name}</strong> has been marked as <strong>{priority_code}</strong> priority.</p>
 					<p><strong>Beneficiary:</strong> {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}</p>
 					<p><strong>Primary Social Worker:</strong> {self.primary_social_worker}</p>
 					<p><strong>Risk Level:</strong> {self.risk_level or 'Not assessed'}</p>
+					<p><strong>Appointment Frequency:</strong> Every {priority_info.appointment_frequency_months} month(s)</p>
 					"""
 				)
 	
@@ -207,7 +228,7 @@ class Case(Document):
 		follow_up_case.beneficiary = self.beneficiary
 		follow_up_case.case_type = "Follow-up"
 		follow_up_case.primary_social_worker = self.primary_social_worker
-		follow_up_case.priority_level = "Medium"
+		follow_up_case.case_priority = self.case_priority
 		follow_up_case.presenting_issues = f"Follow-up from case {self.name}"
 		follow_up_case.case_opened_date = self.follow_up_date or today()
 		

@@ -43,7 +43,7 @@ app_include_css = "/assets/rdss_social_work/css/initial_assessment.css"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Event" : "public/js/event.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -54,9 +54,21 @@ fixtures = [
     {
         "doctype": "Role",
         "filters": {"name": "Social Worker"}
-    }
+    },
+    {
+        "doctype": "Case Priority",
+        "filters": [
+            ["priority_code", "in", ["P1", "P2", "P3", "P4", "P5", "P6"]]
+        ]
+    },
+    "Custom Field"
 ]
 
+
+# include js in doctype views
+doctype_js = {
+    "Event" : "public/js/event.js",
+}
 # Svg Icons
 # ------------------
 # include app icons in desk
@@ -88,16 +100,19 @@ fixtures = [
 # 	"filters": "rdss_social_work.utils.jinja_filters"
 # }
 
+# Fixtures
+# ---------
+
+# fixtures = [
+#     {"dt": "Workspace", "filters": [["module", "=", "RDSS Social Work"]]},
+#     {"dt": "Custom Field", "filters": [["module", "=", "RDSS Social Work"]]},
+# ]
+
 # Installation
 # ------------
 
 # before_install = "rdss_social_work.install.before_install"
-# after_install = "rdss_social_work.install.after_install"
 
-# Uninstallation
-# ------------
-
-# before_uninstall = "rdss_social_work.uninstall.before_uninstall"
 # after_uninstall = "rdss_social_work.uninstall.after_uninstall"
 
 # Integration Setup
@@ -106,7 +121,7 @@ fixtures = [
 # Name of the app being installed is passed as an argument
 
 # before_app_install = "rdss_social_work.utils.before_app_install"
-# after_app_install = "rdss_social_work.utils.after_app_install"
+after_app_install = "rdss_social_work.rdss_social_work.notifications.appointment_notification.setup_appointment_reminder_scheduler"
 
 # Integration Cleanup
 # -------------------
@@ -146,34 +161,20 @@ fixtures = [
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Beneficiary": {
+		"before_save": "rdss_social_work.beneficiary_geocoding.beneficiary_before_save"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"rdss_social_work.tasks.all"
-# 	],
-# 	"daily": [
-# 		"rdss_social_work.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"rdss_social_work.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"rdss_social_work.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"rdss_social_work.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"daily": [
+		"rdss_social_work.rdss_social_work.notifications.appointment_notification.send_appointment_reminders"
+	]
+}
 
 # Testing
 # -------
@@ -186,6 +187,10 @@ fixtures = [
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "rdss_social_work.event.get_events"
 # }
+
+# Whitelisted Methods
+# -------------------
+# Methods that can be called via HTTP API without authentication
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -243,6 +248,9 @@ fixtures = [
 # auth_hooks = [
 # 	"rdss_social_work.auth.validate"
 # ]
+
+# Installation and Migration Hooks
+# ---------------------------------
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True

@@ -28,6 +28,15 @@ class CaseNotes(Document):
 				beneficiary_doc = frappe.get_doc("Beneficiary", self.beneficiary)
 				if beneficiary_doc.address_line_1:
 					self.location = f"{beneficiary_doc.address_line_1}, {beneficiary_doc.postal_code}"
+		
+		# If this case note was created from an appointment, update the appointment
+		if self.related_appointment:
+			try:
+				appointment = frappe.get_doc("Appointment", self.related_appointment)
+				appointment.db_set('case_note', self.name, update_modified=False)
+				appointment.db_set('appointment_status', 'Completed', update_modified=False)
+			except Exception as e:
+				frappe.log_error(f"Failed to update appointment {self.related_appointment}: {str(e)}", "Case Notes Error")
 	
 	def validate(self):
 		"""Validate case notes data"""
@@ -86,6 +95,15 @@ class CaseNotes(Document):
 			# Update case metrics
 			total_visits = frappe.db.count('Case Notes', {'case': self.case})
 			case_doc.db_set('total_visits', total_visits, update_modified=False)
+			
+		# Update related appointment if exists
+		if self.related_appointment:
+			try:
+				appointment = frappe.get_doc("Appointment", self.related_appointment)
+				appointment.db_set('case_note', self.name, update_modified=False)
+				appointment.db_set('appointment_status', 'Completed', update_modified=False)
+			except Exception as e:
+				frappe.log_error(f"Failed to update appointment {self.related_appointment}: {str(e)}", "Case Notes Error")
 		
 		# Send notifications for priority follow-ups
 		if self.priority_follow_up:
@@ -193,5 +211,6 @@ class CaseNotes(Document):
 			'follow_up_required': self.follow_up_required,
 			'next_visit_date': self.next_visit_date,
 			'priority_follow_up': self.priority_follow_up,
-			'supervisor_review_required': self.supervisor_review_required
+			'supervisor_review_required': self.supervisor_review_required,
+			'related_appointment': self.related_appointment
 		}

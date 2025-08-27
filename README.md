@@ -8,6 +8,33 @@
 
 ---
 
+RDSS Social Work Workspace
+├── 📊 Dashboard & Overview
+│   └── Social Worker Dashboard (central command center)
+├── 👥 Case Management  
+│   ├── Beneficiary (with new geolocation field)
+│   ├── Case
+│   └── Next of Kin
+├── 📋 Assessments & Planning
+│   ├── Initial Assessment
+│   ├── Follow-up Assessment  
+│   └── Service Plan
+├── 📅 Scheduling & Visits
+│   ├── Appointments (List View)
+│   ├── Calendar View (Visual calendar)
+│   └── Case Notes
+├── 🤝 Care Coordination
+│   ├── Referrals
+│   └── Care Team
+├── 🏥 Medical & Financial
+│   ├── Medical History
+│   ├── Financial Assessment
+│   └── Document Attachments
+└── 📊 Reports & Analytics
+    ├── Caseload Report
+    ├── Visit Activity Report
+    └── Assessment Status Report
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
@@ -307,13 +334,41 @@ The RDSS Social Work system is designed to support social workers in managing be
 
 ---
 
+## 📋 Workflow Integrations
+
+### **Appointment and Case Notes Integration**
+
+The system now features a seamless integration between Appointments and Case Notes, creating a complete workflow from scheduling to documentation:
+
+```
+✅ Appointment → Case Notes Workflow
+   ├── Schedule Appointment
+   ├── Complete Appointment
+   ├── Create Case Note from Appointment (with pre-populated data)
+   └── Bi-directional linking between records
+```
+
+**Key Features:**
+- **One-Click Case Note Creation**: Create detailed case notes directly from completed appointments
+- **Data Continuity**: Appointment details automatically transfer to the case note
+- **Bi-directional Linking**: Navigate easily between related appointments and case notes
+- **Clear Separation of Concerns**: Appointments handle scheduling, Case Notes handle documentation
+- **Workflow Visibility**: Easily see which appointments have associated documentation
+
+**How to Use:**
+1. After completing an appointment, click the "Create Case Note" button
+2. Review and enhance the pre-populated case note with additional observations
+3. Save the case note to maintain a complete record of the visit
+
+---
+
 ## 📊 Current Implementation Status
 
 | Phase | DocTypes | Status | Mobile Ready | Workflow Complete |
 |-------|----------|--------|--------------|-------------------|
 | **Phase 1** | 4 DocTypes | ✅ Complete | ✅ Yes | ✅ Yes |
-| **Phase 2** | 5 DocTypes | ✅ Complete | ✅ Yes | 🟡 Partial |
-| **Phase 3** | 4 DocTypes | ✅ Complete | ✅ Yes | 🟡 Partial |
+| **Phase 2** | 5 DocTypes | ✅ Complete | ✅ Yes | ✅ Yes |
+| **Phase 3** | 4 DocTypes | ✅ Complete | ✅ Yes | ✅ Yes |
 | **Phase 4A** | 4/4 Features | ✅ Complete | ✅ Yes | ✅ Yes |
 
 ### **Detailed Status:**

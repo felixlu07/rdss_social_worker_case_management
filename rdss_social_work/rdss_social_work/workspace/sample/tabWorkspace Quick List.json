@@ -1,0 +1,62 @@
+[
+  {
+    "name": "1jic7tabib",
+    "creation": "20/8/2022 14:06:34.309347",
+    "modified": "13/8/2025 19:10:01.440246",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 2,
+    "document_type": "Training Event",
+    "label": "Trainings (This Week)",
+    "quick_list_filter": "{\"start_time\":[\"Timespan\",\"this week\"]}",
+    "parent": "Employee Lifecycle",
+    "parentfield": "quick_lists",
+    "parenttype": "Workspace"
+  },
+  {
+    "name": "3t5aujr10m",
+    "creation": "20/8/2022 14:06:34.309347",
+    "modified": "13/8/2025 19:10:01.440246",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 1,
+    "document_type": "Employee",
+    "label": "New Hires (This Month)",
+    "quick_list_filter": "{\"date_of_joining\":[\"Timespan\",\"this month\"]}",
+    "parent": "Employee Lifecycle",
+    "parentfield": "quick_lists",
+    "parenttype": "Workspace"
+  },
+  {
+    "name": "a9f643kjse",
+    "creation": "20/8/2022 14:06:34.309347",
+    "modified": "13/8/2025 19:10:01.440246",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 3,
+    "document_type": "Employee",
+    "label": "Exits (This Month)",
+    "quick_list_filter": "{\"relieving_date\":[\"Timespan\",\"this month\"]}",
+    "parent": "Employee Lifecycle",
+    "parentfield": "quick_lists",
+    "parenttype": "Workspace"
+  },
+  {
+    "name": "p16icqpgd5",
+    "creation": "20/8/2022 13:28:59.962164",
+    "modified": "21/1/2025 12:13:34.615783",
+    "modified_by": "Administrator",
+    "owner": "Administrator",
+    "docstatus": 0,
+    "idx": 1,
+    "document_type": "Interview",
+    "label": "Interviews (This Week)",
+    "quick_list_filter": "{\"scheduled_on\":[\"Timespan\",\"this week\"],\"docstatus\":[\"!=\",\"2\"]}",
+    "parent": "Recruitment",
+    "parentfield": "quick_lists",
+    "parenttype": "Workspace"
+  }
+]

@@ -11,6 +11,7 @@
   "naming_series",
   "case",
   "beneficiary",
+  "related_appointment",
   "visit_date",
   "visit_time",
   "column_break_visit",
@@ -94,6 +95,13 @@
    "reqd": 1
   },
   {
+   "fieldname": "related_appointment",
+   "fieldtype": "Link",
+   "label": "Related Appointment",
+   "options": "Appointment",
+   "description": "Appointment that this case note is documenting"
+  },
+  {
    "fieldname": "beneficiary",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -106,7 +114,7 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Visit Date",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "visit_time",
@@ -122,7 +130,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Visit Type",
-   "options": "\nHome Visit\nOffice Visit\nPhone Call\nVideo Call\nCommunity Visit\nHospital Visit\nSchool Visit\nEmergency Visit\nFollow-up Call\nOther",
+   "options": "\nInitial Assessment\nFollow Up Assessment\nCase Review\nService Planning\nCrisis Intervention\nFamily Meeting\nHome Visit\nOffice Visit\nPhone Consultation\nPhone Call\nVideo Call\nCommunity Visit\nHospital Visit\nSchool Visit\nEmergency Visit\nFollow-up Call\nOther",
    "reqd": 1
   },
   {
@@ -144,7 +152,7 @@
   },
   {
    "fieldname": "attendees_section",
-   "fieldtype": "Section Break",
+   "fieldtype": "Tab Break",
    "label": "Attendees"
   },
   {
@@ -198,6 +206,7 @@
   {
    "fieldname": "discussion_topics",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Discussion Topics"
   },
   {
@@ -207,17 +216,20 @@
   {
    "fieldname": "client_mood_behavior",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Client Mood/Behavior",
    "options": "\nCooperative\nEngaged\nWithdrawn\nAnxious\nAgitated\nDepressed\nConfused\nHostile\nOther"
   },
   {
    "fieldname": "environmental_observations",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Environmental Observations"
   },
   {
    "fieldname": "assessment_section",
-   "fieldtype": "Section Break",
+   "fieldtype": "Tab Break",
+   "hidden": 0,
    "label": "Assessment"
   },
   {
@@ -258,7 +270,7 @@
    "fieldname": "actions_taken",
    "fieldtype": "Text Editor",
    "label": "Actions Taken",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "referrals_made",
@@ -291,7 +303,7 @@
   },
   {
    "fieldname": "documentation_section",
-   "fieldtype": "Section Break",
+   "fieldtype": "Tab Break",
    "label": "Documentation"
   },
   {
@@ -325,15 +337,15 @@
   },
   {
    "fieldname": "outcome_section",
-   "fieldtype": "Section Break",
+   "fieldtype": "Tab Break",
    "label": "Visit Outcome"
   },
   {
    "fieldname": "visit_outcome",
    "fieldtype": "Select",
    "label": "Visit Outcome",
-   "options": "\nSuccessful\nPartially Successful\nUnsuccessful\nRescheduled\nCancelled\nEmergency Response",
-   "reqd": 1
+   "reqd": 0,
+   "options": "\nSuccessful\nPartially Successful\nUnsuccessful\nRescheduled\nCancelled\nEmergency Response"
   },
   {
    "fieldname": "client_satisfaction",
@@ -359,11 +371,14 @@
   {
    "fieldname": "recommendations",
    "fieldtype": "Text Editor",
+   "hidden": 1,
    "label": "Recommendations"
   },
   {
    "fieldname": "administrative_section",
    "fieldtype": "Section Break",
+   "collapsible": 1,
+   "collapsed": 1,
    "label": "Administrative"
   },
   {

@@ -10,7 +10,7 @@ def execute(filters=None):
 def get_columns():
     return [
         {
-            "fieldname": "social_worker",
+            "fieldname": "primary_social_worker",
             "label": _("Social Worker"),
             "fieldtype": "Link",
             "options": "User",
@@ -66,9 +66,9 @@ def get_data(filters):
     if not social_workers:
         # Fallback: get users who have cases assigned
         social_workers = frappe.db.sql("""
-            SELECT DISTINCT social_worker as name, social_worker as full_name
+            SELECT DISTINCT primary_social_worker as name, primary_social_worker as full_name
             FROM `tabCase` 
-            WHERE social_worker IS NOT NULL
+            WHERE primary_social_worker IS NOT NULL
         """, as_dict=True)
     
     month_start = getdate(today()).replace(day=1)
@@ -80,46 +80,46 @@ def get_data(filters):
             
         # Active cases
         active_cases = frappe.db.count("Case", {
-            "social_worker": worker.name,
+            "primary_social_worker": worker.name,
             "case_status": "Active"
         })
         
         # New cases this month
         new_cases = frappe.db.count("Case", {
-            "social_worker": worker.name,
+            "primary_social_worker": worker.name,
             "creation": [">=", month_start]
         })
         
         # Closed cases this month
         closed_cases = frappe.db.count("Case", {
-            "social_worker": worker.name,
+            "primary_social_worker": worker.name,
             "case_status": "Closed",
             "modified": [">=", month_start]
         })
         
         # Pending initial assessments
         pending_assessments = frappe.db.count("Initial Assessment", {
-            "social_worker": worker.name,
+            "assessed_by": worker.name,
             "docstatus": 0
         })
         
         # Overdue follow-ups
         overdue_followups = frappe.db.count("Follow Up Assessment", {
-            "social_worker": worker.name,
+            "assessed_by": worker.name,
             "assessment_date": ["<", today()],
             "docstatus": 0
         })
         
         # Appointments this week
         appointments_week = frappe.db.count("Appointment", {
-            "social_worker": worker.name,
+            "primary_social_worker": worker.name,
             "appointment_date": [">=", week_start],
             "appointment_status": ["in", ["Scheduled", "Confirmed"]]
         })
         
         if active_cases > 0 or new_cases > 0 or appointments_week > 0:
             data.append({
-                "social_worker": worker.name,
+                "primary_social_worker": worker.name,
                 "active_cases": active_cases,
                 "new_cases_this_month": new_cases,
                 "closed_cases_this_month": closed_cases,

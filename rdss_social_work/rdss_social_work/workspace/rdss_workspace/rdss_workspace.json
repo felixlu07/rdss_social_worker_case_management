@@ -1,0 +1,79 @@
+{
+ "charts": [
+  {
+   "chart_name": "RDSS Age Demographics",
+   "label": "RDSS Age Demographics"
+  },
+  {
+   "chart_name": "RDSS Case Flow Trends",
+   "label": "RDSS Case Flow Trends"
+  },
+  {
+   "chart_name": "RDSS Appointment Outcomes",
+   "label": "RDSS Appointment Outcomes"
+  },
+  {
+   "chart_name": "RDSS Beneficiaries by Disorder",
+   "label": "RDSS Beneficiaries by Disorder"
+  }
+ ],
+ "content": "[{\"id\":\"IU_8g7wn5l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Initial Assessment Quick Link\",\"col\":3}},{\"id\":\"Zkus-tGRTJ\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"List Beneficiary\",\"col\":4}},{\"id\":\"cx1-5ktv4A\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Upcoming Appointments This Week\",\"col\":5}},{\"id\":\"FKWYDfixtZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">RDSS Workspace</span>\",\"col\":3}},{\"id\":\"7-YmNc4Owg\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"OpenStreetMap with Leaflet\",\"col\":12}},{\"id\":\"kjkaQMle6k\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Calendar\",\"col\":6}},{\"id\":\"ZruNu5_kfj\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Appointments With No Case Notes\",\"col\":6}},{\"id\":\"bBtubjopns\",\"type\":\"chart\",\"data\":{\"chart_name\":\"RDSS Appointment Outcomes\",\"col\":6}},{\"id\":\"ck4ImpjBIG\",\"type\":\"chart\",\"data\":{\"chart_name\":\"RDSS Beneficiaries by Disorder\",\"col\":6}},{\"id\":\"1ZfsLu-14D\",\"type\":\"chart\",\"data\":{\"chart_name\":\"RDSS Case Flow Trends\",\"col\":6}},{\"id\":\"niIUz0bcnK\",\"type\":\"chart\",\"data\":{\"chart_name\":\"RDSS Age Demographics\",\"col\":6}}]",
+ "creation": "2025-08-14 00:44:30.762793",
+ "custom_blocks": [
+  {
+   "custom_block_name": "Google Map Beneficiaries",
+   "label": "OpenStreetMap with Leaflet"
+  },
+  {
+   "custom_block_name": "Upcoming Appointments",
+   "label": "Calendar"
+  },
+  {
+   "custom_block_name": "Appointments With No Case Notes",
+   "label": "Appointments With No Case Notes"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "heart-active",
+ "idx": 0,
+ "indicator_color": "cyan",
+ "is_hidden": 0,
+ "label": "RDSS Workspace",
+ "links": [],
+ "modified": "2025-08-22 22:46:51.677466",
+ "modified_by": "felix@rdss.org.sg",
+ "module": "RDSS Social Work",
+ "name": "RDSS Workspace",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Beneficiary",
+   "label": "List Beneficiary",
+   "quick_list_filter": "[]"
+  },
+  {
+   "document_type": "Appointment",
+   "label": "Upcoming Appointments This Week",
+   "quick_list_filter": "[[\"Appointment\",\"appointment_date\",\"Timespan\",\"this week\",false]]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Initial Assessment Quick Link",
+   "link_to": "Initial Assessment",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "RDSS Workspace"
+}

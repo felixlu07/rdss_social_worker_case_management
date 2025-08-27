@@ -1,0 +1,50 @@
+[
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P1",
+    "priority_name": "Critical Priority",
+    "appointment_frequency_months": 1,
+    "description": "<p>Highest priority level requiring monthly appointments. Cases with immediate risk or urgent needs that require constant monitoring.</p>",
+    "color_code": "red"
+  },
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P2",
+    "priority_name": "High Priority",
+    "appointment_frequency_months": 1,
+    "description": "<p>High priority level requiring monthly appointments. Cases with significant needs that require regular monitoring.</p>",
+    "color_code": "orange"
+  },
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P3",
+    "priority_name": "Medium Priority",
+    "appointment_frequency_months": 3,
+    "description": "<p>Medium priority level requiring quarterly appointments (every 3 months). Cases with moderate needs that require periodic monitoring.</p>",
+    "color_code": "yellow"
+  },
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P4",
+    "priority_name": "Standard Priority",
+    "appointment_frequency_months": 6,
+    "description": "<p>Standard priority level requiring semi-annual appointments (every 6 months). Cases with lower needs that require less frequent monitoring.</p>",
+    "color_code": "blue"
+  },
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P5",
+    "priority_name": "Low Priority",
+    "appointment_frequency_months": 12,
+    "description": "<p>Low priority level requiring annual appointments. Cases with minimal needs that require basic annual check-ins.</p>",
+    "color_code": "green"
+  },
+  {
+    "doctype": "Case Priority",
+    "priority_code": "P6",
+    "priority_name": "Maintenance Priority",
+    "appointment_frequency_months": 12,
+    "description": "<p>Maintenance level requiring annual appointments. Cases that are stable and only need routine annual check-ins.</p>",
+    "color_code": "gray"
+  }
+]
