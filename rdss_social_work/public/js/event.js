@@ -99,7 +99,7 @@ function update_calendar_event(frm) {
             });
             
             frappe.call({
-                method: 'rdss_social_work.rdss_social_work.google_calendar.invite_sender.update_calendar_event',
+                method: 'rdss_social_work.rdss_social_work.google_calendar.oauth_calendar_service.update_calendar_event_oauth',
                 args: {
                     event_name: frm.doc.name
                 },
@@ -109,6 +109,17 @@ function update_calendar_event(frm) {
                             message: r.message.message,
                             indicator: 'green'
                         });
+                    } else if (r.message && r.message.status === 'auth_required') {
+                        frappe.confirm(
+                            __('Google authorization required to update calendar event. Click OK to authorize.'),
+                            function() {
+                                window.open(r.message.auth_url, 'google_auth', 'width=500,height=600');
+                                frappe.show_alert({
+                                    message: __('Please complete authorization in the popup window, then try again.'),
+                                    indicator: 'blue'
+                                });
+                            }
+                        );
                     }
                 },
                 error: function(r) {
@@ -132,7 +143,7 @@ function delete_calendar_event(frm) {
             });
             
             frappe.call({
-                method: 'rdss_social_work.rdss_social_work.google_calendar.invite_sender.delete_calendar_event',
+                method: 'rdss_social_work.rdss_social_work.google_calendar.oauth_calendar_service.delete_calendar_event_oauth',
                 args: {
                     event_name: frm.doc.name
                 },
@@ -143,6 +154,17 @@ function delete_calendar_event(frm) {
                             indicator: 'green'
                         });
                         frm.reload_doc();
+                    } else if (r.message && r.message.status === 'auth_required') {
+                        frappe.confirm(
+                            __('Google authorization required to delete calendar event. Click OK to authorize.'),
+                            function() {
+                                window.open(r.message.auth_url, 'google_auth', 'width=500,height=600');
+                                frappe.show_alert({
+                                    message: __('Please complete authorization in the popup window, then try again.'),
+                                    indicator: 'blue'
+                                });
+                            }
+                        );
                     }
                 },
                 error: function(r) {

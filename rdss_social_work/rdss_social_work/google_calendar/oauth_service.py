@@ -41,7 +41,11 @@ class GoogleOAuthService:
                 self.calendar_service = build('calendar', 'v3', credentials=credentials)
                 self.gmail_service = build('gmail', 'v1', credentials=credentials)
         except Exception as e:
-            frappe.log_error(f"Failed to initialize OAuth services: {str(e)}")
+            # Avoid noisy Error Logs if creds are missing/invalid; initialization can happen after auth
+            try:
+                frappe.logger().info(f"OAuth services not initialized yet: {str(e)}")
+            except Exception:
+                pass
     
     def _get_valid_credentials(self):
         """Get valid OAuth credentials, refresh if needed"""
@@ -54,7 +58,11 @@ class GoogleOAuthService:
                 creds = Credentials.from_authorized_user_file(creds_path, self.scopes)
             except Exception as e:
                 # Token file exists but is invalid (e.g., missing refresh_token)
-                frappe.log_error(f"Invalid OAuth token file at {creds_path}: {str(e)}")
+                # Log as a warning (not an error) to avoid noisy Error Logs; this is expected when re-auth is needed
+                try:
+                    frappe.logger().warning(f"Invalid OAuth token file at {creds_path}: {str(e)}")
+                except Exception:
+                    pass
                 try:
                     os.remove(creds_path)
                 except Exception:
@@ -181,6 +189,63 @@ class GoogleOAuthService:
             
         except Exception as e:
             frappe.throw(f"Calendar creation failed: {str(e)}")
+
+    def update_calendar_event(self, event_id, event_data):
+        """Update an existing calendar event using OAuth credentials"""
+        if not self.is_authenticated():
+            frappe.throw("Google OAuth authentication required")
+
+        try:
+            # Prepare body similar to create
+            subject = event_data.get('subject', '')[:100]
+            description = event_data.get('description', '')[:1000]
+            location = event_data.get('location', '')[:100]
+
+            calendar_event = {
+                'summary': subject,
+                'description': description,
+                'start': {
+                    'dateTime': self._format_datetime(event_data.get('starts_on')),
+                    'timeZone': 'UTC',
+                },
+                'end': {
+                    'dateTime': self._format_datetime(event_data.get('ends_on')),
+                    'timeZone': 'UTC',
+                },
+                'attendees': [
+                    {'email': email.strip()}
+                    for email in event_data.get('attendees', '').split(',')
+                    if email.strip()
+                ],
+                'location': location,
+            }
+
+            updated = self.calendar_service.events().update(
+                calendarId='primary',
+                eventId=event_id,
+                body=calendar_event,
+                sendUpdates='all'
+            ).execute()
+
+            return updated.get('id')
+
+        except Exception as e:
+            frappe.throw(f"Calendar update failed: {str(e)}")
+
+    def delete_calendar_event(self, event_id):
+        """Delete an existing calendar event using OAuth credentials"""
+        if not self.is_authenticated():
+            frappe.throw("Google OAuth authentication required")
+
+        try:
+            self.calendar_service.events().delete(
+                calendarId='primary',
+                eventId=event_id,
+                sendUpdates='all'
+            ).execute()
+            return True
+        except Exception as e:
+            frappe.throw(f"Calendar deletion failed: {str(e)}")
     
     def _format_datetime(self, dt):
         """Format datetime for Google Calendar API"""
