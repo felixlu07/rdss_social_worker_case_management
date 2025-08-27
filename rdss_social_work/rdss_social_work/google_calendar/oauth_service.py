@@ -16,9 +16,9 @@ class GoogleOAuthService:
         self._initialize_services()
     
     def _get_credentials_path(self):
-        """Get path to store OAuth credentials"""
-        app_path = frappe.get_app_path("rdss_social_work")
-        return os.path.join(app_path, "rdss_social_work", "google_calendar", "oauth_credentials.json")
+        """Get path to store OAuth credentials in the site's private directory
+        to prevent committing tokens into the app repository."""
+        return frappe.get_site_path("private", "google_oauth_tokens.json")
     
     def _get_client_config(self):
         """Get OAuth client configuration"""
