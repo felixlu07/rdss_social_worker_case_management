@@ -50,7 +50,16 @@ class GoogleOAuthService:
         
         # Load existing credentials
         if os.path.exists(creds_path):
-            creds = Credentials.from_authorized_user_file(creds_path, self.scopes)
+            try:
+                creds = Credentials.from_authorized_user_file(creds_path, self.scopes)
+            except Exception as e:
+                # Token file exists but is invalid (e.g., missing refresh_token)
+                frappe.log_error(f"Invalid OAuth token file at {creds_path}: {str(e)}")
+                try:
+                    os.remove(creds_path)
+                except Exception:
+                    pass
+                creds = None
         
         # Refresh if expired
         if creds and creds.expired and creds.refresh_token:
@@ -75,7 +84,8 @@ class GoogleOAuthService:
         
         auth_url, state = flow.authorization_url(
             access_type='offline',
-            include_granted_scopes='true'
+            include_granted_scopes='true',
+            prompt='consent'
         )
         
         # Store flow state for callback
