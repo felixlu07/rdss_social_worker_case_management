@@ -12,7 +12,7 @@
   "appointment_frequency",
   "naming_series",
   "case_title",
-  "beneficiary",
+  "beneficiary_family",
   "case_type",
   "column_break_identification",
   "case_opened_date",
@@ -67,12 +67,15 @@
   "notes_section",
   "case_notes",
   "internal_notes",
+  "family_members_tab",
+  "family_members_section",
+  "case_family_members_html",
   "appointments_tab",
   "appointments_section",
   "case_appointments_html",
-  "assessments_tab",
-  "assessments_section",
-  "case_assessments_html",
+  "case_notes_tab",
+  "case_notes_section",
+  "case_notes_html",
   "timeline_tab",
   "timeline_section",
   "case_timeline_html"
@@ -98,11 +101,11 @@
    "reqd": 1
   },
   {
-   "fieldname": "beneficiary",
+   "fieldname": "beneficiary_family",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Beneficiary",
-   "options": "Beneficiary",
+   "label": "Beneficiary Family",
+   "options": "Beneficiary Family",
    "reqd": 1
   },
   {
@@ -408,6 +411,22 @@
    "label": "Internal Notes (Staff Only)"
   },
   {
+   "fieldname": "family_members_tab",
+   "fieldtype": "Tab Break",
+   "label": "Family Members"
+  },
+  {
+   "fieldname": "family_members_section",
+   "fieldtype": "Section Break",
+   "label": "Family Composition"
+  },
+  {
+   "fieldname": "case_family_members_html",
+   "fieldtype": "HTML",
+   "label": "Family Members",
+   "options": "<div id='case-family-members-container'></div>"
+  },
+  {
    "fieldname": "appointments_tab",
    "fieldtype": "Tab Break",
    "label": "Appointments"
@@ -424,20 +443,20 @@
    "options": "<div id='case-appointments-container'></div>"
   },
   {
-   "fieldname": "assessments_tab",
+   "fieldname": "case_notes_tab",
    "fieldtype": "Tab Break",
-   "label": "Assessments"
+   "label": "Case Notes"
   },
   {
-   "fieldname": "assessments_section",
+   "fieldname": "case_notes_section",
    "fieldtype": "Section Break",
-   "label": "Case Assessments"
+   "label": "All Case Notes"
   },
   {
-   "fieldname": "case_assessments_html",
+   "fieldname": "case_notes_html",
    "fieldtype": "HTML",
-   "label": "Assessments",
-   "options": "<div id='case-assessments-container'></div>"
+   "label": "Case Notes",
+   "options": "<div id='case-notes-container'></div>"
   },
   {
    "fieldname": "timeline_tab",

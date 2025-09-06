@@ -50,10 +50,10 @@ class Case(Document):
 	
 	def validate(self):
 		"""Validate case data"""
-		# Ensure beneficiary exists
-		if self.beneficiary:
-			if not frappe.db.exists("Beneficiary", self.beneficiary):
-				frappe.throw(f"Beneficiary {self.beneficiary} does not exist")
+		# Ensure beneficiary family exists
+		if self.beneficiary_family:
+			if not frappe.db.exists("Beneficiary Family", self.beneficiary_family):
+				frappe.throw(f"Beneficiary Family {self.beneficiary_family} does not exist")
 		
 		# Validate dates
 		if self.expected_closure_date and self.case_opened_date:
@@ -91,10 +91,10 @@ class Case(Document):
 		# Update case metrics
 		self.update_case_metrics()
 		
-		# Update beneficiary's last activity
-		if self.beneficiary:
-			beneficiary_doc = frappe.get_doc("Beneficiary", self.beneficiary)
-			beneficiary_doc.add_comment('Info', f'Case updated: {self.case_title}')
+		# Update beneficiary family's last activity
+		if self.beneficiary_family:
+			family_doc = frappe.get_doc("Beneficiary Family", self.beneficiary_family)
+			family_doc.add_comment('Info', f'Case updated: {self.case_title}')
 		
 		# Send notifications for status changes
 		if self.has_value_changed('case_status'):
@@ -106,11 +106,19 @@ class Case(Document):
 	
 	def update_case_metrics(self):
 		"""Update case metrics based on related records"""
-		# Count assessments
-		assessments = frappe.db.count('Initial Assessment', {
-			'client_name': frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')
-		})
-		self.db_set('total_assessments', assessments, update_modified=False)
+		# Count assessments for all family members
+		if self.beneficiary_family:
+			family_members = frappe.get_all('Beneficiary', 
+				filters={'beneficiary_family': self.beneficiary_family},
+				fields=['beneficiary_name']
+			)
+			total_assessments = 0
+			for member in family_members:
+				assessments = frappe.db.count('Initial Assessment', {
+					'client_name': member.beneficiary_name
+				})
+				total_assessments += assessments
+			self.db_set('total_assessments', total_assessments, update_modified=False)
 		
 		# Update last activity date
 		self.db_set('last_activity_date', today(), update_modified=False)
@@ -136,7 +144,7 @@ class Case(Document):
 					subject=f"Case Closed: {self.case_title}",
 					message=f"""
 					<p>Case <strong>{self.name}</strong> has been closed.</p>
-					<p><strong>Beneficiary:</strong> {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}</p>
+					<p><strong>Family:</strong> {frappe.db.get_value('Beneficiary Family', self.beneficiary_family, 'family_name')}</p>
 					<p><strong>Closure Reason:</strong> {self.closure_reason}</p>
 					<p><strong>Closed By:</strong> {self.closed_by}</p>
 					"""
@@ -160,7 +168,7 @@ class Case(Document):
 					subject=f"High Priority Case: {self.case_title}",
 					message=f"""
 					<p>Case <strong>{self.name}</strong> has been marked as <strong>{priority_code}</strong> priority.</p>
-					<p><strong>Beneficiary:</strong> {frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')}</p>
+					<p><strong>Family:</strong> {frappe.db.get_value('Beneficiary Family', self.beneficiary_family, 'family_name')}</p>
 					<p><strong>Primary Social Worker:</strong> {self.primary_social_worker}</p>
 					<p><strong>Risk Level:</strong> {self.risk_level or 'Not assessed'}</p>
 					<p><strong>Appointment Frequency:</strong> Every {priority_info.appointment_frequency_months} month(s)</p>
@@ -179,12 +187,20 @@ class Case(Document):
 			'type': 'case_event'
 		})
 		
-		# Add assessments
-		assessments = frappe.get_all('Initial Assessment',
-			filters={'client_name': frappe.db.get_value('Beneficiary', self.beneficiary, 'beneficiary_name')},
-			fields=['name', 'assessment_date', 'assessed_by'],
-			order_by='assessment_date'
-		)
+		# Add assessments for all family members
+		assessments = []
+		if self.beneficiary_family:
+			family_members = frappe.get_all('Beneficiary', 
+				filters={'beneficiary_family': self.beneficiary_family},
+				fields=['beneficiary_name']
+			)
+			for member in family_members:
+				member_assessments = frappe.get_all('Initial Assessment',
+					filters={'client_name': member.beneficiary_name},
+					fields=['name', 'assessment_date', 'assessed_by'],
+					order_by='assessment_date'
+				)
+				assessments.extend(member_assessments)
 		
 		for assessment in assessments:
 			timeline.append({
@@ -225,7 +241,7 @@ class Case(Document):
 		
 		follow_up_case = frappe.new_doc("Case")
 		follow_up_case.case_title = f"Follow-up: {self.case_title}"
-		follow_up_case.beneficiary = self.beneficiary
+		follow_up_case.beneficiary_family = self.beneficiary_family
 		follow_up_case.case_type = "Follow-up"
 		follow_up_case.primary_social_worker = self.primary_social_worker
 		follow_up_case.case_priority = self.case_priority

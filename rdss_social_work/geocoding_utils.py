@@ -92,6 +92,32 @@ def geocode_address(address_line_1, address_line_2=None, postal_code=None, count
         frappe.log_error(f"Unexpected error during geocoding for address '{full_address}': {str(e)}", "Geocoding Error")
         return None
 
+def geocode_beneficiary_family(family_doc):
+    """
+    Geocode a beneficiary family's address and update the geolocation field
+    
+    Args:
+        family_doc: Beneficiary Family document object
+    
+    Returns:
+        bool: True if geocoding was successful, False otherwise
+    """
+    if not family_doc.primary_address_line_1:
+        return False
+    
+    geolocation = geocode_address(
+        address_line_1=family_doc.primary_address_line_1,
+        address_line_2=family_doc.primary_address_line_2,
+        postal_code=family_doc.primary_postal_code
+    )
+    
+    if geolocation:
+        family_doc.geolocation = geolocation
+        return True
+    
+    return False
+
+# Keep the old function for backward compatibility
 def geocode_beneficiary(beneficiary_doc):
     """
     Geocode a beneficiary's address and update the geolocation field
@@ -117,6 +143,36 @@ def geocode_beneficiary(beneficiary_doc):
     
     return False
 
+def should_geocode_beneficiary_family(family_doc, is_new=False):
+    """
+    Determine if a beneficiary family should be geocoded
+    
+    Args:
+        family_doc: Beneficiary Family document object
+        is_new (bool): Whether this is a new document
+    
+    Returns:
+        bool: True if geocoding should be performed
+    """
+    # Always geocode new families with address
+    if is_new and family_doc.primary_address_line_1:
+        return True
+    
+    # For existing families, geocode if address changed and no geolocation exists
+    if not is_new:
+        # Check if address fields have changed
+        if family_doc.has_value_changed("primary_address_line_1") or \
+           family_doc.has_value_changed("primary_address_line_2") or \
+           family_doc.has_value_changed("primary_postal_code"):
+            return True
+        
+        # If no geolocation exists but address is present, geocode
+        if not family_doc.geolocation and family_doc.primary_address_line_1:
+            return True
+    
+    return False
+
+# Keep the old function for backward compatibility
 def should_geocode_beneficiary(beneficiary_doc, is_new=False):
     """
     Determine if a beneficiary should be geocoded

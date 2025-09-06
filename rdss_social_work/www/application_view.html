@@ -1,0 +1,101 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="container mt-4">
+    {% if show_error %}
+    <div class="alert alert-danger">
+        <h4>Error</h4>
+        <p>{{ error_message }}</p>
+        <a href="/beneficiary_portal" class="btn btn-dark">Back to Portal</a>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4><i class="fa fa-file-text"></i> Application Details</h4>
+                    <a href="/beneficiary_portal" class="btn btn-outline-secondary btn-sm">
+                        <i class="fa fa-arrow-left"></i> Back to Portal
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Application Information</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Application ID:</strong></td>
+                                    <td>{{ application.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scheme Type:</strong></td>
+                                    <td><span class="badge badge-info">{{ application.scheme_type }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Application Date:</strong></td>
+                                    <td>{{ application.application_date }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Status:</strong></td>
+                                    <td>
+                                        <span class="badge badge-primary">{{ application.application_status or "Submitted" }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Financial Year:</strong></td>
+                                    <td>{{ application.financial_year }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Beneficiary Information</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>{{ beneficiary.beneficiary_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>{{ beneficiary.email_address }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Contact:</strong></td>
+                                    <td>{{ beneficiary.mobile_number or "Not provided" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address:</strong></td>
+                                    <td>{{ beneficiary.address_line_1 or "Not provided" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Simple Status Display -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5><i class="fa fa-info-circle"></i> Application Status</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Current Status:</strong> {{ application.application_status or "Submitted" }}</p>
+                    {% if application.submitted_date %}
+                    <p><strong>Submitted:</strong> {{ application.submitted_date }}</p>
+                    {% endif %}
+                    {% if application.approved_amount %}
+                    <p><strong>Approved Amount:</strong> ${{ application.approved_amount }}</p>
+                    {% endif %}
+                    {% if application.rejection_reason %}
+                    <div class="alert alert-danger mt-3">
+                        <strong>Rejection Reason:</strong> {{ application.rejection_reason }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

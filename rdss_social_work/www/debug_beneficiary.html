@@ -1,0 +1,209 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fa fa-bug"></i> Beneficiary Access Debug
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Debug Status:</strong> {{ debug_msg }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>User Information</h5>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td><strong>Current User:</strong></td>
+                                    <td>{{ current_user }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Is Guest:</strong></td>
+                                    <td>{{ is_guest }}</td>
+                                </tr>
+                                {% if not is_guest %}
+                                <tr>
+                                    <td><strong>User Roles:</strong></td>
+                                    <td>{{ user_roles | join(", ") }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Has Beneficiary Role:</strong></td>
+                                    <td>{{ has_beneficiary_role }}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5>System Information</h5>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td><strong>Beneficiary Role Exists:</strong></td>
+                                    <td>{{ beneficiary_role_exists }}</td>
+                                </tr>
+                                {% if not is_guest %}
+                                <tr>
+                                    <td><strong>Can Read Beneficiary:</strong></td>
+                                    <td>{{ can_read_beneficiary }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Can Read Application:</strong></td>
+                                    <td>{{ can_read_application }}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+                    
+                    {% if not is_guest %}
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h5>Beneficiary Record</h5>
+                            {% if beneficiary_record %}
+                            <div class="alert alert-success">
+                                <strong>Found:</strong> {{ beneficiary_record.beneficiary_name }} ({{ beneficiary_record.name }})
+                            </div>
+                            {% else %}
+                            <div class="alert alert-warning">
+                                <strong>Not Found:</strong> No beneficiary record found for {{ current_user }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h5>Beneficiary DocType Permissions</h5>
+                            {% if beneficiary_perms %}
+                            <table class="table table-sm">
+                                {% for perm in beneficiary_perms %}
+                                <tr>
+                                    <td>Read: {{ perm.read }}</td>
+                                    <td>Write: {{ perm.write }}</td>
+                                    <td>Create: {{ perm.create }}</td>
+                                    <td>Delete: {{ perm.delete }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            {% else %}
+                            <div class="alert alert-warning">No permissions found</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5>Support Scheme Application Permissions</h5>
+                            {% if application_perms %}
+                            <table class="table table-sm">
+                                {% for perm in application_perms %}
+                                <tr>
+                                    <td>Read: {{ perm.read }}</td>
+                                    <td>Write: {{ perm.write }}</td>
+                                    <td>Create: {{ perm.create }}</td>
+                                    <td>Delete: {{ perm.delete }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            {% else %}
+                            <div class="alert alert-warning">No permissions found</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h5>Actions</h5>
+                            {% if not has_beneficiary_role %}
+                            <button class="btn btn-warning" onclick="fixBeneficiaryRole()">
+                                <i class="fa fa-wrench"></i> Fix Beneficiary Role
+                            </button>
+                            {% endif %}
+                            <button class="btn btn-info" onclick="debugUserMatch()">
+                                <i class="fa fa-search"></i> Debug User-Beneficiary Match
+                            </button>
+                            <a href="/beneficiary-portal" class="btn btn-primary">
+                                <i class="fa fa-home"></i> Try Beneficiary Portal
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function fixBeneficiaryRole() {
+    frappe.call({
+        method: 'rdss_social_work.api.fix_beneficiary_role',
+        callback: function(r) {
+            if (r.message && r.message.status === 'success') {
+                frappe.msgprint({
+                    title: 'Success',
+                    message: r.message.message,
+                    indicator: 'green'
+                });
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                frappe.msgprint({
+                    title: 'Error',
+                    message: r.message.message || 'Failed to fix role',
+                    indicator: 'red'
+                });
+            }
+        }
+    });
+}
+
+function debugUserMatch() {
+    frappe.call({
+        method: 'rdss_social_work.api.debug_user_beneficiary_match',
+        callback: function(r) {
+            if (r.message && r.message.status === 'success') {
+                const data = r.message;
+                let message = `<strong>Current User:</strong> ${data.current_user}<br>`;
+                message += `<strong>User Email:</strong> ${data.user_email}<br>`;
+                message += `<strong>User First Name:</strong> ${data.user_first_name}<br><br>`;
+                
+                message += `<strong>All Beneficiary Records:</strong><br>`;
+                if (data.all_beneficiaries && data.all_beneficiaries.length > 0) {
+                    data.all_beneficiaries.forEach(ben => {
+                        message += `- ${ben.beneficiary_name} (${ben.email_address})<br>`;
+                    });
+                } else {
+                    message += `No beneficiary records found<br>`;
+                }
+                
+                message += `<br><strong>Matching Beneficiary:</strong><br>`;
+                if (data.matching_beneficiary) {
+                    message += `Found: ${data.matching_beneficiary.beneficiary_name}`;
+                } else {
+                    message += `No matching beneficiary found for ${data.current_user}`;
+                }
+                
+                frappe.msgprint({
+                    title: 'Debug Information',
+                    message: message,
+                    indicator: 'blue'
+                });
+            } else {
+                frappe.msgprint({
+                    title: 'Error',
+                    message: r.message?.message || 'Failed to get debug info',
+                    indicator: 'red'
+                });
+            }
+        }
+    });
+}
+</script>
+{% endblock %}

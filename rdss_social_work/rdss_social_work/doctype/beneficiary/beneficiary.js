@@ -12,6 +12,7 @@ frappe.ui.form.on('Beneficiary', {
             load_assessments_data(frm);
             load_services_data(frm);
             load_documents_data(frm);
+            load_family_data(frm);
         }
         
         // Add custom buttons
@@ -56,6 +57,8 @@ frappe.ui.form.on('Beneficiary', {
                     load_services_data(frm);
                 } else if (tab === '#documents') {
                     load_documents_data(frm);
+                } else if (tab === '#family-overview') {
+                    load_family_data(frm);
                 }
             }
         });
@@ -106,158 +109,101 @@ function add_custom_buttons(frm) {
 }
 
 function load_cases_data(frm) {
-    // Load active cases
+    // Load active cases using server-side method
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_cases',
         args: {
-            doctype: 'Case',
-            filters: {
-                beneficiary: frm.doc.name
-            },
-            fields: ['name', 'case_title', 'case_status', 'case_priority', 'case_opened_date', 'primary_social_worker'],
-            order_by: 'case_opened_date desc'
+            beneficiary_name: frm.doc.name
         },
         callback: function(r) {
             if (r.message) {
-                render_cases_table(frm, r.message, 'active_cases_html', 'Active Cases');
+                render_cases_table(frm, r.message, 'case_notes_html', 'Active Cases');
             }
         }
     });
     
-    // Load closed cases
+    // Load closed cases using server-side method
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_closed_cases',
         args: {
-            doctype: 'Case',
-            filters: {
-                beneficiary: frm.doc.name
-            },
-            fields: ['name', 'case_title', 'case_status', 'case_opened_date', 'actual_closure_date', 'primary_social_worker'],
-            order_by: 'actual_closure_date desc',
-            limit: 10
+            beneficiary_name: frm.doc.name
         },
         callback: function(r) {
             if (r.message) {
-                render_cases_table(frm, r.message, 'closed_cases_html', 'Case History');
+                render_cases_table(frm, r.message, 'case_notes_html', 'Closed Cases');
             }
         }
     });
 }
 
 function load_appointments_data(frm) {
-    // Load upcoming appointments
+    // Load upcoming appointments using server-side method
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_appointments',
         args: {
-            doctype: 'Appointment',
-            filters: {
-                beneficiary: frm.doc.name,
-                appointment_date: ['>=', frappe.datetime.get_today()]
-            },
-            fields: ['name', 'appointment_date', 'appointment_time', 'appointment_type', 'appointment_status', 'social_worker', 'case'],
-            order_by: 'appointment_date asc'
+            beneficiary_name: frm.doc.name,
+            upcoming: true
         },
         callback: function(r) {
-            if (r.message) {
+            if (r.message && r.message.length > 0) {
                 render_appointments_table(frm, r.message, 'upcoming_appointments_html', 'Upcoming Appointments');
+            } else {
+                render_appointments_table(frm, [], 'upcoming_appointments_html', 'Upcoming Appointments');
             }
         }
     });
     
-    // Load appointment history
+    // Load appointment history using server-side method
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_appointments',
         args: {
-            doctype: 'Appointment',
-            filters: {
-                beneficiary: frm.doc.name,
-                appointment_date: ['<', frappe.datetime.get_today()]
-            },
-            fields: ['name', 'appointment_date', 'appointment_time', 'appointment_type', 'appointment_status', 'social_worker', 'case'],
-            order_by: 'appointment_date desc',
-            limit: 20
+            beneficiary_name: frm.doc.name,
+            upcoming: false
         },
         callback: function(r) {
-            if (r.message) {
+            if (r.message && r.message.length > 0) {
                 render_appointments_table(frm, r.message, 'appointment_history_html', 'Appointment History');
+            } else {
+                render_appointments_table(frm, [], 'appointment_history_html', 'Appointment History');
             }
         }
     });
 }
 
 function load_assessments_data(frm) {
-    // Load initial assessments - note: linking by client_name since no beneficiary link field exists
+    // Load assessments using server-side method
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_assessments',
         args: {
-            doctype: 'Initial Assessment',
-            filters: {
-                client_name: frm.doc.beneficiary_name
-            },
-            fields: ['name', 'assessment_date', 'assessed_by', 'case_no'],
-            order_by: 'assessment_date desc'
+            beneficiary_name: frm.doc.beneficiary_name
         },
         callback: function(r) {
             if (r.message) {
-                render_assessments_table(frm, r.message, 'initial_assessments_html', 'Initial Assessments');
-            }
-        }
-    });
-    
-    // Load follow-up assessments
-    frappe.call({
-        method: 'frappe.client.get_list',
-        args: {
-            doctype: 'Follow Up Assessment',
-            filters: {
-                beneficiary: frm.doc.name
-            },
-            fields: ['name', 'assessment_date', 'assessed_by', 'assessment_type', 'case'],
-            order_by: 'assessment_date desc'
-        },
-        callback: function(r) {
-            if (r.message) {
-                render_assessments_table(frm, r.message, 'follow_up_assessments_html', 'Follow-up Assessments');
+                if (r.message.initial && r.message.initial.length > 0) {
+                    render_assessments_table(frm, r.message.initial, 'initial_assessments_html', 'Initial Assessments');
+                }
+                if (r.message.follow_up && r.message.follow_up.length > 0) {
+                    render_assessments_table(frm, r.message.follow_up, 'follow_up_assessments_html', 'Follow-up Assessments');
+                }
             }
         }
     });
 }
 
 function load_services_data(frm) {
-    // First, get only the names to avoid field permission issues
+    // Use server-side method to avoid permission issues
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_service_plans',
         args: {
-            doctype: 'Service Plan',
-            filters: {
-                beneficiary: frm.doc.name
-            },
-            fields: ['name'],
-            limit: 50
+            beneficiary_name: frm.doc.name
         },
         callback: function(r) {
-            if (r.message && r.message.length > 0) {
-                // Fetch full docs for each service plan
-                let service_plans = [];
-                let completed = 0;
-                
-                r.message.forEach(function(item) {
-                    frappe.model.with_doc('Service Plan', item.name, function() {
-                        let doc = frappe.model.get_doc('Service Plan', item.name);
-                        if (doc) {
-                            service_plans.push(doc);
-                        }
-                        
-                        completed++;
-                        if (completed === r.message.length) {
-                            // Filter for active/in progress services if we want to
-                            const filtered_plans = service_plans.filter(plan => 
-                                ['Active', 'In Progress'].includes(plan.status || ''));
-                                
-                            render_services_table(frm, filtered_plans, 'current_service_plans_html', 'Current Service Plans');
-                        }
-                    });
-                });
+            if (r.message) {
+                // Filter for active/in progress services
+                const filtered_plans = r.message.filter(plan => 
+                    ['Active', 'In Progress'].includes(plan.plan_status || ''));
+                    
+                render_services_table(frm, filtered_plans, 'current_service_plans_html', 'Current Service Plans');
             } else {
                 render_services_table(frm, [], 'current_service_plans_html', 'Current Service Plans');
             }
@@ -266,46 +212,34 @@ function load_services_data(frm) {
 }
 
 function load_documents_data(frm) {
-    // First, get only the names to avoid field permission issues
+    // Use server-side method to avoid permission issues
     frappe.call({
-        method: 'frappe.client.get_list',
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_documents',
         args: {
-            doctype: 'Document Attachment',
-            filters: {
-                beneficiary: frm.doc.name
-            },
-            fields: ['name'],
-            limit: 50
+            beneficiary_name: frm.doc.name
         },
         callback: function(r) {
-            if (r.message && r.message.length > 0) {
-                // Fetch full docs for each document
-                let documents = [];
-                let completed = 0;
-                
-                r.message.forEach(function(item) {
-                    frappe.model.with_doc('Document Attachment', item.name, function() {
-                        let doc = frappe.model.get_doc('Document Attachment', item.name);
-                        if (doc) {
-                            documents.push(doc);
-                        }
-                        
-                        completed++;
-                        if (completed === r.message.length) {
-                            // Sort by upload date if available
-                            documents.sort(function(a, b) {
-                                if (a.upload_date && b.upload_date) {
-                                    return new Date(b.upload_date) - new Date(a.upload_date);
-                                }
-                                return 0;
-                            });
-                            
-                            render_documents_table(frm, documents, 'document_attachments_html', 'Document Attachments');
-                        }
-                    });
-                });
+            if (r.message) {
+                render_documents_table(frm, r.message, 'document_attachments_html', 'Document Attachments');
             } else {
                 render_documents_table(frm, [], 'document_attachments_html', 'Document Attachments');
+            }
+        }
+    });
+}
+
+function load_family_data(frm) {
+    // Load family information using server-side method
+    frappe.call({
+        method: 'rdss_social_work.rdss_social_work.doctype.beneficiary.beneficiary_queries.get_beneficiary_family_info',
+        args: {
+            beneficiary_name: frm.doc.name
+        },
+        callback: function(r) {
+            if (r.message) {
+                render_family_info(frm, r.message, 'family_info_html', 'Family Information');
+            } else {
+                render_family_info(frm, {family: null, family_members: []}, 'family_info_html', 'Family Information');
             }
         }
     });
@@ -338,8 +272,8 @@ function render_cases_table(frm, data, field_name, title) {
         html += `<tr>
             <td><a href="/app/case/${case_doc.name}">${case_doc.name}</a></td>
             <td>${case_doc.case_title || ''}</td>
+            <td><span class="indicator ${get_priority_color(case_doc.case_priority)}">${case_doc.case_priority || ''}</span></td>
             <td><span class="indicator ${get_status_color(case_doc.case_status)}">${case_doc.case_status || ''}</span></td>
-            <td>${case_doc.case_priority || ''}</td>
             <td>${frappe.datetime.str_to_user(case_doc.case_opened_date) || ''}</td>
             <td>${case_doc.primary_social_worker || ''}</td>
             <td>
@@ -482,11 +416,11 @@ function render_services_table(frm, data, field_name, title) {
         data.forEach(function(service) {
             html += `<tr>
                 <td><a href="/app/service-plan/${service.name}">${service.name}</a></td>
-                <td>${service.plan_name || service.name}</td>
-                <td>${service.start_date ? frappe.datetime.str_to_user(service.start_date) : '-'}</td>
-                <td>${service.end_date ? frappe.datetime.str_to_user(service.end_date) : '-'}</td>
-                <td><span class="indicator ${get_status_color(service.status)}">${service.status || ''}</span></td>
-                <td>${service.assigned_social_worker || ''}</td>
+                <td>${service.plan_title || service.name}</td>
+                <td>${service.effective_date ? frappe.datetime.str_to_user(service.effective_date) : '-'}</td>
+                <td>${service.expiry_date ? frappe.datetime.str_to_user(service.expiry_date) : '-'}</td>
+                <td><span class="indicator ${get_status_color(service.plan_status)}">${service.plan_status || ''}</span></td>
+                <td>${service.primary_social_worker || ''}</td>
                 <td>
                     <button class="btn btn-xs btn-default" onclick="frappe.set_route('Form', 'Service Plan', '${service.name}')">View</button>
                 </td>
@@ -524,7 +458,7 @@ function render_documents_table(frm, data, field_name, title) {
     } else {
         data.forEach(function(doc) {
             html += `<tr>
-                <td><a href="/app/document-attachment/${doc.name}">${doc.document_name || doc.name}</a></td>
+                <td><a href="/app/document-attachment/${doc.name}">${doc.document_title || doc.name}</a></td>
                 <td>${doc.document_type || ''}</td>
                 <td>${doc.upload_date ? frappe.datetime.str_to_user(doc.upload_date) : '-'}</td>
                 <td>${doc.uploaded_by || ''}</td>
@@ -540,8 +474,107 @@ function render_documents_table(frm, data, field_name, title) {
     insert_html(frm, field_name, container_id, html);
 }
 
+function render_family_info(frm, data, field_name, title) {
+    // Get container ID for the field
+    const container_id = {
+        'family_info_html': 'family-info-container'
+    }[field_name] || field_name;
+    
+    let html = `<div class="family-info-section">
+        <h5>${title}</h5>`;
+    
+    if (!data.family) {
+        html += `<div class="alert alert-info">No family information available for this beneficiary.</div>`;
+    } else {
+        const family = data.family;
+        
+        // Family Details Section
+        html += `<div class="row">
+            <div class="col-md-6">
+                <h6>Family Details</h6>
+                <table class="table table-borderless table-sm">
+                    <tr><td><strong>Family Name:</strong></td><td>${family.family_name || '-'}</td></tr>
+                    <tr><td><strong>Family Head:</strong></td><td>${family.family_head || '-'}</td></tr>
+                    <tr><td><strong>Status:</strong></td><td><span class="indicator ${get_status_color(family.family_status)}">${family.family_status || '-'}</span></td></tr>
+                    <tr><td><strong>Registration Date:</strong></td><td>${family.registration_date ? frappe.datetime.str_to_user(family.registration_date) : '-'}</td></tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h6>Contact Information</h6>
+                <table class="table table-borderless table-sm">
+                    <tr><td><strong>Address:</strong></td><td>${family.primary_address_line_1 || '-'}</td></tr>
+                    <tr><td><strong>Postal Code:</strong></td><td>${family.primary_postal_code || '-'}</td></tr>
+                    <tr><td><strong>Mobile:</strong></td><td>${family.primary_mobile_number || '-'}</td></tr>
+                    <tr><td><strong>Email:</strong></td><td>${family.primary_email_address || '-'}</td></tr>
+                </table>
+            </div>
+        </div>`;
+        
+        // Emergency Contact Section
+        if (family.emergency_contact_1_name) {
+            html += `<div class="row mt-3">
+                <div class="col-md-12">
+                    <h6>Emergency Contact</h6>
+                    <table class="table table-borderless table-sm">
+                        <tr><td><strong>Name:</strong></td><td>${family.emergency_contact_1_name || '-'}</td></tr>
+                        <tr><td><strong>Relationship:</strong></td><td>${family.emergency_contact_1_relationship || '-'}</td></tr>
+                        <tr><td><strong>Phone:</strong></td><td>${family.emergency_contact_1_phone || '-'}</td></tr>
+                    </table>
+                </div>
+            </div>`;
+        }
+        
+        // Family Members Section
+        html += `<div class="row mt-4">
+            <div class="col-md-12">
+                <h6>Family Members</h6>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Relationship</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                            <th>Primary Diagnosis</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+        
+        if (data.family_members && data.family_members.length > 0) {
+            data.family_members.forEach(function(member) {
+                html += `<tr>
+                    <td><a href="/app/beneficiary/${member.name}">${member.beneficiary_name}</a></td>
+                    <td>${member.family_relationship || '-'}</td>
+                    <td>${member.age || '-'}</td>
+                    <td>${member.gender || '-'}</td>
+                    <td><span class="indicator ${get_status_color(member.current_status)}">${member.current_status || '-'}</span></td>
+                    <td>${member.primary_diagnosis || '-'}</td>
+                    <td>
+                        <button class="btn btn-xs btn-default" onclick="frappe.set_route('Form', 'Beneficiary', '${member.name}')">View</button>
+                    </td>
+                </tr>`;
+            });
+        } else {
+            html += `<tr><td colspan="7" class="text-center">No family members found</td></tr>`;
+        }
+        
+        html += `</tbody></table></div></div>`;
+    }
+    
+    html += `</div>`;
+    
+    insert_html(frm, field_name, container_id, html);
+}
+
 // Helper function to insert HTML into the correct container
 function insert_html(frm, field_name, container_id, html) {
+    if (!frm.fields_dict[field_name] || !frm.fields_dict[field_name].$wrapper) {
+        console.warn('Field wrapper not found for:', field_name);
+        return;
+    }
+    
     const $wrapper = frm.fields_dict[field_name].$wrapper;
     const $container = $wrapper.find('#' + container_id);
     
@@ -563,7 +596,8 @@ function initialize_tab_containers(frm) {
         { field: 'initial_assessments_html', container: 'initial-assessments-container' },
         { field: 'follow_up_assessments_html', container: 'follow-up-assessments-container' },
         { field: 'current_service_plans_html', container: 'current-service-plans-container' },
-        { field: 'document_attachments_html', container: 'document-attachments-container' }
+        { field: 'document_attachments_html', container: 'document-attachments-container' },
+        { field: 'family_info_html', container: 'family-info-container' }
     ];
     
     html_fields.forEach(function(item) {

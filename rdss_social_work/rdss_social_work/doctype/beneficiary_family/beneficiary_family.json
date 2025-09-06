@@ -1,0 +1,395 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 08:43:28.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "family_information_section",
+  "naming_series",
+  "family_name",
+  "family_head",
+  "registration_date",
+  "referred_by",
+  "column_break_family",
+  "family_status",
+  "primary_social_worker",
+  "total_family_members",
+  "contact_information_section",
+  "primary_address_line_1",
+  "primary_address_line_2",
+  "primary_postal_code",
+  "geolocation",
+  "column_break_contact",
+  "primary_mobile_number",
+  "primary_home_number",
+  "primary_email_address",
+  "preferred_contact_method",
+  "emergency_contacts_section",
+  "emergency_contact_1_name",
+  "emergency_contact_1_relationship",
+  "emergency_contact_1_phone",
+  "column_break_emergency",
+  "emergency_contact_2_name",
+  "emergency_contact_2_relationship",
+  "emergency_contact_2_phone",
+  "family_preferences_section",
+  "preferred_language",
+  "cultural_considerations",
+  "religious_considerations",
+  "column_break_preferences",
+  "dietary_restrictions",
+  "accessibility_requirements",
+  "notes_section",
+  "family_notes",
+  "internal_notes",
+  "family_members_tab",
+  "family_composition_section",
+  "family_members_html",
+  "case_management_tab",
+  "cases_section",
+  "family_cases_html",
+  "appointments_tab",
+  "appointments_section",
+  "family_appointments_html",
+  "case_notes_tab",
+  "case_notes_section",
+  "family_case_notes_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "family_information_section",
+   "fieldtype": "Section Break",
+   "label": "Family Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FAM-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "family_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Family Name",
+   "reqd": 1,
+   "description": "Primary family surname or identifier"
+  },
+  {
+   "fieldname": "family_head",
+   "fieldtype": "Link",
+   "label": "Family Head",
+   "options": "Beneficiary",
+   "description": "Primary contact person for the family"
+  },
+  {
+   "fieldname": "registration_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Registration Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "referred_by",
+   "fieldtype": "Data",
+   "label": "Referred By"
+  },
+  {
+   "fieldname": "column_break_family",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "family_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Family Status",
+   "options": "Active\nInactive\nTransferred\nOn Hold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "primary_social_worker",
+   "fieldtype": "Link",
+   "label": "Primary Social Worker",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_family_members",
+   "fieldtype": "Int",
+   "label": "Total Family Members",
+   "read_only": 1,
+   "description": "Auto-calculated based on linked beneficiaries"
+  },
+  {
+   "fieldname": "contact_information_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Contact Information"
+  },
+  {
+   "fieldname": "primary_address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "primary_address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "primary_postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "fieldname": "geolocation",
+   "fieldtype": "Geolocation",
+   "label": "Location",
+   "description": "Geographic coordinates for location-based services"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_mobile_number",
+   "fieldtype": "Data",
+   "label": "Primary Mobile Number"
+  },
+  {
+   "fieldname": "primary_home_number",
+   "fieldtype": "Data",
+   "label": "Primary Home Number"
+  },
+  {
+   "fieldname": "primary_email_address",
+   "fieldtype": "Data",
+   "label": "Primary Email Address"
+  },
+  {
+   "fieldname": "preferred_contact_method",
+   "fieldtype": "Select",
+   "label": "Preferred Contact Method",
+   "options": "\nMobile\nHome Phone\nEmail\nIn Person\nThrough Family Head"
+  },
+  {
+   "fieldname": "emergency_contacts_section",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contacts"
+  },
+  {
+   "fieldname": "emergency_contact_1_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Name"
+  },
+  {
+   "fieldname": "emergency_contact_1_relationship",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Relationship"
+  },
+  {
+   "fieldname": "emergency_contact_1_phone",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 1 - Phone"
+  },
+  {
+   "fieldname": "column_break_emergency",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contact_2_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Name"
+  },
+  {
+   "fieldname": "emergency_contact_2_relationship",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Relationship"
+  },
+  {
+   "fieldname": "emergency_contact_2_phone",
+   "fieldtype": "Data",
+   "label": "Emergency Contact 2 - Phone"
+  },
+  {
+   "fieldname": "family_preferences_section",
+   "fieldtype": "Section Break",
+   "label": "Family Preferences & Cultural Considerations"
+  },
+  {
+   "fieldname": "preferred_language",
+   "fieldtype": "Select",
+   "label": "Preferred Language",
+   "options": "\nEnglish\nMandarin\nMalay\nTamil\nOther"
+  },
+  {
+   "fieldname": "cultural_considerations",
+   "fieldtype": "Small Text",
+   "label": "Cultural Considerations"
+  },
+  {
+   "fieldname": "religious_considerations",
+   "fieldtype": "Small Text",
+   "label": "Religious Considerations"
+  },
+  {
+   "fieldname": "column_break_preferences",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dietary_restrictions",
+   "fieldtype": "Small Text",
+   "label": "Family Dietary Restrictions"
+  },
+  {
+   "fieldname": "accessibility_requirements",
+   "fieldtype": "Small Text",
+   "label": "Family Accessibility Requirements"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "family_notes",
+   "fieldtype": "Text Editor",
+   "label": "Family Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes (Staff Only)"
+  },
+  {
+   "fieldname": "family_members_tab",
+   "fieldtype": "Tab Break",
+   "label": "Family Members"
+  },
+  {
+   "fieldname": "family_composition_section",
+   "fieldtype": "Section Break",
+   "label": "Family Composition"
+  },
+  {
+   "fieldname": "family_members_html",
+   "fieldtype": "HTML",
+   "label": "Family Members",
+   "options": "<div id='family-members-container'></div>"
+  },
+  {
+   "fieldname": "case_management_tab",
+   "fieldtype": "Tab Break",
+   "label": "Case Management"
+  },
+  {
+   "fieldname": "cases_section",
+   "fieldtype": "Section Break",
+   "label": "Family Case"
+  },
+  {
+   "fieldname": "family_cases_html",
+   "fieldtype": "HTML",
+   "label": "Family Case",
+   "options": "<div id='family-cases-container'></div>"
+  },
+  {
+   "fieldname": "appointments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appointments"
+  },
+  {
+   "fieldname": "appointments_section",
+   "fieldtype": "Section Break",
+   "label": "All Family Appointments"
+  },
+  {
+   "fieldname": "family_appointments_html",
+   "fieldtype": "HTML",
+   "label": "Family Appointments",
+   "options": "<div id='family-appointments-container'></div>"
+  },
+  {
+   "fieldname": "case_notes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Case Notes"
+  },
+  {
+   "fieldname": "case_notes_section",
+   "fieldtype": "Section Break",
+   "label": "All Family Case Notes"
+  },
+  {
+   "fieldname": "family_case_notes_html",
+   "fieldtype": "HTML",
+   "label": "Family Case Notes",
+   "options": "<div id='family-case-notes-container'></div>"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 08:43:28.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Beneficiary Family",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Head of Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "RDSS Director",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "family_name",
+ "track_changes": 1
+}

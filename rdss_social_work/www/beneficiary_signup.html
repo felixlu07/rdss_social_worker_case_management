@@ -1,0 +1,333 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-rdss text-white text-center">
+                    <h4 class="mb-0">
+                        <i class="fa fa-user-plus"></i> Beneficiary Registration
+                    </h4>
+                    <p class="mb-0 small">Create your account to access support schemes</p>
+                </div>
+                <div class="card-body">
+                    <form id="beneficiary-signup-form">
+                        <div class="mb-3">
+                            <label class="form-label required">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div id="email-status"></div>
+                            <div class="form-text">This must match your registered email with RDSS</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="beneficiary_name" readonly>
+                            <div class="form-text">This will be auto-filled after email validation</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">Password</label>
+                            <input type="password" class="form-control" id="password" required minlength="8">
+                            <div class="form-text">Minimum 8 characters</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary" onclick="manualValidateEmail()">
+                                <i class="fa fa-check"></i> Validate Email
+                            </button>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" id="signup-btn" disabled>
+                                <i class="fa fa-user-plus"></i> Create Account
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <p class="small">Already have an account? <a href="/login">Login here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let emailValidated = false;
+let emailValidationTimeout = null;
+let isValidating = false;
+
+function showEmailStatus(type, message, showIcon = true) {
+    const emailField = document.getElementById('email');
+    const statusDiv = document.getElementById('email-status');
+    
+    statusDiv.innerHTML = '';
+    emailField.classList.remove('is-valid', 'is-invalid');
+    
+    if (type === 'success') {
+        emailField.classList.add('is-valid');
+        if (showIcon) {
+            statusDiv.innerHTML = `<div class="text-success small mt-1"><i class="fa fa-check-circle"></i> ${message}</div>`;
+        }
+    } else if (type === 'error') {
+        emailField.classList.add('is-invalid');
+        if (showIcon) {
+            statusDiv.innerHTML = `<div class="text-danger small mt-1"><i class="fa fa-times-circle"></i> ${message}</div>`;
+        }
+    } else if (type === 'loading') {
+        statusDiv.innerHTML = `<div class="text-info small mt-1"><i class="fa fa-spinner fa-spin"></i> ${message}</div>`;
+    } else {
+        statusDiv.innerHTML = `<div class="text-muted small mt-1">${message}</div>`;
+    }
+}
+
+function validateEmailDebounced(email, showMessages = true) {
+    if (emailValidationTimeout) {
+        clearTimeout(emailValidationTimeout);
+    }
+    
+    if (!email || email.length < 5) {
+        showEmailStatus('info', 'Enter your registered email address');
+        return;
+    }
+    
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showEmailStatus('error', 'Please enter a valid email address');
+        return;
+    }
+    
+    emailValidationTimeout = setTimeout(() => {
+        validateEmail(showMessages);
+    }, 800); // 800ms debounce
+}
+
+function validateEmail(showMessages = true) {
+    const email = document.getElementById('email').value.trim();
+    
+    if (!email) {
+        if (showMessages) {
+            showEmailStatus('error', 'Please enter your email address');
+        }
+        return;
+    }
+    
+    if (isValidating) {
+        return; // Prevent multiple simultaneous requests
+    }
+    
+    isValidating = true;
+    showEmailStatus('loading', 'Checking email...');
+    
+    frappe.call({
+        method: 'rdss_social_work.api.validate_beneficiary_email',
+        args: { email: email },
+        callback: function(r) {
+            isValidating = false;
+            
+            if (r.message && r.message.status === 'success') {
+                document.getElementById('beneficiary_name').value = r.message.beneficiary_name;
+                document.getElementById('signup-btn').disabled = false;
+                emailValidated = true;
+                
+                showEmailStatus('success', `Found: ${r.message.beneficiary_name}`);
+                
+                if (showMessages) {
+                    frappe.show_alert({
+                        message: 'Email validated successfully!',
+                        indicator: 'green'
+                    }, 3);
+                }
+            } else {
+                showEmailStatus('error', 'Email not found in our records');
+                document.getElementById('beneficiary_name').value = '';
+                document.getElementById('signup-btn').disabled = true;
+                emailValidated = false;
+                
+                if (showMessages) {
+                    frappe.show_alert({
+                        message: 'This email is not registered with RDSS. Please contact our office.',
+                        indicator: 'red'
+                    }, 5);
+                }
+            }
+        },
+        error: function() {
+            isValidating = false;
+            showEmailStatus('error', 'Unable to validate email. Please try again.');
+            emailValidated = false;
+        }
+    });
+}
+
+function manualValidateEmail() {
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+        frappe.show_alert({
+            message: 'Please enter your email address first',
+            indicator: 'red'
+        }, 3);
+        document.getElementById('email').focus();
+        return;
+    }
+    validateEmail(true);
+}
+
+document.getElementById('beneficiary-signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+    
+    // Validate email first if not already validated
+    if (!emailValidated) {
+        frappe.show_alert({
+            message: 'Please validate your email first by clicking the "Validate Email" button',
+            indicator: 'orange'
+        }, 5);
+        return;
+    }
+    
+    // Validate passwords
+    if (password !== confirmPassword) {
+        frappe.show_alert({
+            message: 'Passwords do not match',
+            indicator: 'red'
+        }, 3);
+        document.getElementById('confirm_password').focus();
+        return;
+    }
+    
+    if (password.length < 8) {
+        frappe.show_alert({
+            message: 'Password must be at least 8 characters long',
+            indicator: 'red'
+        }, 3);
+        document.getElementById('password').focus();
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = document.getElementById('signup-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Creating Account...';
+    
+    const formData = {
+        email: email,
+        beneficiary_name: document.getElementById('beneficiary_name').value,
+        password: password
+    };
+    
+    frappe.call({
+        method: 'rdss_social_work.api.create_beneficiary_user',
+        args: formData,
+        callback: function(r) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            
+            if (r.message && r.message.status === 'success') {
+                frappe.msgprint({
+                    title: 'Success',
+                    message: 'Account created successfully! Redirecting to login...',
+                    indicator: 'green'
+                });
+                
+                // Clear any existing session cookies to prevent login conflicts
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                setTimeout(() => {
+                    window.location.href = '/login?redirect-to=/beneficiary-portal';
+                }, 2000);
+            } else {
+                frappe.show_alert({
+                    message: r.message.message || 'Failed to create account. Please try again.',
+                    indicator: 'red'
+                }, 5);
+            }
+        },
+        error: function() {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            frappe.show_alert({
+                message: 'Network error. Please check your connection and try again.',
+                indicator: 'red'
+            }, 5);
+        }
+    });
+});
+
+// Email input event listeners
+document.getElementById('email').addEventListener('input', function() {
+    const email = this.value.trim();
+    emailValidated = false;
+    document.getElementById('beneficiary_name').value = '';
+    document.getElementById('signup-btn').disabled = true;
+    
+    validateEmailDebounced(email, false);
+});
+
+// Reset validation when email changes significantly
+document.getElementById('email').addEventListener('paste', function() {
+    setTimeout(() => {
+        emailValidated = false;
+        document.getElementById('beneficiary_name').value = '';
+        document.getElementById('signup-btn').disabled = true;
+        validateEmailDebounced(this.value.trim(), false);
+    }, 100);
+});
+
+// Password confirmation validation
+document.getElementById('confirm_password').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = this.value;
+    const confirmField = this;
+    
+    confirmField.classList.remove('is-valid', 'is-invalid');
+    
+    if (confirmPassword.length > 0) {
+        if (password === confirmPassword) {
+            confirmField.classList.add('is-valid');
+        } else {
+            confirmField.classList.add('is-invalid');
+        }
+    }
+});
+</script>
+
+<style>
+.required::after {
+    content: " *";
+    color: red;
+}
+
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    border: 1px solid #e3e6f0;
+}
+
+.bg-rdss {
+    background: linear-gradient(135deg, #832061 0%, #6a1a4f 100%) !important;
+    border: none;
+}
+
+.bg-rdss h4 {
+    color: white !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}

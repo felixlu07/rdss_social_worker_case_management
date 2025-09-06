@@ -44,7 +44,7 @@ app_include_css = "/assets/rdss_social_work/css/initial_assessment.css"
 
 # include js in doctype views
 doctype_js = {"Event" : "public/js/event.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {"Event" : "public/js/event_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -53,7 +53,7 @@ doctype_js = {"Event" : "public/js/event.js"}
 fixtures = [
     {
         "doctype": "Role",
-        "filters": {"name": "Social Worker"}
+        "filters": {"name": ["in", ["Social Worker", "Beneficiary", "Head of Admin", "RDSS Director"]]}
     },
     {
         "doctype": "Case Priority",
@@ -141,13 +141,15 @@ after_app_install = "rdss_social_work.rdss_social_work.notifications.appointment
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+permission_query_conditions = {
+	"Support Scheme Application": "rdss_social_work.permissions.get_permission_query_conditions",
+}
+
+has_permission = {
+	"Support Scheme Application": "rdss_social_work.permissions.has_permission",
+	"Beneficiary": "rdss_social_work.permissions.has_permission",
+	"Medical Intervention Scheme": "rdss_social_work.permissions.has_permission",
+}
 
 # DocType Class
 # ---------------
@@ -164,6 +166,12 @@ after_app_install = "rdss_social_work.rdss_social_work.notifications.appointment
 doc_events = {
 	"Beneficiary": {
 		"before_save": "rdss_social_work.beneficiary_geocoding.beneficiary_before_save"
+	},
+	"Beneficiary Family": {
+		"before_save": "rdss_social_work.beneficiary_family_geocoding.beneficiary_family_before_save"
+	},
+	"Support Scheme Application": {
+		"validate": "rdss_social_work.rdss_social_work.doctype.support_scheme_application.support_scheme_application.validate_beneficiary_access"
 	}
 }
 

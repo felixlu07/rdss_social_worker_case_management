@@ -25,13 +25,13 @@ class Beneficiary(Document):
 		# Set default status for new records
 		if not self.current_status:
 			self.current_status = "Active"
+		
+		# Validate beneficiary family is required
+		if not self.beneficiary_family:
+			frappe.throw("Beneficiary Family is required. Please select or create a family first.")
 	
 	def validate(self):
 		"""Validate beneficiary data"""
-		# Validate BC/NRIC format (basic validation)
-		if self.bc_nric_no:
-			self.validate_bc_nric()
-		
 		# Validate contact information
 		if self.email_address:
 			self.validate_email()
@@ -64,14 +64,6 @@ class Beneficiary(Document):
 		
 		return age
 	
-	def validate_bc_nric(self):
-		"""Basic validation for BC/NRIC format"""
-		bc_nric = self.bc_nric_no.upper().strip()
-		
-		# Basic format check (simplified)
-		if len(bc_nric) < 8 or len(bc_nric) > 12:
-			frappe.throw("BC/NRIC format appears invalid. Please check the format.")
-	
 	def validate_email(self):
 		"""Validate email format"""
 		import re
@@ -95,6 +87,10 @@ class Beneficiary(Document):
 		# Update related records if name changed
 		if self.has_value_changed('beneficiary_name'):
 			self.update_related_records()
+		
+		# Update family member count when beneficiary family changes
+		if self.has_value_changed('beneficiary_family'):
+			self.update_family_member_counts()
 	
 	def update_related_records(self):
 		"""Update related case records when beneficiary details change"""
@@ -104,14 +100,32 @@ class Beneficiary(Document):
 			case_doc = frappe.get_doc('Case', case.name)
 			case_doc.add_comment('Info', f'Beneficiary details updated: {self.beneficiary_name}')
 	
-	def get_active_cases(self):
-		"""Get all active cases for this beneficiary"""
+	def update_family_member_counts(self):
+		"""Update family member counts for old and new families"""
+		# Update old family if it exists
+		old_family = self.get_doc_before_save()
+		if old_family and old_family.beneficiary_family:
+			old_family_doc = frappe.get_doc('Beneficiary Family', old_family.beneficiary_family)
+			old_family_doc.update_family_member_count()
+			old_family_doc.save()
+		
+		# Update new family
+		if self.beneficiary_family:
+			new_family_doc = frappe.get_doc('Beneficiary Family', self.beneficiary_family)
+			new_family_doc.update_family_member_count()
+			new_family_doc.save()
+	
+	def get_family_cases(self):
+		"""Get all cases for this beneficiary's family"""
+		if not self.beneficiary_family:
+			return []
+		
 		return frappe.get_all('Case', 
 			filters={
-				'beneficiary': self.name,
+				'beneficiary_family': self.beneficiary_family,
 				'case_status': ['in', ['Open', 'Active', 'In Progress']]
 			},
-			fields=['name', 'case_status', 'assigned_social_worker', 'modified']
+			fields=['name', 'case_title', 'case_status', 'primary_social_worker', 'modified']
 		)
 	
 	def get_latest_assessment(self):

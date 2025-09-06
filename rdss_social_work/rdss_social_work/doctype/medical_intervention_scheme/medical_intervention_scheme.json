@@ -1,0 +1,371 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 15:07:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "application_section",
+  "naming_series",
+  "beneficiary",
+  "beneficiary_name",
+  "application_date",
+  "financial_year",
+  "column_break_1",
+  "status",
+  "total_amount_requested",
+  "approved_amount",
+  "medical_details_section",
+  "main_medical_diagnosis",
+  "nature_of_support",
+  "nature_of_disability",
+  "duration_of_disability",
+  "column_break_2",
+  "reimbursement_type",
+  "permanent_support",
+  "temporary_support",
+  "reimbursement_details_section",
+  "medical_consumables",
+  "medical_equipment",
+  "medication",
+  "consultation",
+  "surgery",
+  "item_details_table",
+  "payment_section",
+  "preferred_payment_method",
+  "paynow_mobile",
+  "paynow_name",
+  "column_break_3",
+  "bank_transfer_details",
+  "bank_account_name",
+  "supporting_documents_section",
+  "medical_reports",
+  "invoices_receipts",
+  "prescription_documents",
+  "other_supporting_docs",
+  "endorsement_section",
+  "assessor_name",
+  "health_institution",
+  "designation",
+  "column_break_4",
+  "contact_number",
+  "email_address",
+  "endorsement_date",
+  "notes_section",
+  "additional_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "application_section",
+   "fieldtype": "Section Break",
+   "label": "Application Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "MIS-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "label": "Beneficiary Name",
+   "read_only": 1,
+   "fetch_from": "beneficiary.beneficiary_name"
+  },
+  {
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date",
+   "default": "Today",
+   "reqd": 1
+  },
+  {
+   "fieldname": "financial_year",
+   "fieldtype": "Data",
+   "label": "Financial Year",
+   "default": "2025"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Application Status",
+   "options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected",
+   "default": "Draft"
+  },
+  {
+   "fieldname": "total_amount_requested",
+   "fieldtype": "Currency",
+   "label": "Total Amount Requested"
+  },
+  {
+   "fieldname": "approved_amount",
+   "fieldtype": "Currency",
+   "label": "Approved Amount"
+  },
+  {
+   "fieldname": "medical_details_section",
+   "fieldtype": "Section Break",
+   "label": "Medical Details"
+  },
+  {
+   "fieldname": "main_medical_diagnosis",
+   "fieldtype": "Text",
+   "label": "Main Medical Diagnosis",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nature_of_support",
+   "fieldtype": "Select",
+   "label": "Nature of Support",
+   "options": "\nPermanent\nTemporary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nature_of_disability",
+   "fieldtype": "Select",
+   "label": "Nature of Disability",
+   "options": "\nPermanent\nTemporary"
+  },
+  {
+   "fieldname": "duration_of_disability",
+   "fieldtype": "Data",
+   "label": "Duration of Disability (if temporary)"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reimbursement_type",
+   "fieldtype": "Select",
+   "label": "Reimbursement For",
+   "options": "\nMedical Consumables\nMedical Equipment\nMedication\nConsultation\nSurgery",
+   "reqd": 1
+  },
+  {
+   "fieldname": "permanent_support",
+   "fieldtype": "Check",
+   "label": "Permanent Support Required"
+  },
+  {
+   "fieldname": "temporary_support",
+   "fieldtype": "Check",
+   "label": "Temporary Support Required"
+  },
+  {
+   "fieldname": "reimbursement_details_section",
+   "fieldtype": "Section Break",
+   "label": "Reimbursement Details"
+  },
+  {
+   "fieldname": "medical_consumables",
+   "fieldtype": "Check",
+   "label": "Medical Consumables"
+  },
+  {
+   "fieldname": "medical_equipment",
+   "fieldtype": "Check",
+   "label": "Medical Equipment"
+  },
+  {
+   "fieldname": "medication",
+   "fieldtype": "Check",
+   "label": "Medication"
+  },
+  {
+   "fieldname": "consultation",
+   "fieldtype": "Check",
+   "label": "Consultation"
+  },
+  {
+   "fieldname": "surgery",
+   "fieldtype": "Check",
+   "label": "Surgery"
+  },
+  {
+   "fieldname": "item_details_table",
+   "fieldtype": "Table",
+   "label": "Item Details",
+   "options": "MIS Item Detail"
+  },
+  {
+   "fieldname": "payment_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Preferences"
+  },
+  {
+   "fieldname": "preferred_payment_method",
+   "fieldtype": "Select",
+   "label": "Preferred Payment Method",
+   "options": "\nPayNow\nBank Transfer"
+  },
+  {
+   "fieldname": "paynow_mobile",
+   "fieldtype": "Data",
+   "label": "PayNow Mobile Number",
+   "depends_on": "eval:doc.preferred_payment_method=='PayNow'"
+  },
+  {
+   "fieldname": "paynow_name",
+   "fieldtype": "Data",
+   "label": "Registered PayNow Name",
+   "depends_on": "eval:doc.preferred_payment_method=='PayNow'"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_transfer_details",
+   "fieldtype": "Data",
+   "label": "Bank Name & Account Number",
+   "depends_on": "eval:doc.preferred_payment_method=='Bank Transfer'"
+  },
+  {
+   "fieldname": "bank_account_name",
+   "fieldtype": "Data",
+   "label": "Bank Account Holder Name",
+   "depends_on": "eval:doc.preferred_payment_method=='Bank Transfer'"
+  },
+  {
+   "fieldname": "supporting_documents_section",
+   "fieldtype": "Section Break",
+   "label": "Supporting Documents"
+  },
+  {
+   "fieldname": "medical_reports",
+   "fieldtype": "Attach",
+   "label": "Medical Reports"
+  },
+  {
+   "fieldname": "invoices_receipts",
+   "fieldtype": "Attach",
+   "label": "Invoices / Receipts"
+  },
+  {
+   "fieldname": "prescription_documents",
+   "fieldtype": "Attach",
+   "label": "Prescription Documents"
+  },
+  {
+   "fieldname": "other_supporting_docs",
+   "fieldtype": "Attach",
+   "label": "Other Supporting Documents"
+  },
+  {
+   "fieldname": "endorsement_section",
+   "fieldtype": "Section Break",
+   "label": "Medical Professional Endorsement"
+  },
+  {
+   "fieldname": "assessor_name",
+   "fieldtype": "Data",
+   "label": "Assessor Name"
+  },
+  {
+   "fieldname": "health_institution",
+   "fieldtype": "Data",
+   "label": "Health Institution"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "endorsement_date",
+   "fieldtype": "Date",
+   "label": "Endorsement Date"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 15:07:00.000000",
+ "modified_by": "Administrator",
+ "module": "RDSS Social Work",
+ "name": "Medical Intervention Scheme",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Social Worker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Beneficiary",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "beneficiary_name",
+ "track_changes": 1
+}

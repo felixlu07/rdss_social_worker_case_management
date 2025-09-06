@@ -66,6 +66,9 @@
   "voice_notes",
   "visit_photos",
   "supporting_documents",
+  "family_context_tab",
+  "family_context_section",
+  "family_context_html",
   "case_notes_tab",
   "case_notes_section",
   "case_notes_html"
@@ -402,6 +405,22 @@
    "fieldtype": "Attach",
    "label": "Supporting Documents",
    "description": "Any documents collected or provided during the visit"
+  },
+  {
+   "fieldname": "family_context_tab",
+   "fieldtype": "Tab Break",
+   "label": "Family Context"
+  },
+  {
+   "fieldname": "family_context_section",
+   "fieldtype": "Section Break",
+   "label": "Family & Case Information"
+  },
+  {
+   "fieldname": "family_context_html",
+   "fieldtype": "HTML",
+   "label": "Family Details & Case Context",
+   "options": "<div id='appointment-family-context-container'></div>"
   },
   {
    "fieldname": "case_notes_tab",

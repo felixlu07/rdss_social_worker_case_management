@@ -71,7 +71,13 @@
   "priority_follow_up",
   "notes_section",
   "additional_notes",
-  "private_notes"
+  "private_notes",
+  "appointment_context_tab",
+  "appointment_context_section",
+  "appointment_context_html",
+  "family_context_tab",
+  "family_context_section",
+  "family_context_html"
  ],
  "fields": [
   {
@@ -424,6 +430,38 @@
    "fieldname": "private_notes",
    "fieldtype": "Text Editor",
    "label": "Private Notes (Staff Only)"
+  },
+  {
+   "fieldname": "appointment_context_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appointment Context"
+  },
+  {
+   "fieldname": "appointment_context_section",
+   "fieldtype": "Section Break",
+   "label": "Related Appointment Details"
+  },
+  {
+   "fieldname": "appointment_context_html",
+   "fieldtype": "HTML",
+   "label": "Appointment Information",
+   "options": "<div id='case-notes-appointment-context-container'></div>"
+  },
+  {
+   "fieldname": "family_context_tab",
+   "fieldtype": "Tab Break",
+   "label": "Family Context"
+  },
+  {
+   "fieldname": "family_context_section",
+   "fieldtype": "Section Break",
+   "label": "Family & Case Information"
+  },
+  {
+   "fieldname": "family_context_html",
+   "fieldtype": "HTML",
+   "label": "Family Details & Case Context",
+   "options": "<div id='case-notes-family-context-container'></div>"
   }
  ],
  "index_web_pages_for_search": 1,

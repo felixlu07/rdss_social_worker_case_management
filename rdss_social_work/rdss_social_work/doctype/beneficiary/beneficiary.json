@@ -10,6 +10,8 @@
   "personal_information_section",
   "naming_series",
   "beneficiary_name",
+  "beneficiary_family",
+  "family_relationship",
   "bc_nric_no",
   "date_of_birth",
   "age",
@@ -73,26 +75,16 @@
   "notes_section",
   "additional_notes",
   "internal_notes",
-  "cases_tab",
-  "cases_section",
-  "active_cases_html",
-  "closed_cases_html",
+  "family_overview_tab",
+  "family_overview_section",
+  "family_info_html",
   "appointments_tab",
   "appointments_section",
   "upcoming_appointments_html",
   "appointment_history_html",
-  "assessments_tab",
-  "initial_assessments_section",
-  "initial_assessments_html",
-  "follow_up_assessments_section",
-  "follow_up_assessments_html",
-  "services_tab",
-  "service_plans_section",
-  "current_service_plans_html",
-  "service_history_html",
-  "documents_tab",
-  "document_attachments_section",
-  "document_attachments_html"
+  "case_notes_tab",
+  "case_notes_section",
+  "case_notes_html"
  ],
  "fields": [
   {
@@ -115,10 +107,24 @@
    "reqd": 1
   },
   {
+   "fieldname": "beneficiary_family",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary Family",
+   "options": "Beneficiary Family",
+   "reqd": 1
+  },
+  {
+   "fieldname": "family_relationship",
+   "fieldtype": "Select",
+   "label": "Relationship to Family",
+   "options": "\nHead of Family\nSpouse\nChild\nParent\nSibling\nGrandparent\nGrandchild\nOther Relative\nGuardian\nOther",
+   "description": "Relationship of this beneficiary within the family unit"
+  },
+  {
    "fieldname": "bc_nric_no",
    "fieldtype": "Data",
-   "label": "BC / NRIC No",
-   "unique": 1
+   "label": "BC / NRIC No"
   },
   {
    "fieldname": "date_of_birth",
@@ -238,7 +244,8 @@
   {
    "fieldname": "diagnosis_date",
    "fieldtype": "Date",
-   "label": "Diagnosis Date"
+   "label": "Diagnosis Date",
+   "reqd": 1
   },
   {
    "fieldname": "severity_level",
@@ -443,26 +450,20 @@
    "label": "Internal Notes (Staff Only)"
   },
   {
-   "fieldname": "cases_tab",
+   "fieldname": "family_overview_tab",
    "fieldtype": "Tab Break",
-   "label": "Cases"
+   "label": "Family Overview"
   },
   {
-   "fieldname": "cases_section",
+   "fieldname": "family_overview_section",
    "fieldtype": "Section Break",
-   "label": "Case Management"
+   "label": "Family Information & Case"
   },
   {
-   "fieldname": "active_cases_html",
+   "fieldname": "family_info_html",
    "fieldtype": "HTML",
-   "label": "Active Cases",
-   "options": "<div id='active-cases-container'></div>"
-  },
-  {
-   "fieldname": "closed_cases_html",
-   "fieldtype": "HTML",
-   "label": "Case History",
-   "options": "<div id='closed-cases-container'></div>"
+   "label": "Family Details & Case",
+   "options": "<div id='family-info-container'></div>"
   },
   {
    "fieldname": "appointments_tab",
@@ -487,69 +488,20 @@
    "options": "<div id='appointment-history-container'></div>"
   },
   {
-   "fieldname": "assessments_tab",
+   "fieldname": "case_notes_tab",
    "fieldtype": "Tab Break",
-   "label": "Assessments"
+   "label": "Case Notes"
   },
   {
-   "fieldname": "initial_assessments_section",
+   "fieldname": "case_notes_section",
    "fieldtype": "Section Break",
-   "label": "Initial Assessments"
+   "label": "My Case Notes"
   },
   {
-   "fieldname": "initial_assessments_html",
+   "fieldname": "case_notes_html",
    "fieldtype": "HTML",
-   "label": "Initial Assessments",
-   "options": "<div id='initial-assessments-container'></div>"
-  },
-  {
-   "fieldname": "follow_up_assessments_section",
-   "fieldtype": "Section Break",
-   "label": "Follow-up Assessments"
-  },
-  {
-   "fieldname": "follow_up_assessments_html",
-   "fieldtype": "HTML",
-   "label": "Follow-up Assessments",
-   "options": "<div id='follow-up-assessments-container'></div>"
-  },
-  {
-   "fieldname": "services_tab",
-   "fieldtype": "Tab Break",
-   "label": "Services"
-  },
-  {
-   "fieldname": "service_plans_section",
-   "fieldtype": "Section Break",
-   "label": "Service Plans"
-  },
-  {
-   "fieldname": "current_service_plans_html",
-   "fieldtype": "HTML",
-   "label": "Current Service Plans",
-   "options": "<div id='current-service-plans-container'></div>"
-  },
-  {
-   "fieldname": "service_history_html",
-   "fieldtype": "HTML",
-   "label": "Service History",
-   "options": "<div id='service-history-container'></div>"
-  },
-  {
-   "fieldname": "documents_tab",
-   "fieldtype": "Tab Break",
-   "label": "Documents"
-  },
-  {
-   "fieldname": "document_attachments_section",
-   "fieldtype": "Section Break",
-   "label": "Document Attachments"
-  },
-  {
-   "fieldname": "document_attachments_html",
-   "fieldtype": "HTML",
-   "label": "Document Attachments",
-   "options": "<div id='document-attachments-container'></div>"
+   "label": "Case Notes for this Beneficiary",
+   "options": "<div id='case-notes-container'></div>"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -584,6 +536,34 @@
    "role": "Social Worker",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Head of Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "RDSS Director",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Beneficiary"
   }
  ],
  "sort_field": "modified",

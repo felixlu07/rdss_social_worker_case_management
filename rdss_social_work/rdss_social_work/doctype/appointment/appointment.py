@@ -42,10 +42,14 @@ class Appointment(Document):
 		if not self.social_worker:
 			self.social_worker = frappe.session.user
 		
-		# Auto-populate beneficiary from case
+		# Auto-populate beneficiary from case - now case links to family, so we need to handle this differently
 		if self.case and not self.beneficiary:
 			case_doc = frappe.get_doc("Case", self.case)
-			self.beneficiary = case_doc.beneficiary
+			# Get the family head as default beneficiary if not specified
+			if case_doc.beneficiary_family:
+				family_doc = frappe.get_doc("Beneficiary Family", case_doc.beneficiary_family)
+				if family_doc.family_head:
+					self.beneficiary = family_doc.family_head
 		
 		# Set default status for new appointments
 		if not self.appointment_status:
@@ -125,6 +129,13 @@ class Appointment(Document):
 			case_doc = frappe.get_doc("Case", self.case)
 			if case_doc.case_status in ["Closed", "Transferred"]:
 				frappe.throw(f"Cannot create appointment for {case_doc.case_status.lower()} case")
+		
+		# Ensure beneficiary belongs to the case's family
+		if self.case and self.beneficiary:
+			case_doc = frappe.get_doc("Case", self.case)
+			beneficiary_doc = frappe.get_doc("Beneficiary", self.beneficiary)
+			if beneficiary_doc.beneficiary_family != case_doc.beneficiary_family:
+				frappe.throw(f"Beneficiary {self.beneficiary} does not belong to the family associated with case {self.case}")
 		
 		# Validate appointment date and time
 		if self.appointment_date and getdate(self.appointment_date) < getdate(today()):

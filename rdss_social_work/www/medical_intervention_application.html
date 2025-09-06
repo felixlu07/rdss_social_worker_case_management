@@ -1,0 +1,592 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-rdss text-white">
+                    <h4 class="mb-0">
+                        <i class="fa fa-medical-kit"></i> Medical Intervention Scheme (MIS) Application
+                    </h4>
+                    <p class="mb-0 small">Up to $600 per beneficiary for each financial year</p>
+                </div>
+                <div class="card-body">
+                    <form id="mis-application-form">
+                        <!-- Application Details -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Beneficiary Name</label>
+                                <input type="text" class="form-control" value="{{ (beneficiary and beneficiary.beneficiary_name) or 'Loading...' }}" readonly>
+                                <input type="hidden" id="beneficiary" value="{{ (beneficiary and beneficiary.name) or '' }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Application Date</label>
+                                <input type="date" class="form-control" id="application_date" value="{{ frappe.utils.today() }}" readonly>
+                            </div>
+                        </div>
+
+                        {% if show_access_issue %}
+                        <div class="alert alert-warning">
+                            <h5><i class="fa fa-exclamation-triangle"></i> Access Issue</h5>
+                            <p>{{ access_message or "You must be logged in as a registered beneficiary to submit applications." }}</p>
+                            {% if frappe.session.user == "Guest" %}
+                            <a href="/login?redirect-to=/medical_intervention_application" class="btn btn-primary">Login</a>
+                            <a href="/beneficiary-signup" class="btn btn-outline-primary">Register</a>
+                            {% endif %}
+                        </div>
+                        {% else %}
+
+                        <!-- Medical Details -->
+                        <h5 class="border-bottom pb-2 mb-3">Medical Details</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label required">Main Medical Diagnosis</label>
+                                <textarea class="form-control" id="main_medical_diagnosis" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label required">Nature of Support</label>
+                                <select class="form-control" id="nature_of_support" required>
+                                    <option value="">Select...</option>
+                                    <option value="Permanent">Permanent</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nature of Disability</label>
+                                <select class="form-control" id="nature_of_disability">
+                                    <option value="">Select...</option>
+                                    <option value="Permanent">Permanent</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Duration of Disability (if temporary)</label>
+                                <input type="text" class="form-control" id="duration_of_disability">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label required">Reimbursement For</label>
+                                <select class="form-control" id="reimbursement_type" required>
+                                    <option value="">Select...</option>
+                                    <option value="Medical Consumables">Medical Consumables</option>
+                                    <option value="Medical Equipment">Medical Equipment</option>
+                                    <option value="Medication">Medication</option>
+                                    <option value="Consultation">Consultation</option>
+                                    <option value="Surgery">Surgery</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Reimbursement Categories -->
+                        <h5 class="border-bottom pb-2 mb-3">Reimbursement Categories</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="medical_consumables">
+                                    <label class="form-check-label" for="medical_consumables">Medical Consumables</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="medical_equipment">
+                                    <label class="form-check-label" for="medical_equipment">Medical Equipment</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="medication">
+                                    <label class="form-check-label" for="medication">Medication</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="consultation">
+                                    <label class="form-check-label" for="consultation">Consultation</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="surgery">
+                                    <label class="form-check-label" for="surgery">Surgery</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item Details -->
+                        <h5 class="border-bottom pb-2 mb-3">Item Details</h5>
+                        <div id="item-details-container">
+                            <div class="item-row mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Type of Claim</label>
+                                        <select class="form-control item-type">
+                                            <option value="">Select...</option>
+                                            <option value="Medical Consumable">Medical Consumable</option>
+                                            <option value="Medical Equipment">Medical Equipment</option>
+                                            <option value="Medication">Medication</option>
+                                            <option value="Consultation">Consultation</option>
+                                            <option value="Surgery">Surgery</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" class="form-control item-description">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Invoice No</label>
+                                        <input type="text" class="form-control item-invoice">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Amount ($)</label>
+                                        <input type="number" class="form-control item-amount" step="0.01">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addItemRow()">
+                            <i class="fa fa-plus"></i> Add Item
+                        </button>
+
+                        <!-- Payment Preferences -->
+                        <h5 class="border-bottom pb-2 mb-3">Payment Preferences</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Payment Method</label>
+                                <select class="form-control" id="preferred_payment_method" onchange="togglePaymentFields()">
+                                    <option value="">Select...</option>
+                                    <option value="PayNow">PayNow</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="paynow-fields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">PayNow Mobile Number</label>
+                                    <input type="text" class="form-control" id="paynow_mobile">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Registered PayNow Name</label>
+                                    <input type="text" class="form-control" id="paynow_name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="bank-fields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Bank Name & Account Number</label>
+                                    <input type="text" class="form-control" id="bank_transfer_details">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Bank Account Holder Name</label>
+                                    <input type="text" class="form-control" id="bank_account_name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Supporting Documents -->
+                        <h5 class="border-bottom pb-2 mb-3">Supporting Documents</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Medical Reports</label>
+                                <input type="file" class="form-control" id="medical_reports" accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Invoices / Receipts</label>
+                                <input type="file" class="form-control" id="invoices_receipts" accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
+                        </div>
+
+                        <!-- Medical Professional Endorsement -->
+                        <h5 class="border-bottom pb-2 mb-3">Medical Professional Endorsement</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Assessor Name</label>
+                                <input type="text" class="form-control" id="assessor_name">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Health Institution</label>
+                                <input type="text" class="form-control" id="health_institution">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Designation</label>
+                                <input type="text" class="form-control" id="designation">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" id="contact_number">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email_address">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Endorsement Date</label>
+                                <input type="date" class="form-control" id="endorsement_date">
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Additional Notes</label>
+                                <textarea class="form-control" id="additional_notes" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-outline-secondary" onclick="saveDraft()" id="save-draft-btn">
+                                <i class="fa fa-save"></i> Save Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <i class="fa fa-paper-plane"></i> Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePaymentFields() {
+    const method = document.getElementById('preferred_payment_method').value;
+    const paynowFields = document.getElementById('paynow-fields');
+    const bankFields = document.getElementById('bank-fields');
+    
+    if (method === 'PayNow') {
+        paynowFields.style.display = 'block';
+        bankFields.style.display = 'none';
+    } else if (method === 'Bank Transfer') {
+        paynowFields.style.display = 'none';
+        bankFields.style.display = 'block';
+    } else {
+        paynowFields.style.display = 'none';
+        bankFields.style.display = 'none';
+    }
+}
+
+function addItemRow() {
+    const container = document.getElementById('item-details-container');
+    const newRow = document.createElement('div');
+    newRow.className = 'item-row mb-3';
+    newRow.innerHTML = `
+        <div class="row">
+            <div class="col-md-3">
+                <select class="form-control item-type">
+                    <option value="">Select...</option>
+                    <option value="Medical Consumable">Medical Consumable</option>
+                    <option value="Medical Equipment">Medical Equipment</option>
+                    <option value="Medication">Medication</option>
+                    <option value="Consultation">Consultation</option>
+                    <option value="Surgery">Surgery</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control item-description">
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control item-invoice">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control item-amount" step="0.01">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeItemRow(this)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    container.appendChild(newRow);
+}
+
+function removeItemRow(button) {
+    button.closest('.item-row').remove();
+}
+
+function collectItemDetails() {
+    const items = [];
+    const itemRows = document.querySelectorAll('.item-row');
+    
+    itemRows.forEach(row => {
+        const type = row.querySelector('.item-type').value;
+        const description = row.querySelector('.item-description').value;
+        const invoice = row.querySelector('.item-invoice').value;
+        const amount = row.querySelector('.item-amount').value;
+        
+        if (type && description && amount) {
+            items.push({
+                item_type: type,
+                description: description,
+                invoice_no: invoice,
+                amount: parseFloat(amount)
+            });
+        }
+    });
+    
+    return items;
+}
+
+function validateForm(submit = false) {
+    const errors = [];
+    
+    // Required field validation
+    const requiredFields = [
+        { id: 'main_medical_diagnosis', name: 'Main Medical Diagnosis' },
+        { id: 'nature_of_support', name: 'Nature of Support' },
+        { id: 'reimbursement_type', name: 'Reimbursement Type' }
+    ];
+    
+    requiredFields.forEach(field => {
+        const element = document.getElementById(field.id);
+        if (!element.value.trim()) {
+            errors.push(`${field.name} is required`);
+            element.classList.add('is-invalid');
+        } else {
+            element.classList.remove('is-invalid');
+        }
+    });
+    
+    // Validate at least one reimbursement category is selected
+    const categories = ['medical_consumables', 'medical_equipment', 'medication', 'consultation', 'surgery'];
+    const selectedCategories = categories.filter(cat => document.getElementById(cat).checked);
+    if (selectedCategories.length === 0) {
+        errors.push('Please select at least one reimbursement category');
+    }
+    
+    // Validate item details if submitting
+    const items = collectItemDetails();
+    if (submit && items.length === 0) {
+        errors.push('Please add at least one item detail for submission');
+    }
+    
+    // Validate payment method details
+    const paymentMethod = document.getElementById('preferred_payment_method').value;
+    if (paymentMethod === 'PayNow') {
+        const mobile = document.getElementById('paynow_mobile').value;
+        const name = document.getElementById('paynow_name').value;
+        if (!mobile.trim()) errors.push('PayNow mobile number is required');
+        if (!name.trim()) errors.push('PayNow registered name is required');
+    } else if (paymentMethod === 'Bank Transfer') {
+        const details = document.getElementById('bank_transfer_details').value;
+        const accountName = document.getElementById('bank_account_name').value;
+        if (!details.trim()) errors.push('Bank transfer details are required');
+        if (!accountName.trim()) errors.push('Bank account name is required');
+    }
+    
+    // Validate assessor details if submitting
+    if (submit) {
+        const assessorFields = [
+            { id: 'assessor_name', name: 'Assessor Name' },
+            { id: 'health_institution', name: 'Health Institution' },
+            { id: 'designation', name: 'Designation' },
+            { id: 'contact_number', name: 'Contact Number' },
+            { id: 'email_address', name: 'Email Address' },
+            { id: 'endorsement_date', name: 'Endorsement Date' }
+        ];
+        
+        assessorFields.forEach(field => {
+            const element = document.getElementById(field.id);
+            if (!element.value.trim()) {
+                errors.push(`${field.name} is required for submission`);
+                element.classList.add('is-invalid');
+            } else {
+                element.classList.remove('is-invalid');
+            }
+        });
+    }
+    
+    return errors;
+}
+
+function showValidationErrors(errors) {
+    if (errors.length > 0) {
+        const errorHtml = errors.map(error => `<li>${error}</li>`).join('');
+        frappe.msgprint({
+            title: 'Validation Errors',
+            message: `<ul>${errorHtml}</ul>`,
+            indicator: 'red'
+        });
+        return false;
+    }
+    return true;
+}
+
+function saveDraft() {
+    const errors = validateForm(false);
+    if (errors.length > 5) { // Allow more lenient validation for drafts
+        showValidationErrors(errors.slice(0, 5).concat(['...and more. Please review the form.']));
+        return;
+    }
+    submitApplication(false);
+}
+
+function submitApplication(submit = true) {
+    // Show loading state
+    const submitBtn = document.getElementById('submit-btn');
+    const draftBtn = document.getElementById('save-draft-btn');
+    const originalSubmitText = submitBtn.innerHTML;
+    const originalDraftText = draftBtn.innerHTML;
+    
+    if (submit) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting...';
+    } else {
+        draftBtn.disabled = true;
+        draftBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+    }
+    
+    // Validate form
+    const errors = validateForm(submit);
+    if (!showValidationErrors(errors)) {
+        // Reset button states
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalSubmitText;
+        draftBtn.disabled = false;
+        draftBtn.innerHTML = originalDraftText;
+        return;
+    }
+    
+    const formData = {
+        beneficiary: document.getElementById('beneficiary').value,
+        scheme_type: 'Medical Intervention Scheme (MIS)',
+        application_date: document.getElementById('application_date').value,
+        main_medical_diagnosis: document.getElementById('main_medical_diagnosis').value,
+        nature_of_support: document.getElementById('nature_of_support').value,
+        nature_of_disability: document.getElementById('nature_of_disability').value,
+        duration_of_disability: document.getElementById('duration_of_disability').value,
+        reimbursement_type: document.getElementById('reimbursement_type').value,
+        medical_consumables: document.getElementById('medical_consumables').checked ? 1 : 0,
+        medical_equipment: document.getElementById('medical_equipment').checked ? 1 : 0,
+        medication: document.getElementById('medication').checked ? 1 : 0,
+        consultation: document.getElementById('consultation').checked ? 1 : 0,
+        surgery: document.getElementById('surgery').checked ? 1 : 0,
+        preferred_payment_method: document.getElementById('preferred_payment_method').value,
+        paynow_mobile: document.getElementById('paynow_mobile').value,
+        paynow_name: document.getElementById('paynow_name').value,
+        bank_transfer_details: document.getElementById('bank_transfer_details').value,
+        bank_account_name: document.getElementById('bank_account_name').value,
+        assessor_name: document.getElementById('assessor_name').value,
+        health_institution: document.getElementById('health_institution').value,
+        designation: document.getElementById('designation').value,
+        contact_number: document.getElementById('contact_number').value,
+        email_address: document.getElementById('email_address').value,
+        endorsement_date: document.getElementById('endorsement_date').value,
+        additional_notes: document.getElementById('additional_notes').value,
+        item_details_table: collectItemDetails()
+    };
+
+    frappe.call({
+        method: 'rdss_social_work.api.create_mis_application',
+        args: {
+            data: formData,
+            submit: submit
+        },
+        callback: function(r) {
+            // Reset button states
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalSubmitText;
+            draftBtn.disabled = false;
+            draftBtn.innerHTML = originalDraftText;
+            
+            if (r.message && r.message.status === 'success') {
+                frappe.msgprint({
+                    title: 'Success',
+                    message: submit ? 'Application submitted successfully!' : 'Application saved as draft!',
+                    indicator: 'green'
+                });
+                setTimeout(() => {
+                    window.location.href = '/beneficiary_portal';
+                }, 2000);
+            } else {
+                frappe.msgprint({
+                    title: 'Error',
+                    message: r.message?.message || 'An error occurred. Please try again.',
+                    indicator: 'red'
+                });
+            }
+        },
+        error: function(r) {
+            // Reset button states
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalSubmitText;
+            draftBtn.disabled = false;
+            draftBtn.innerHTML = originalDraftText;
+            
+            frappe.msgprint({
+                title: 'Error',
+                message: 'Network error. Please check your connection and try again.',
+                indicator: 'red'
+            });
+        }
+    });
+}
+
+document.getElementById('mis-application-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitApplication(true);
+});
+</script>
+
+{% endif %}
+
+<style>
+.required::after {
+    content: " *";
+    color: red;
+}
+
+.form-check-inline {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.item-row {
+    border: 1px solid #e3e6f0;
+    padding: 1rem;
+    border-radius: 0.35rem;
+    background-color: #f8f9fc;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.alert {
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeaa7;
+}
+
+.bg-rdss {
+    background: linear-gradient(135deg, #832061 0%, #6a1a4f 100%) !important;
+    border: none;
+}
+
+.bg-rdss h4 {
+    color: white !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}
